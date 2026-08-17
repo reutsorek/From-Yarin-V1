@@ -1,0 +1,17 @@
+node_modules
+.next
+out
+dist
+.env
+.env.local
+.env*.local
+web/.env.local
+studio/.env
+*.tsbuildinfo
+.DS_Store
+coverage
+playwright-report
+test-results
+studio/dist
+studio/.sanity
+.vercel

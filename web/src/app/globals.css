@@ -1,0 +1,178 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+/* ---------------------------------------------------------------------------
+   BRAND PALETTE. This block is the per-project swap point: change these values
+   and nothing else. Every token below is expressed in oklch so lightness stays
+   perceptually even when you shift the hue.
+
+   Semantic tokens come in three parts:
+     --x            the surface
+     --x-foreground text that sits on that surface
+     --x-ink        the same hue darkened enough to be readable on --background
+   Use -ink for icons and small text on a neutral page. Using the surface color
+   there is the usual source of contrast failures.
+   Raw values live in :root; @theme inline maps them to Tailwind's --color-* names.
+--------------------------------------------------------------------------- */
+:root {
+  --brand-hue: 265;
+
+  --background: oklch(0.99 0.003 var(--brand-hue));
+  --foreground: oklch(0.19 0.02 var(--brand-hue));
+
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+
+  --primary: oklch(0.55 0.22 var(--brand-hue));
+  --primary-foreground: oklch(0.99 0.005 var(--brand-hue));
+  --primary-ink: oklch(0.44 0.19 var(--brand-hue));
+
+  --secondary: oklch(0.95 0.02 var(--brand-hue));
+  --secondary-foreground: oklch(0.27 0.05 var(--brand-hue));
+
+  --muted: oklch(0.96 0.006 var(--brand-hue));
+  --muted-foreground: oklch(0.48 0.02 var(--brand-hue));
+
+  --accent: oklch(0.94 0.04 calc(var(--brand-hue) + 45));
+  --accent-foreground: oklch(0.27 0.06 calc(var(--brand-hue) + 45));
+
+  --destructive: oklch(0.58 0.21 27);
+  --destructive-foreground: oklch(0.99 0.01 27);
+  --destructive-ink: oklch(0.47 0.19 27);
+
+  --success: oklch(0.68 0.16 150);
+  --success-foreground: oklch(0.16 0.04 150);
+  --success-ink: oklch(0.44 0.13 150);
+
+  --warning: oklch(0.82 0.15 82);
+  --warning-foreground: oklch(0.24 0.06 82);
+  --warning-ink: oklch(0.5 0.12 82);
+
+  --info: oklch(0.7 0.13 240);
+  --info-foreground: oklch(0.18 0.04 240);
+  --info-ink: oklch(0.47 0.14 240);
+
+  --border: oklch(0.91 0.008 var(--brand-hue));
+  --input: oklch(0.91 0.008 var(--brand-hue));
+  --ring: var(--primary);
+
+  --chart-1: oklch(0.62 0.19 var(--brand-hue));
+  --chart-2: oklch(0.66 0.15 calc(var(--brand-hue) + 60));
+  --chart-3: oklch(0.7 0.14 calc(var(--brand-hue) + 130));
+  --chart-4: oklch(0.74 0.15 calc(var(--brand-hue) + 190));
+  --chart-5: oklch(0.66 0.17 calc(var(--brand-hue) + 300));
+
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-ink: var(--primary-ink);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-ink: var(--destructive-ink);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-ink: var(--success-ink);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-ink: var(--warning-ink);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-ink: var(--info-ink);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --font-sans: var(--font-hebrew), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Tailwind Typography indents lists with padding-left, which lands on the wrong
+     side in Hebrew. Logical padding fixes both directions at once. */
+  .prose :is(ul, ol) {
+    padding-left: 0;
+    padding-right: 0;
+    padding-inline-start: 1.625em;
+  }
+
+  .prose :is(ul, ol) > li {
+    padding-left: 0;
+    padding-right: 0;
+    padding-inline-start: 0.375em;
+  }
+
+  .prose blockquote {
+    border-left-width: 0;
+    border-inline-start-width: 0.25rem;
+    padding-left: 0;
+    padding-inline-start: 1em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1rem;
+
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding-inline: 2rem;
+  }
+}

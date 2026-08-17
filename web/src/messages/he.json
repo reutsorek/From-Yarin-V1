@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "menu": "תפריט",
+    "close": "סגירה",
+    "skipToContent": "דילוג לתוכן"
+  },
+  "common": {
+    "readMore": "קראו עוד",
+    "loading": "טוען",
+    "error": "משהו השתבש",
+    "retry": "נסו שוב"
+  },
+  "contact": {
+    "name": "שם",
+    "email": "אימייל",
+    "message": "הודעה",
+    "submit": "שליחה",
+    "success": "תודה, נחזור אליכם בהקדם.",
+    "error": "לא הצלחנו לשלוח את ההודעה. נסו שוב."
+  },
+  "blog": {
+    "title": "בלוג",
+    "readingTime": "{minutes} דקות קריאה",
+    "publishedOn": "פורסם ב{date}"
+  },
+  "localeSwitcher": {
+    "label": "שפה"
+  },
+  "notFound": {
+    "title": "הדף לא נמצא",
+    "description": "הדף שחיפשתם לא קיים.",
+    "backHome": "חזרה לדף הבית"
+  }
+}

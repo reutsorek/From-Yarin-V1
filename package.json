@@ -1,0 +1,36 @@
+{
+  "name": "next-sanity-boilerplate",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "eslint-local-rules",
+    "studio",
+    "web"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "init": "node scripts/init.mjs",
+    "dev": "concurrently -n web,studio -c cyan,magenta \"npm run dev -w web\" \"npm run dev -w studio\"",
+    "build": "npm run typegen && npm run build -w web",
+    "start": "npm run start -w web",
+    "typegen": "npm run typegen -w studio",
+    "typecheck": "npm run typecheck -w web && npm run typecheck -w studio",
+    "lint": "npm run lint -w web",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npm run test -w web",
+    "test:e2e": "npm run test:e2e -w web",
+    "audit:dashes": "node scripts/audit-dashes.mjs",
+    "studio:deploy": "npm run deploy -w studio",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.3.0",
+    "prettier": "^3.9.6",
+    "prettier-plugin-tailwindcss": "^0.8.1"
+  }
+}
