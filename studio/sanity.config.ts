@@ -15,7 +15,7 @@ const localized = LOCALIZED_TYPES as readonly string[]
 
 export default defineConfig({
   name: 'default',
-  title: 'Next Sanity Boilerplate',
+  title: 'From-Yarin-V1',
   projectId,
   dataset,
   plugins: [

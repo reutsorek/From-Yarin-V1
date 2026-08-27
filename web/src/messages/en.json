@@ -2,7 +2,8 @@
   "nav": {
     "menu": "Menu",
     "close": "Close",
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "startConversation": "Start a conversation"
   },
   "common": {
     "readMore": "Read more",
@@ -11,11 +12,30 @@
     "retry": "Try again"
   },
   "contact": {
-    "name": "Name",
+    "fullName": "Full name",
     "email": "Email",
+    "organization": "Organization",
+    "roleTitle": "Role / title",
+    "phone": "Phone number",
+    "countryRegion": "Country / region",
+    "interestType": "I am interested in",
+    "interestTypePlaceholder": "Select an option",
+    "interestOptions": {
+      "sprint": "Extreme Environments Sprint",
+      "signature": "Signature Science Expedition",
+      "research": "Research collaboration",
+      "advisory": "Strategic advisory",
+      "speaking": "Speaking / keynote",
+      "media": "Media / documentary",
+      "other": "Other"
+    },
+    "preferredTiming": "Preferred timing",
+    "budgetRange": "Estimated scope or budget range",
     "message": "Message",
+    "privacyConsent": "I agree that my information will be used to respond to this inquiry.",
+    "captchaRequired": "Please complete the verification challenge before sending.",
     "submit": "Send",
-    "success": "Thanks, we will be in touch.",
+    "success": "Thank you. Your message has been received. We will respond personally.",
     "error": "We could not send your message. Please try again."
   },
   "blog": {

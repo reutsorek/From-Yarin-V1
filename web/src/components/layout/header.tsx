@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { ROUTES } from '@/config/urls'
 import { SanityImage } from '@/components/sanity-image'
+import { Button } from '@/components/ui/button'
 import type { NavigationValue, SiteSettingsValue } from '@/components/blocks/types'
 import { NavLink } from './nav-link'
 import { MobileNav } from './mobile-nav'
@@ -56,10 +57,18 @@ export async function Header({ navigation, siteSettings, locale, locales = [] }:
           ))}
         </nav>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
+          <Button asChild size="sm" className="hidden sm:inline-flex">
+            <Link href={ROUTES.page(locale, 'contact')}>{t('startConversation')}</Link>
+          </Button>
           <LocaleSwitcher locale={locale} locales={locales} className="hidden sm:inline-flex" />
           <MobileNav links={links} locale={locale}>
-            <LocaleSwitcher locale={locale} locales={locales} className="sm:hidden" />
+            <div className="flex flex-col gap-3">
+              <Button asChild size="sm" className="w-full">
+                <Link href={ROUTES.page(locale, 'contact')}>{t('startConversation')}</Link>
+              </Button>
+              <LocaleSwitcher locale={locale} locales={locales} className="sm:hidden" />
+            </div>
           </MobileNav>
         </div>
       </div>

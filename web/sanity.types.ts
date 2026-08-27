@@ -12,2393 +12,3607 @@
  * ---------------------------------------------------------------------------------
  */
 
-export declare const internalGroqTypeReferenceTo: unique symbol
-
 // Source: schema.json
+export type Inquiry = {
+  _id: string;
+  _type: "inquiry";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  fullName?: string;
+  organization?: string;
+  roleTitle?: string;
+  email?: string;
+  phone?: string;
+  countryRegion?: string;
+  interestType?: "sprint" | "signature" | "research" | "advisory" | "speaking" | "media" | "other";
+  preferredTiming?: string;
+  budgetRange?: string;
+  message?: string;
+  privacyConsent?: boolean;
+  captchaVerified?: boolean;
+  createdAt?: string;
+  status?: "new" | "contacted" | "closed";
+  internalNotes?: string;
+};
+
 export type Navigation = {
-  _id: string
-  _type: 'navigation'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  headerLinks?: Array<
-    {
-      _key: string
-    } & Link
-  >
+  _id: string;
+  _type: "navigation";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  headerLinks?: Array<{
+    _key: string;
+  } & Link>;
   footerGroups?: Array<{
-    title?: string
-    links?: Array<
-      {
-        _key: string
-      } & Link
-    >
-    _type: 'footerGroup'
-    _key: string
-  }>
-  footerNote?: string
-}
+    title?: string;
+    links?: Array<{
+      _key: string;
+    } & Link>;
+    _type: "footerGroup";
+    _key: string;
+  }>;
+  footerNote?: string;
+};
 
 export type SanityImageAssetReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-}
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
 
 export type SiteSettings = {
-  _id: string
-  _type: 'siteSettings'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  description?: string
-  logo?: ImageWithAlt
+  _id: string;
+  _type: "siteSettings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+  logo?: ImageWithAlt;
   defaultOgImage?: {
-    asset?: SanityImageAssetReference
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    _type: 'image'
-  }
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
   socials?: Array<{
-    platform?: 'facebook' | 'instagram' | 'x' | 'linkedin' | 'youtube' | 'tiktok'
-    url?: string
-    _type: 'social'
-    _key: string
-  }>
-  contactEmail?: string
+    platform?: "facebook" | "instagram" | "x" | "linkedin" | "youtube" | "tiktok" | "googleScholar";
+    url?: string;
+    _type: "social";
+    _key: string;
+  }>;
+  contactEmail?: string;
+  phone?: string;
   analytics?: {
-    gaMeasurementId?: string
-    posthogKey?: string
-  }
-}
+    gaMeasurementId?: string;
+    posthogKey?: string;
+  };
+};
 
 export type SanityImageCrop = {
-  _type: 'sanity.imageCrop'
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
-}
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
 
 export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot'
-  x?: number
-  y?: number
-  height?: number
-  width?: number
-}
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
 
 export type ImageWithAlt = {
-  _type: 'imageWithAlt'
-  asset?: SanityImageAssetReference
-  media?: unknown
-  hotspot?: SanityImageHotspot
-  crop?: SanityImageCrop
-  alt?: string
-  caption?: string
-}
+  _type: "imageWithAlt";
+  asset?: SanityImageAssetReference;
+  media?: unknown;
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+  caption?: string;
+};
 
 export type Redirect = {
-  _id: string
-  _type: 'redirect'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  source?: string
-  destination?: string
-  permanent?: boolean
-  isEnabled?: boolean
-}
+  _id: string;
+  _type: "redirect";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  source?: string;
+  destination?: string;
+  permanent?: boolean;
+  isEnabled?: boolean;
+};
 
 export type Faq = {
-  _id: string
-  _type: 'faq'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  question?: string
-  answer?: PortableText
-  language?: string
-  topic?: string
-}
+  _id: string;
+  _type: "faq";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  question?: string;
+  answer?: PortableText;
+  language?: string;
+  topic?: string;
+};
 
 export type PageReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'page'
-}
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "page";
+};
 
 export type PostReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'post'
-}
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "post";
+};
 
 export type LegalDocumentReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'legalDocument'
-}
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "legalDocument";
+};
 
-export type PortableText = Array<
-  | {
-      children?: Array<{
-        marks?: Array<string>
-        text?: string
-        _type: 'span'
-        _key: string
-      }>
-      style?: 'normal' | 'h2' | 'h3' | 'h4' | 'blockquote'
-      listItem?: 'bullet' | 'number'
-      markDefs?: Array<
-        | {
-            href?: string
-            _type: 'externalLink'
-            _key: string
-          }
-        | {
-            reference?: PageReference | PostReference | LegalDocumentReference
-            _type: 'internalLink'
-            _key: string
-          }
-      >
-      level?: number
-      _type: 'block'
-      _key: string
-    }
-  | ({
-      _key: string
-    } & ImageWithAlt)
-  | ({
-      _key: string
-    } & Callout)
-  | ({
-      _key: string
-    } & VideoEmbed)
->
+export type PortableText = Array<{
+  children?: Array<{
+    marks?: Array<string>;
+    text?: string;
+    _type: "span";
+    _key: string;
+  }>;
+  style?: "normal" | "h2" | "h3" | "h4" | "blockquote";
+  listItem?: "bullet" | "number";
+  markDefs?: Array<{
+    href?: string;
+    _type: "externalLink";
+    _key: string;
+  } | {
+    reference?: PageReference | PostReference | LegalDocumentReference;
+    _type: "internalLink";
+    _key: string;
+  }>;
+  level?: number;
+  _type: "block";
+  _key: string;
+} | {
+  _key: string;
+} & ImageWithAlt | {
+  _key: string;
+} & Callout | {
+  _key: string;
+} & VideoEmbed>;
 
 export type Category = {
-  _id: string
-  _type: 'category'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  slug?: Slug
-  description?: string
-}
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  description?: string;
+};
 
 export type Slug = {
-  _type: 'slug'
-  current?: string
-  source?: string
-}
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
+export type FounderProfileReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "founderProfile";
+};
+
+export type FounderIntroBlock = {
+  _type: "founderIntroBlock";
+  heading?: string;
+  intro?: string;
+  founder?: FounderProfileReference;
+};
+
+export type ResearchGridBlock = {
+  _type: "researchGridBlock";
+  heading?: string;
+  intro?: string;
+  emptyStateText?: string;
+};
+
+export type ResearchHighlightsBlock = {
+  _type: "researchHighlightsBlock";
+  heading?: string;
+  intro?: string;
+  items?: Array<{
+    title?: string;
+    description?: string;
+    _type: "focusArea";
+    _key: string;
+  }>;
+};
+
+export type SpeakingTopicReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "speakingTopic";
+};
+
+export type SpeakingTopicsBlock = {
+  _type: "speakingTopicsBlock";
+  heading?: string;
+  intro?: string;
+  topics?: Array<{
+    _key: string;
+  } & SpeakingTopicReference>;
+  displayMode?: "preview" | "detailed";
+};
+
+export type ExpeditionProductReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "expeditionProduct";
+};
+
+export type ExpeditionProductsBlock = {
+  _type: "expeditionProductsBlock";
+  heading?: string;
+  intro?: string;
+  products?: Array<{
+    _key: string;
+  } & ExpeditionProductReference>;
+  displayMode?: "cards" | "comparisonTable" | "detailed";
+};
+
+export type AudiencePathReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "audiencePath";
+};
+
+export type AudiencePathsBlock = {
+  _type: "audiencePathsBlock";
+  heading?: string;
+  intro?: string;
+  paths?: Array<{
+    _key: string;
+  } & AudiencePathReference>;
+};
+
+export type PositioningBlock = {
+  _type: "positioningBlock";
+  heading?: string;
+  intro?: string;
+  notThisItems?: Array<string>;
+  butThisHeading?: string;
+  butThisText?: string;
+};
 
 export type ContactFormBlock = {
-  _type: 'contactFormBlock'
-  heading?: string
-  body?: string
-  successMessage?: string
-  submitLabel?: string
-}
+  _type: "contactFormBlock";
+  heading?: string;
+  body?: string;
+  successMessage?: string;
+  submitLabel?: string;
+  interestTypeOptions?: Array<string>;
+  privacyNote?: string;
+};
 
 export type CtaBlock = {
-  _type: 'ctaBlock'
-  heading?: string
-  body?: string
-  ctas?: Array<
-    {
-      _key: string
-    } & Cta
-  >
-  background?: 'muted' | 'card' | 'primary'
-}
+  _type: "ctaBlock";
+  heading?: string;
+  body?: string;
+  ctas?: Array<{
+    _key: string;
+  } & Cta>;
+  background?: "muted" | "card" | "primary";
+};
 
 export type PricingBlock = {
-  _type: 'pricingBlock'
-  heading?: string
-  intro?: string
+  _type: "pricingBlock";
+  heading?: string;
+  intro?: string;
   plans?: Array<{
-    name?: string
-    price?: string
-    period?: string
-    description?: string
-    features?: Array<string>
-    cta?: Cta
-    highlighted?: boolean
-    _type: 'pricingPlan'
-    _key: string
-  }>
-}
+    name?: string;
+    price?: string;
+    period?: string;
+    description?: string;
+    features?: Array<string>;
+    cta?: Cta;
+    highlighted?: boolean;
+    _type: "pricingPlan";
+    _key: string;
+  }>;
+};
 
 export type FaqReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'faq'
-}
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "faq";
+};
 
 export type FaqsBlock = {
-  _type: 'faqsBlock'
-  heading?: string
-  source?: 'referenced' | 'inline'
-  items?: Array<
-    {
-      _key: string
-    } & FaqReference
-  >
+  _type: "faqsBlock";
+  heading?: string;
+  source?: "referenced" | "inline";
+  items?: Array<{
+    _key: string;
+  } & FaqReference>;
   inlineItems?: Array<{
-    question?: string
-    answer?: PortableText
-    _type: 'faqItem'
-    _key: string
-  }>
-}
+    question?: string;
+    answer?: PortableText;
+    _type: "faqItem";
+    _key: string;
+  }>;
+};
 
 export type StatsBlock = {
-  _type: 'statsBlock'
-  heading?: string
+  _type: "statsBlock";
+  heading?: string;
   items?: Array<{
-    value?: string
-    label?: string
-    _type: 'stat'
-    _key: string
-  }>
-}
+    value?: string;
+    label?: string;
+    _type: "stat";
+    _key: string;
+  }>;
+};
 
 export type TestimonialsBlock = {
-  _type: 'testimonialsBlock'
-  heading?: string
+  _type: "testimonialsBlock";
+  heading?: string;
   items?: Array<{
-    quote?: string
-    authorName?: string
-    authorRole?: string
-    avatar?: ImageWithAlt
-    _type: 'testimonial'
-    _key: string
-  }>
-}
+    quote?: string;
+    authorName?: string;
+    authorRole?: string;
+    avatar?: ImageWithAlt;
+    _type: "testimonial";
+    _key: string;
+  }>;
+};
 
 export type LogoCloudBlock = {
-  _type: 'logoCloudBlock'
-  heading?: string
-  logos?: Array<
-    {
-      _key: string
-    } & ImageWithAlt
-  >
-}
+  _type: "logoCloudBlock";
+  heading?: string;
+  logos?: Array<{
+    _key: string;
+  } & ImageWithAlt>;
+};
 
 export type FeatureGridBlock = {
-  _type: 'featureGridBlock'
-  heading?: string
-  intro?: string
-  columns?: 2 | 3 | 4
+  _type: "featureGridBlock";
+  heading?: string;
+  intro?: string;
+  columns?: 2 | 3 | 4;
   features?: Array<{
-    icon?: 'sparkles' | 'zap' | 'shield' | 'heart' | 'chart' | 'users' | 'calendar' | 'message'
-    title?: string
-    description?: string
-    _type: 'feature'
-    _key: string
-  }>
-}
+    icon?: "sparkles" | "zap" | "shield" | "heart" | "chart" | "users" | "calendar" | "message";
+    title?: string;
+    description?: string;
+    _type: "feature";
+    _key: string;
+  }>;
+};
 
 export type RichTextBlock = {
-  _type: 'richTextBlock'
-  heading?: string
-  body?: PortableText
-  width?: 'narrow' | 'wide'
-}
+  _type: "richTextBlock";
+  heading?: string;
+  body?: PortableText;
+  width?: "narrow" | "wide";
+};
 
 export type HeroBlock = {
-  _type: 'heroBlock'
-  eyebrow?: string
-  heading?: string
-  subheading?: string
-  image?: ImageWithAlt
-  ctas?: Array<
-    {
-      _key: string
-    } & Cta
-  >
-  layout?: 'centered' | 'split' | 'imageStart'
-}
+  _type: "heroBlock";
+  eyebrow?: string;
+  heading?: string;
+  subheading?: string;
+  image?: ImageWithAlt;
+  ctas?: Array<{
+    _key: string;
+  } & Cta>;
+  layout?: "centered" | "split" | "imageStart";
+};
 
-export type PageBuilder = Array<
-  | ({
-      _key: string
-    } & HeroBlock)
-  | ({
-      _key: string
-    } & RichTextBlock)
-  | ({
-      _key: string
-    } & FeatureGridBlock)
-  | ({
-      _key: string
-    } & LogoCloudBlock)
-  | ({
-      _key: string
-    } & TestimonialsBlock)
-  | ({
-      _key: string
-    } & StatsBlock)
-  | ({
-      _key: string
-    } & FaqsBlock)
-  | ({
-      _key: string
-    } & PricingBlock)
-  | ({
-      _key: string
-    } & CtaBlock)
-  | ({
-      _key: string
-    } & ContactFormBlock)
->
+export type PageBuilder = Array<{
+  _key: string;
+} & HeroBlock | {
+  _key: string;
+} & RichTextBlock | {
+  _key: string;
+} & FeatureGridBlock | {
+  _key: string;
+} & LogoCloudBlock | {
+  _key: string;
+} & TestimonialsBlock | {
+  _key: string;
+} & StatsBlock | {
+  _key: string;
+} & FaqsBlock | {
+  _key: string;
+} & PricingBlock | {
+  _key: string;
+} & CtaBlock | {
+  _key: string;
+} & ContactFormBlock | {
+  _key: string;
+} & PositioningBlock | {
+  _key: string;
+} & AudiencePathsBlock | {
+  _key: string;
+} & ExpeditionProductsBlock | {
+  _key: string;
+} & SpeakingTopicsBlock | {
+  _key: string;
+} & ResearchHighlightsBlock | {
+  _key: string;
+} & ResearchGridBlock | {
+  _key: string;
+} & FounderIntroBlock>;
 
 export type VideoEmbed = {
-  _type: 'videoEmbed'
-  url?: string
-  title?: string
-}
+  _type: "videoEmbed";
+  url?: string;
+  title?: string;
+};
 
 export type Callout = {
-  _type: 'callout'
-  tone?: 'tip' | 'info' | 'warning' | 'important'
-  title?: string
+  _type: "callout";
+  tone?: "tip" | "info" | "warning" | "important";
+  title?: string;
   body?: Array<{
     children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal'
-    listItem?: 'bullet' | 'number'
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: "bullet" | "number";
     markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
-}
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
 
 export type Cta = {
-  _type: 'cta'
-  link?: Link
-  variant?: 'primary' | 'secondary' | 'ghost'
-}
+  _type: "cta";
+  link?: Link;
+  variant?: "primary" | "secondary" | "ghost";
+};
 
 export type Link = {
-  _type: 'link'
-  label?: string
-  kind?: 'internal' | 'external'
-  reference?: PageReference | PostReference | LegalDocumentReference
-  href?: string
-}
+  _type: "link";
+  label?: string;
+  labelHe?: string;
+  kind?: "internal" | "external";
+  reference?: PageReference | PostReference | LegalDocumentReference;
+  href?: string;
+};
 
 export type Seo = {
-  _type: 'seo'
-  metaTitle?: string
-  metaDescription?: string
-  keywords?: Array<string>
+  _type: "seo";
+  metaTitle?: string;
+  metaDescription?: string;
+  keywords?: Array<string>;
   ogImage?: {
-    asset?: SanityImageAssetReference
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    _type: 'image'
-  }
-  canonicalUrl?: string
-  noIndex?: boolean
-}
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  canonicalUrl?: string;
+  noIndex?: boolean;
+};
 
 export type MediaFolderReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'media.folder'
-}
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "media.folder";
+};
 
 export type MediaFolder = {
-  _id: string
-  _type: 'media.folder'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-  parent?: MediaFolderReference
-}
+  _id: string;
+  _type: "media.folder";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  parent?: MediaFolderReference;
+};
 
 export type MediaTag = {
-  _id: string
-  _type: 'media.tag'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: Slug
-}
+  _id: string;
+  _type: "media.tag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: Slug;
+};
 
 export type TranslationMetadata = {
-  _id: string
-  _type: 'translation.metadata'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  translations?: InternationalizedArrayReference
-  schemaTypes?: Array<string>
-}
+  _id: string;
+  _type: "translation.metadata";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  translations?: InternationalizedArrayReference;
+  schemaTypes?: Array<string>;
+};
 
-export type InternationalizedArrayReference = Array<
-  {
-    _key: string
-  } & InternationalizedArrayReferenceValue
->
+export type InternationalizedArrayReference = Array<{
+  _key: string;
+} & InternationalizedArrayReferenceValue>;
+
+export type ResearchProjectReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "researchProject";
+};
+
+export type PublicationOrMediaReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "publicationOrMedia";
+};
 
 export type InternationalizedArrayReferenceValue = {
-  _type: 'internationalizedArrayReferenceValue'
-  value?: PageReference | PostReference | LegalDocumentReference
-  language?: string
-}
+  _type: "internationalizedArrayReferenceValue";
+  value?: PageReference | PostReference | LegalDocumentReference | FounderProfileReference | ExpeditionProductReference | AudiencePathReference | ResearchProjectReference | PublicationOrMediaReference | SpeakingTopicReference;
+  language?: string;
+};
+
+export type SpeakingTopic = {
+  _id: string;
+  _type: "speakingTopic";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  language?: string;
+  shortDescription?: string;
+  fullDescription?: PortableText;
+  idealAudience?: Array<string>;
+  keyTakeaways?: Array<string>;
+  availableFormats?: Array<string>;
+  heroImage?: ImageWithAlt;
+  ctaLabel?: string;
+  seo?: Seo;
+};
+
+export type PublicationOrMedia = {
+  _id: string;
+  _type: "publicationOrMedia";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  language?: string;
+  type?: "publication" | "talk" | "media";
+  title?: string;
+  outlet?: string;
+  date?: string;
+  url?: string;
+  excerpt?: string;
+  image?: ImageWithAlt;
+};
+
+export type ResearchProject = {
+  _id: string;
+  _type: "researchProject";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  language?: string;
+  status?: "planned" | "active" | "completed";
+  excerpt?: string;
+  body?: PortableText;
+  focusAreas?: Array<string>;
+  collaborators?: Array<string>;
+  links?: Array<{
+    label?: string;
+    url?: string;
+    _type: "projectLink";
+    _key: string;
+  }>;
+  images?: Array<{
+    _key: string;
+  } & ImageWithAlt>;
+  relatedPublications?: Array<{
+    _key: string;
+  } & PublicationOrMediaReference>;
+  seo?: Seo;
+};
+
+export type AudiencePath = {
+  _id: string;
+  _type: "audiencePath";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  audienceName?: string;
+  slug?: Slug;
+  language?: string;
+  headline?: string;
+  motivation?: string;
+  valueProposition?: string;
+  desiredOutcomes?: Array<string>;
+  image?: ImageWithAlt;
+  cta?: Cta;
+  linkedProducts?: Array<{
+    _key: string;
+  } & ExpeditionProductReference>;
+};
+
+export type ExpeditionProduct = {
+  _id: string;
+  _type: "expeditionProduct";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  language?: string;
+  order?: number;
+  shortDescription?: string;
+  fullDescription?: PortableText;
+  idealFor?: string;
+  duration?: string;
+  recommendedGroupSize?: string;
+  includedItems?: Array<string>;
+  potentialOutcomes?: Array<string>;
+  deliverables?: Array<string>;
+  strategicOutcome?: string;
+  engagementModel?: string;
+  useCases?: Array<string>;
+  images?: Array<{
+    _key: string;
+  } & ImageWithAlt>;
+  ctaLabel?: string;
+  ctaInquiryType?: "sprint" | "signature" | "research" | "advisory" | "speaking" | "media" | "other";
+  seo?: Seo;
+};
+
+export type FounderProfile = {
+  _id: string;
+  _type: "founderProfile";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  language?: string;
+  role?: string;
+  shortBio?: string;
+  fullBio?: PortableText;
+  portrait?: ImageWithAlt;
+  edgeNarrative?: string;
+  credentials?: Array<string>;
+  affiliations?: Array<string>;
+  specialties?: Array<string>;
+  speakingAndAdvisoryCopy?: PortableText;
+  socialOverrides?: Array<{
+    platform?: "instagram" | "linkedin" | "youtube" | "googleScholar";
+    url?: string;
+    _type: "social";
+    _key: string;
+  }>;
+  seo?: Seo;
+};
 
 export type Page = {
-  _id: string
-  _type: 'page'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  slug?: Slug
-  language?: string
-  pageBuilder?: PageBuilder
-  seo?: Seo
-}
+  _id: string;
+  _type: "page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  zzzProbe2?: string;
+  title?: string;
+  slug?: Slug;
+  language?: string;
+  pageBuilder?: PageBuilder;
+  seo?: Seo;
+};
 
 export type AuthorReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'author'
-}
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "author";
+};
 
 export type CategoryReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'category'
-}
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "category";
+};
 
 export type Post = {
-  _id: string
-  _type: 'post'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  slug?: Slug
-  language?: string
-  excerpt?: string
-  coverImage?: ImageWithAlt
-  author?: AuthorReference
-  categories?: Array<
-    {
-      _key: string
-    } & CategoryReference
-  >
-  publishedAt?: string
-  body?: PortableText
-  seo?: Seo
-}
+  _id: string;
+  _type: "post";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  language?: string;
+  excerpt?: string;
+  coverImage?: ImageWithAlt;
+  author?: AuthorReference;
+  categories?: Array<{
+    _key: string;
+  } & CategoryReference>;
+  publishedAt?: string;
+  body?: PortableText;
+  seo?: Seo;
+};
 
 export type Author = {
-  _id: string
-  _type: 'author'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-  slug?: Slug
-  photo?: ImageWithAlt
-  bio?: PortableText
-}
+  _id: string;
+  _type: "author";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  photo?: ImageWithAlt;
+  bio?: PortableText;
+};
 
 export type LegalDocument = {
-  _id: string
-  _type: 'legalDocument'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  slug?: Slug
-  language?: string
-  documentType?: 'terms' | 'privacy' | 'accessibility' | 'cookies'
-  version?: string
-  effectiveDate?: string
-  body?: PortableText
-  seo?: Seo
-}
+  _id: string;
+  _type: "legalDocument";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  language?: string;
+  documentType?: "terms" | "privacy" | "accessibility" | "cookies";
+  version?: string;
+  effectiveDate?: string;
+  body?: PortableText;
+  seo?: Seo;
+};
 
 export type SanityImagePaletteSwatch = {
-  _type: 'sanity.imagePaletteSwatch'
-  background?: string
-  foreground?: string
-  population?: number
-  title?: string
-}
+  _type: "sanity.imagePaletteSwatch";
+  background?: string;
+  foreground?: string;
+  population?: number;
+  title?: string;
+};
 
 export type SanityImagePalette = {
-  _type: 'sanity.imagePalette'
-  darkMuted?: SanityImagePaletteSwatch
-  lightVibrant?: SanityImagePaletteSwatch
-  darkVibrant?: SanityImagePaletteSwatch
-  vibrant?: SanityImagePaletteSwatch
-  dominant?: SanityImagePaletteSwatch
-  lightMuted?: SanityImagePaletteSwatch
-  muted?: SanityImagePaletteSwatch
-}
+  _type: "sanity.imagePalette";
+  darkMuted?: SanityImagePaletteSwatch;
+  lightVibrant?: SanityImagePaletteSwatch;
+  darkVibrant?: SanityImagePaletteSwatch;
+  vibrant?: SanityImagePaletteSwatch;
+  dominant?: SanityImagePaletteSwatch;
+  lightMuted?: SanityImagePaletteSwatch;
+  muted?: SanityImagePaletteSwatch;
+};
 
 export type SanityImageDimensions = {
-  _type: 'sanity.imageDimensions'
-  height?: number
-  width?: number
-  aspectRatio?: number
-}
+  _type: "sanity.imageDimensions";
+  height?: number;
+  width?: number;
+  aspectRatio?: number;
+};
 
 export type SanityImageMetadata = {
-  _type: 'sanity.imageMetadata'
-  location?: Geopoint
-  dimensions?: SanityImageDimensions
-  palette?: SanityImagePalette
-  lqip?: string
-  blurHash?: string
-  thumbHash?: string
-  hasAlpha?: boolean
-  isOpaque?: boolean
-}
+  _type: "sanity.imageMetadata";
+  location?: Geopoint;
+  dimensions?: SanityImageDimensions;
+  palette?: SanityImagePalette;
+  lqip?: string;
+  blurHash?: string;
+  thumbHash?: string;
+  hasAlpha?: boolean;
+  isOpaque?: boolean;
+};
 
 export type SanityFileAsset = {
-  _id: string
-  _type: 'sanity.fileAsset'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  originalFilename?: string
-  label?: string
-  title?: string
-  description?: string
-  altText?: string
-  sha1hash?: string
-  extension?: string
-  mimeType?: string
-  size?: number
-  assetId?: string
-  uploadId?: string
-  path?: string
-  url?: string
-  source?: SanityAssetSourceData
-}
+  _id: string;
+  _type: "sanity.fileAsset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+  source?: SanityAssetSourceData;
+};
 
 export type SanityAssetSourceData = {
-  _type: 'sanity.assetSourceData'
-  name?: string
-  id?: string
-  url?: string
-}
+  _type: "sanity.assetSourceData";
+  name?: string;
+  id?: string;
+  url?: string;
+};
 
 export type SanityImageAsset = {
-  _id: string
-  _type: 'sanity.imageAsset'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  originalFilename?: string
-  label?: string
-  title?: string
-  description?: string
-  altText?: string
-  sha1hash?: string
-  extension?: string
-  mimeType?: string
-  size?: number
-  assetId?: string
-  uploadId?: string
-  path?: string
-  url?: string
-  metadata?: SanityImageMetadata
-  source?: SanityAssetSourceData
-}
+  _id: string;
+  _type: "sanity.imageAsset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+  metadata?: SanityImageMetadata;
+  source?: SanityAssetSourceData;
+};
 
 export type Geopoint = {
-  _type: 'geopoint'
-  lat?: number
-  lng?: number
-  alt?: number
-}
+  _type: "geopoint";
+  lat?: number;
+  lng?: number;
+  alt?: number;
+};
 
-export type AllSanitySchemaTypes =
-  | Navigation
-  | SanityImageAssetReference
-  | SiteSettings
-  | SanityImageCrop
-  | SanityImageHotspot
-  | ImageWithAlt
-  | Redirect
-  | Faq
-  | PageReference
-  | PostReference
-  | LegalDocumentReference
-  | PortableText
-  | Category
-  | Slug
-  | ContactFormBlock
-  | CtaBlock
-  | PricingBlock
-  | FaqReference
-  | FaqsBlock
-  | StatsBlock
-  | TestimonialsBlock
-  | LogoCloudBlock
-  | FeatureGridBlock
-  | RichTextBlock
-  | HeroBlock
-  | PageBuilder
-  | VideoEmbed
-  | Callout
-  | Cta
-  | Link
-  | Seo
-  | MediaFolderReference
-  | MediaFolder
-  | MediaTag
-  | TranslationMetadata
-  | InternationalizedArrayReference
-  | InternationalizedArrayReferenceValue
-  | Page
-  | AuthorReference
-  | CategoryReference
-  | Post
-  | Author
-  | LegalDocument
-  | SanityImagePaletteSwatch
-  | SanityImagePalette
-  | SanityImageDimensions
-  | SanityImageMetadata
-  | SanityFileAsset
-  | SanityAssetSourceData
-  | SanityImageAsset
-  | Geopoint
+export type AllSanitySchemaTypes = Inquiry | Navigation | SanityImageAssetReference | SiteSettings | SanityImageCrop | SanityImageHotspot | ImageWithAlt | Redirect | Faq | PageReference | PostReference | LegalDocumentReference | PortableText | Category | Slug | FounderProfileReference | FounderIntroBlock | ResearchGridBlock | ResearchHighlightsBlock | SpeakingTopicReference | SpeakingTopicsBlock | ExpeditionProductReference | ExpeditionProductsBlock | AudiencePathReference | AudiencePathsBlock | PositioningBlock | ContactFormBlock | CtaBlock | PricingBlock | FaqReference | FaqsBlock | StatsBlock | TestimonialsBlock | LogoCloudBlock | FeatureGridBlock | RichTextBlock | HeroBlock | PageBuilder | VideoEmbed | Callout | Cta | Link | Seo | MediaFolderReference | MediaFolder | MediaTag | TranslationMetadata | InternationalizedArrayReference | ResearchProjectReference | PublicationOrMediaReference | InternationalizedArrayReferenceValue | SpeakingTopic | PublicationOrMedia | ResearchProject | AudiencePath | ExpeditionProduct | FounderProfile | Page | AuthorReference | CategoryReference | Post | Author | LegalDocument | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+
+export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: SITE_SETTINGS_QUERY
 // Query: *[_type == "siteSettings"][0]{    title,    description,    contactEmail,    logo {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },    defaultOgImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },    socials[] { _key, platform, url },    analytics { gaMeasurementId, posthogKey }  }
 export type SITE_SETTINGS_QUERY_RESULT = {
-  title: string | null
-  description: string | null
-  contactEmail: string | null
+  title: string | null;
+  description: string | null;
+  contactEmail: string | null;
   logo: {
-    _type: 'imageWithAlt'
-    alt: string | null
-    caption: string | null
-    hotspot: SanityImageHotspot | null
-    crop: SanityImageCrop | null
+    _type: "imageWithAlt";
+    alt: string | null;
+    caption: string | null;
+    hotspot: SanityImageHotspot | null;
+    crop: SanityImageCrop | null;
     asset: {
-      _id: string
-      url: string | null
+      _id: string;
+      url: string | null;
       metadata: {
-        lqip: string | null
+        lqip: string | null;
         dimensions: {
-          width: number | null
-          height: number | null
-        } | null
-      } | null
-    } | null
-  } | null
+          width: number | null;
+          height: number | null;
+        } | null;
+      } | null;
+    } | null;
+  } | null;
   defaultOgImage: {
-    _type: 'image'
-    alt: null
-    caption: null
-    hotspot: SanityImageHotspot | null
-    crop: SanityImageCrop | null
+    _type: "image";
+    alt: null;
+    caption: null;
+    hotspot: SanityImageHotspot | null;
+    crop: SanityImageCrop | null;
     asset: {
-      _id: string
-      url: string | null
+      _id: string;
+      url: string | null;
       metadata: {
-        lqip: string | null
+        lqip: string | null;
         dimensions: {
-          width: number | null
-          height: number | null
-        } | null
-      } | null
-    } | null
-  } | null
+          width: number | null;
+          height: number | null;
+        } | null;
+      } | null;
+    } | null;
+  } | null;
   socials: Array<{
-    _key: string
-    platform: 'facebook' | 'instagram' | 'linkedin' | 'tiktok' | 'x' | 'youtube' | null
-    url: string | null
-  }> | null
+    _key: string;
+    platform: "facebook" | "googleScholar" | "instagram" | "linkedin" | "tiktok" | "x" | "youtube" | null;
+    url: string | null;
+  }> | null;
   analytics: {
-    gaMeasurementId: string | null
-    posthogKey: string | null
-  } | null
-} | null
+    gaMeasurementId: string | null;
+    posthogKey: string | null;
+  } | null;
+} | null;
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: NAVIGATION_QUERY
-// Query: *[_type == "navigation"][0]{    headerLinks[] { _key,   label,  kind,  href,  reference->{ _type, "slug": slug.current, language } },    footerGroups[] { _key, title, links[] { _key,   label,  kind,  href,  reference->{ _type, "slug": slug.current, language } } },    footerNote  }
+// Query: *[_type == "navigation"][0]{    headerLinks[] { _key,   label,  labelHe,  kind,  href,  reference->{ _type, "slug": slug.current, language } },    footerGroups[] { _key, title, links[] { _key,   label,  labelHe,  kind,  href,  reference->{ _type, "slug": slug.current, language } } },    footerNote  }
 export type NAVIGATION_QUERY_RESULT = {
   headerLinks: Array<{
-    _key: string
-    label: string | null
-    kind: 'external' | 'internal' | null
-    href: string | null
-    reference:
-      | {
-          _type: 'legalDocument'
-          slug: string | null
-          language: string | null
-        }
-      | {
-          _type: 'page'
-          slug: string | null
-          language: string | null
-        }
-      | {
-          _type: 'post'
-          slug: string | null
-          language: string | null
-        }
-      | null
-  }> | null
+    _key: string;
+    label: string | null;
+    labelHe: string | null;
+    kind: "external" | "internal" | null;
+    href: string | null;
+    reference: {
+      _type: "legalDocument";
+      slug: string | null;
+      language: string | null;
+    } | {
+      _type: "page";
+      slug: string | null;
+      language: string | null;
+    } | {
+      _type: "post";
+      slug: string | null;
+      language: string | null;
+    } | null;
+  }> | null;
   footerGroups: Array<{
-    _key: string
-    title: string | null
+    _key: string;
+    title: string | null;
     links: Array<{
-      _key: string
-      label: string | null
-      kind: 'external' | 'internal' | null
-      href: string | null
-      reference:
-        | {
-            _type: 'legalDocument'
-            slug: string | null
-            language: string | null
-          }
-        | {
-            _type: 'page'
-            slug: string | null
-            language: string | null
-          }
-        | {
-            _type: 'post'
-            slug: string | null
-            language: string | null
-          }
-        | null
-    }> | null
-  }> | null
-  footerNote: string | null
-} | null
+      _key: string;
+      label: string | null;
+      labelHe: string | null;
+      kind: "external" | "internal" | null;
+      href: string | null;
+      reference: {
+        _type: "legalDocument";
+        slug: string | null;
+        language: string | null;
+      } | {
+        _type: "page";
+        slug: string | null;
+        language: string | null;
+      } | {
+        _type: "post";
+        slug: string | null;
+        language: string | null;
+      } | null;
+    }> | null;
+  }> | null;
+  footerNote: string | null;
+} | null;
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: HOME_PAGE_QUERY
-// Query: *[_type == "page" && slug.current == "home" && language == $locale][0]{    _id,    _type,    title,    "slug": slug.current,    language,      pageBuilder[]{    _key,    _type,    _type == "heroBlock" => {      eyebrow, heading, subheading, layout,      image {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },      ctas[] { _key,   variant,  link {   label,  kind,  href,  reference->{ _type, "slug": slug.current, language } } }    },    _type == "richTextBlock" => {      heading, width,      body[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } }    },    _type == "featureGridBlock" => {      heading, intro, columns,      features[] { _key, icon, title, description }    },    _type == "logoCloudBlock" => {      heading,      logos[] { _key,   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } }    },    _type == "testimonialsBlock" => {      heading,      items[] { _key, quote, authorName, authorRole, avatar {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } }    },    _type == "statsBlock" => {      heading,      items[] { _key, value, label }    },    _type == "faqsBlock" => {      heading, source,      items[]->{ _id, question, answer[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } } },      inlineItems[] { _key, question, answer[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } } }    },    _type == "pricingBlock" => {      heading, intro,      plans[] { _key, name, price, period, description, features, highlighted, cta {   variant,  link {   label,  kind,  href,  reference->{ _type, "slug": slug.current, language } } } }    },    _type == "ctaBlock" => {      heading, body, background,      ctas[] { _key,   variant,  link {   label,  kind,  href,  reference->{ _type, "slug": slug.current, language } } }    },    _type == "contactFormBlock" => {      heading, body, successMessage, submitLabel    }  },    "seo": {   "title": coalesce(seo.metaTitle, title, ""),  "description": coalesce(seo.metaDescription, ""),  "keywords": coalesce(seo.keywords, []),  "image": seo.ogImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  "canonicalUrl": seo.canonicalUrl,  "noIndex": seo.noIndex == true }  }
+// Query: *[_type == "page" && slug.current == "home" && language == $locale][0]{    _id,    _type,    title,    "slug": slug.current,    language,      pageBuilder[]{    _key,    _type,    _type == "heroBlock" => {      eyebrow, heading, subheading, layout,      image {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },      ctas[] { _key,   variant,  link {   label,  labelHe,  kind,  href,  reference->{ _type, "slug": slug.current, language } } }    },    _type == "richTextBlock" => {      heading, width,      body[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } }    },    _type == "featureGridBlock" => {      heading, intro, columns,      features[] { _key, icon, title, description }    },    _type == "logoCloudBlock" => {      heading,      logos[] { _key,   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } }    },    _type == "testimonialsBlock" => {      heading,      items[] { _key, quote, authorName, authorRole, avatar {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } }    },    _type == "statsBlock" => {      heading,      items[] { _key, value, label }    },    _type == "faqsBlock" => {      heading, source,      items[]->{ _id, question, answer[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } } },      inlineItems[] { _key, question, answer[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } } }    },    _type == "pricingBlock" => {      heading, intro,      plans[] { _key, name, price, period, description, features, highlighted, cta {   variant,  link {   label,  labelHe,  kind,  href,  reference->{ _type, "slug": slug.current, language } } } }    },    _type == "ctaBlock" => {      heading, body, background,      ctas[] { _key,   variant,  link {   label,  labelHe,  kind,  href,  reference->{ _type, "slug": slug.current, language } } }    },    _type == "contactFormBlock" => {      heading, body, successMessage, submitLabel, interestTypeOptions, privacyNote    },    _type == "positioningBlock" => {      heading, intro, notThisItems, butThisHeading, butThisText    },    _type == "audiencePathsBlock" => {      heading, intro,      paths[]-> {   _id,  audienceName,  headline,  motivation,  valueProposition,  desiredOutcomes,  image {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  cta {   variant,  link {   label,  labelHe,  kind,  href,  reference->{ _type, "slug": slug.current, language } } } }    },    _type == "expeditionProductsBlock" => {      heading, intro, displayMode,      products[]-> {   _id,  title,  "slug": slug.current,  order,  shortDescription,  fullDescription[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } },  idealFor,  duration,  recommendedGroupSize,  includedItems,  potentialOutcomes,  deliverables,  strategicOutcome,  engagementModel,  useCases,  images[] {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  ctaLabel,  ctaInquiryType }    },    _type == "speakingTopicsBlock" => {      heading, intro, displayMode,      topics[]-> {   _id,  title,  "slug": slug.current,  shortDescription,  fullDescription[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } },  idealAudience,  keyTakeaways,  availableFormats,  heroImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  ctaLabel }    },    _type == "researchHighlightsBlock" => {      heading, intro,      items[] { _key, title, description }    },    _type == "researchGridBlock" => {      heading, intro, emptyStateText,      "projects": *[_type == "researchProject" && language == $locale] | order(_createdAt desc) {          _id,  title,  "slug": slug.current,  status,  excerpt,  focusAreas,  "image": images[0] {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } }      },      "publications": *[_type == "publicationOrMedia" && language == $locale] | order(date desc) {          _id,  type,  title,  outlet,  date,  url,  excerpt,  image {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } }      }    },    _type == "founderIntroBlock" => {      heading, intro,      founder-> {   _id,  name,  role,  shortBio,  fullBio[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } },  portrait {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  edgeNarrative,  credentials,  affiliations,  specialties,  speakingAndAdvisoryCopy[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } } }    }  },    "seo": {   "title": coalesce(seo.metaTitle, title, ""),  "description": coalesce(seo.metaDescription, ""),  "keywords": coalesce(seo.keywords, []),  "image": seo.ogImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  "canonicalUrl": seo.canonicalUrl,  "noIndex": seo.noIndex == true }  }
 export type HOME_PAGE_QUERY_RESULT = {
-  _id: string
-  _type: 'page'
-  title: string | null
-  slug: string | null
-  language: string | null
-  pageBuilder: Array<
-    | {
-        _key: string
-        _type: 'contactFormBlock'
-        heading: string | null
-        body: string | null
-        successMessage: string | null
-        submitLabel: string | null
-      }
-    | {
-        _key: string
-        _type: 'ctaBlock'
-        heading: string | null
-        body: string | null
-        background: 'card' | 'muted' | 'primary' | null
-        ctas: Array<{
-          _key: string
-          variant: 'ghost' | 'primary' | 'secondary' | null
-          link: {
-            label: string | null
-            kind: 'external' | 'internal' | null
-            href: string | null
-            reference:
-              | {
-                  _type: 'legalDocument'
-                  slug: string | null
-                  language: string | null
-                }
-              | {
-                  _type: 'page'
-                  slug: string | null
-                  language: string | null
-                }
-              | {
-                  _type: 'post'
-                  slug: string | null
-                  language: string | null
-                }
-              | null
-          } | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'faqsBlock'
-        heading: string | null
-        source: 'inline' | 'referenced' | null
-        items: Array<{
-          _id: string
-          question: string | null
-          answer: Array<
-            | {
-                children?: Array<{
-                  marks?: Array<string>
-                  text?: string
-                  _type: 'span'
-                  _key: string
-                }>
-                style?: 'blockquote' | 'h2' | 'h3' | 'h4' | 'normal'
-                listItem?: 'bullet' | 'number'
-                markDefs: Array<
-                  | {
-                      href?: string
-                      _type: 'externalLink'
-                      _key: string
-                    }
-                  | {
-                      reference:
-                        | {
-                            _type: 'legalDocument'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | {
-                            _type: 'page'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | {
-                            _type: 'post'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | null
-                      _type: 'internalLink'
-                      _key: string
-                    }
-                > | null
-                level?: number
-                _type: 'block'
-                _key: string
-              }
-            | {
-                _key: string
-                _type: 'callout'
-                tone?: 'important' | 'info' | 'tip' | 'warning'
-                title?: string
-                body?: Array<{
-                  children?: Array<{
-                    marks?: Array<string>
-                    text?: string
-                    _type: 'span'
-                    _key: string
-                  }>
-                  style?: 'normal'
-                  listItem?: 'bullet' | 'number'
-                  markDefs?: Array<{
-                    href?: string
-                    _type: 'link'
-                    _key: string
-                  }>
-                  level?: number
-                  _type: 'block'
-                  _key: string
-                }>
-                markDefs: null
-              }
-            | {
-                _key: string
-                _type: 'imageWithAlt'
-                asset: {
-                  _id: string
-                  url: string | null
-                  metadata: {
-                    lqip: string | null
-                    dimensions: {
-                      width: number | null
-                      height: number | null
-                    } | null
-                  } | null
-                } | null
-                media?: unknown
-                hotspot: SanityImageHotspot | null
-                crop: SanityImageCrop | null
-                alt: string | null
-                caption: string | null
-                markDefs: null
-              }
-            | {
-                _key: string
-                _type: 'videoEmbed'
-                url?: string
-                title?: string
-                markDefs: null
-              }
-          > | null
-        }> | null
-        inlineItems: Array<{
-          _key: string
-          question: string | null
-          answer: Array<
-            | {
-                children?: Array<{
-                  marks?: Array<string>
-                  text?: string
-                  _type: 'span'
-                  _key: string
-                }>
-                style?: 'blockquote' | 'h2' | 'h3' | 'h4' | 'normal'
-                listItem?: 'bullet' | 'number'
-                markDefs: Array<
-                  | {
-                      href?: string
-                      _type: 'externalLink'
-                      _key: string
-                    }
-                  | {
-                      reference:
-                        | {
-                            _type: 'legalDocument'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | {
-                            _type: 'page'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | {
-                            _type: 'post'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | null
-                      _type: 'internalLink'
-                      _key: string
-                    }
-                > | null
-                level?: number
-                _type: 'block'
-                _key: string
-              }
-            | {
-                _key: string
-                _type: 'callout'
-                tone?: 'important' | 'info' | 'tip' | 'warning'
-                title?: string
-                body?: Array<{
-                  children?: Array<{
-                    marks?: Array<string>
-                    text?: string
-                    _type: 'span'
-                    _key: string
-                  }>
-                  style?: 'normal'
-                  listItem?: 'bullet' | 'number'
-                  markDefs?: Array<{
-                    href?: string
-                    _type: 'link'
-                    _key: string
-                  }>
-                  level?: number
-                  _type: 'block'
-                  _key: string
-                }>
-                markDefs: null
-              }
-            | {
-                _key: string
-                _type: 'imageWithAlt'
-                asset: {
-                  _id: string
-                  url: string | null
-                  metadata: {
-                    lqip: string | null
-                    dimensions: {
-                      width: number | null
-                      height: number | null
-                    } | null
-                  } | null
-                } | null
-                media?: unknown
-                hotspot: SanityImageHotspot | null
-                crop: SanityImageCrop | null
-                alt: string | null
-                caption: string | null
-                markDefs: null
-              }
-            | {
-                _key: string
-                _type: 'videoEmbed'
-                url?: string
-                title?: string
-                markDefs: null
-              }
-          > | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'featureGridBlock'
-        heading: string | null
-        intro: string | null
-        columns: 2 | 3 | 4 | null
-        features: Array<{
-          _key: string
-          icon:
-            | 'calendar'
-            | 'chart'
-            | 'heart'
-            | 'message'
-            | 'shield'
-            | 'sparkles'
-            | 'users'
-            | 'zap'
-            | null
-          title: string | null
-          description: string | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'heroBlock'
-        eyebrow: string | null
-        heading: string | null
-        subheading: string | null
-        layout: 'centered' | 'imageStart' | 'split' | null
-        image: {
-          _type: 'imageWithAlt'
-          alt: string | null
-          caption: string | null
-          hotspot: SanityImageHotspot | null
-          crop: SanityImageCrop | null
-          asset: {
-            _id: string
-            url: string | null
-            metadata: {
-              lqip: string | null
-              dimensions: {
-                width: number | null
-                height: number | null
-              } | null
-            } | null
-          } | null
-        } | null
-        ctas: Array<{
-          _key: string
-          variant: 'ghost' | 'primary' | 'secondary' | null
-          link: {
-            label: string | null
-            kind: 'external' | 'internal' | null
-            href: string | null
-            reference:
-              | {
-                  _type: 'legalDocument'
-                  slug: string | null
-                  language: string | null
-                }
-              | {
-                  _type: 'page'
-                  slug: string | null
-                  language: string | null
-                }
-              | {
-                  _type: 'post'
-                  slug: string | null
-                  language: string | null
-                }
-              | null
-          } | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'logoCloudBlock'
-        heading: string | null
-        logos: Array<{
-          _key: string
-          _type: 'imageWithAlt'
-          alt: string | null
-          caption: string | null
-          hotspot: SanityImageHotspot | null
-          crop: SanityImageCrop | null
-          asset: {
-            _id: string
-            url: string | null
-            metadata: {
-              lqip: string | null
-              dimensions: {
-                width: number | null
-                height: number | null
-              } | null
-            } | null
-          } | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'pricingBlock'
-        heading: string | null
-        intro: string | null
-        plans: Array<{
-          _key: string
-          name: string | null
-          price: string | null
-          period: string | null
-          description: string | null
-          features: Array<string> | null
-          highlighted: boolean | null
-          cta: {
-            variant: 'ghost' | 'primary' | 'secondary' | null
-            link: {
-              label: string | null
-              kind: 'external' | 'internal' | null
-              href: string | null
-              reference:
-                | {
-                    _type: 'legalDocument'
-                    slug: string | null
-                    language: string | null
-                  }
-                | {
-                    _type: 'page'
-                    slug: string | null
-                    language: string | null
-                  }
-                | {
-                    _type: 'post'
-                    slug: string | null
-                    language: string | null
-                  }
-                | null
-            } | null
-          } | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'richTextBlock'
-        heading: string | null
-        width: 'narrow' | 'wide' | null
-        body: Array<
-          | {
-              children?: Array<{
-                marks?: Array<string>
-                text?: string
-                _type: 'span'
-                _key: string
-              }>
-              style?: 'blockquote' | 'h2' | 'h3' | 'h4' | 'normal'
-              listItem?: 'bullet' | 'number'
-              markDefs: Array<
-                | {
-                    href?: string
-                    _type: 'externalLink'
-                    _key: string
-                  }
-                | {
-                    reference:
-                      | {
-                          _type: 'legalDocument'
-                          slug: string | null
-                          language: string | null
-                        }
-                      | {
-                          _type: 'page'
-                          slug: string | null
-                          language: string | null
-                        }
-                      | {
-                          _type: 'post'
-                          slug: string | null
-                          language: string | null
-                        }
-                      | null
-                    _type: 'internalLink'
-                    _key: string
-                  }
-              > | null
-              level?: number
-              _type: 'block'
-              _key: string
-            }
-          | {
-              _key: string
-              _type: 'callout'
-              tone?: 'important' | 'info' | 'tip' | 'warning'
-              title?: string
-              body?: Array<{
-                children?: Array<{
-                  marks?: Array<string>
-                  text?: string
-                  _type: 'span'
-                  _key: string
-                }>
-                style?: 'normal'
-                listItem?: 'bullet' | 'number'
-                markDefs?: Array<{
-                  href?: string
-                  _type: 'link'
-                  _key: string
-                }>
-                level?: number
-                _type: 'block'
-                _key: string
-              }>
-              markDefs: null
-            }
-          | {
-              _key: string
-              _type: 'imageWithAlt'
-              asset: {
-                _id: string
-                url: string | null
-                metadata: {
-                  lqip: string | null
-                  dimensions: {
-                    width: number | null
-                    height: number | null
-                  } | null
-                } | null
-              } | null
-              media?: unknown
-              hotspot: SanityImageHotspot | null
-              crop: SanityImageCrop | null
-              alt: string | null
-              caption: string | null
-              markDefs: null
-            }
-          | {
-              _key: string
-              _type: 'videoEmbed'
-              url?: string
-              title?: string
-              markDefs: null
-            }
-        > | null
-      }
-    | {
-        _key: string
-        _type: 'statsBlock'
-        heading: string | null
-        items: Array<{
-          _key: string
-          value: string | null
-          label: string | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'testimonialsBlock'
-        heading: string | null
-        items: Array<{
-          _key: string
-          quote: string | null
-          authorName: string | null
-          authorRole: string | null
-          avatar: {
-            _type: 'imageWithAlt'
-            alt: string | null
-            caption: string | null
-            hotspot: SanityImageHotspot | null
-            crop: SanityImageCrop | null
-            asset: {
-              _id: string
-              url: string | null
-              metadata: {
-                lqip: string | null
-                dimensions: {
-                  width: number | null
-                  height: number | null
-                } | null
-              } | null
-            } | null
-          } | null
-        }> | null
-      }
-  > | null
-  seo: {
-    title: string | ''
-    description: string | ''
-    keywords: Array<string> | Array<never>
+  _id: string;
+  _type: "page";
+  title: string | null;
+  slug: string | null;
+  language: string | null;
+  pageBuilder: Array<{
+    _key: string;
+    _type: "audiencePathsBlock";
+    heading: string | null;
+    intro: string | null;
+    paths: Array<{
+      _id: string;
+      audienceName: string | null;
+      headline: string | null;
+      motivation: string | null;
+      valueProposition: string | null;
+      desiredOutcomes: Array<string> | null;
+      image: {
+        _type: "imageWithAlt";
+        alt: string | null;
+        caption: string | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+      } | null;
+      cta: {
+        variant: "ghost" | "primary" | "secondary" | null;
+        link: {
+          label: string | null;
+          labelHe: string | null;
+          kind: "external" | "internal" | null;
+          href: string | null;
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+        } | null;
+      } | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "contactFormBlock";
+    heading: string | null;
+    body: string | null;
+    successMessage: string | null;
+    submitLabel: string | null;
+    interestTypeOptions: Array<string> | null;
+    privacyNote: string | null;
+  } | {
+    _key: string;
+    _type: "ctaBlock";
+    heading: string | null;
+    body: string | null;
+    background: "card" | "muted" | "primary" | null;
+    ctas: Array<{
+      _key: string;
+      variant: "ghost" | "primary" | "secondary" | null;
+      link: {
+        label: string | null;
+        labelHe: string | null;
+        kind: "external" | "internal" | null;
+        href: string | null;
+        reference: {
+          _type: "legalDocument";
+          slug: string | null;
+          language: string | null;
+        } | {
+          _type: "page";
+          slug: string | null;
+          language: string | null;
+        } | {
+          _type: "post";
+          slug: string | null;
+          language: string | null;
+        } | null;
+      } | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "expeditionProductsBlock";
+    heading: string | null;
+    intro: string | null;
+    displayMode: "cards" | "comparisonTable" | "detailed" | null;
+    products: Array<{
+      _id: string;
+      title: string | null;
+      slug: string | null;
+      order: number | null;
+      shortDescription: string | null;
+      fullDescription: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<{
+          href?: string;
+          _type: "externalLink";
+          _key: string;
+        } | {
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+          _type: "internalLink";
+          _key: string;
+        }> | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      } | {
+        _key: string;
+        _type: "callout";
+        tone?: "important" | "info" | "tip" | "warning";
+        title?: string;
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "imageWithAlt";
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        alt: string | null;
+        caption: string | null;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "videoEmbed";
+        url?: string;
+        title?: string;
+        markDefs: null;
+      }> | null;
+      idealFor: string | null;
+      duration: string | null;
+      recommendedGroupSize: string | null;
+      includedItems: Array<string> | null;
+      potentialOutcomes: Array<string> | null;
+      deliverables: Array<string> | null;
+      strategicOutcome: string | null;
+      engagementModel: string | null;
+      useCases: Array<string> | null;
+      images: Array<{
+        _type: "imageWithAlt";
+        alt: string | null;
+        caption: string | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+      }> | null;
+      ctaLabel: string | null;
+      ctaInquiryType: "advisory" | "media" | "other" | "research" | "signature" | "speaking" | "sprint" | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "faqsBlock";
+    heading: string | null;
+    source: "inline" | "referenced" | null;
+    items: Array<{
+      _id: string;
+      question: string | null;
+      answer: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<{
+          href?: string;
+          _type: "externalLink";
+          _key: string;
+        } | {
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+          _type: "internalLink";
+          _key: string;
+        }> | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      } | {
+        _key: string;
+        _type: "callout";
+        tone?: "important" | "info" | "tip" | "warning";
+        title?: string;
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "imageWithAlt";
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        alt: string | null;
+        caption: string | null;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "videoEmbed";
+        url?: string;
+        title?: string;
+        markDefs: null;
+      }> | null;
+    }> | null;
+    inlineItems: Array<{
+      _key: string;
+      question: string | null;
+      answer: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<{
+          href?: string;
+          _type: "externalLink";
+          _key: string;
+        } | {
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+          _type: "internalLink";
+          _key: string;
+        }> | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      } | {
+        _key: string;
+        _type: "callout";
+        tone?: "important" | "info" | "tip" | "warning";
+        title?: string;
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "imageWithAlt";
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        alt: string | null;
+        caption: string | null;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "videoEmbed";
+        url?: string;
+        title?: string;
+        markDefs: null;
+      }> | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "featureGridBlock";
+    heading: string | null;
+    intro: string | null;
+    columns: 2 | 3 | 4 | null;
+    features: Array<{
+      _key: string;
+      icon: "calendar" | "chart" | "heart" | "message" | "shield" | "sparkles" | "users" | "zap" | null;
+      title: string | null;
+      description: string | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "founderIntroBlock";
+    heading: string | null;
+    intro: string | null;
+    founder: {
+      _id: string;
+      name: string | null;
+      role: string | null;
+      shortBio: string | null;
+      fullBio: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<{
+          href?: string;
+          _type: "externalLink";
+          _key: string;
+        } | {
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+          _type: "internalLink";
+          _key: string;
+        }> | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      } | {
+        _key: string;
+        _type: "callout";
+        tone?: "important" | "info" | "tip" | "warning";
+        title?: string;
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "imageWithAlt";
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        alt: string | null;
+        caption: string | null;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "videoEmbed";
+        url?: string;
+        title?: string;
+        markDefs: null;
+      }> | null;
+      portrait: {
+        _type: "imageWithAlt";
+        alt: string | null;
+        caption: string | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+      } | null;
+      edgeNarrative: string | null;
+      credentials: Array<string> | null;
+      affiliations: Array<string> | null;
+      specialties: Array<string> | null;
+      speakingAndAdvisoryCopy: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<{
+          href?: string;
+          _type: "externalLink";
+          _key: string;
+        } | {
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+          _type: "internalLink";
+          _key: string;
+        }> | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      } | {
+        _key: string;
+        _type: "callout";
+        tone?: "important" | "info" | "tip" | "warning";
+        title?: string;
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "imageWithAlt";
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        alt: string | null;
+        caption: string | null;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "videoEmbed";
+        url?: string;
+        title?: string;
+        markDefs: null;
+      }> | null;
+    } | null;
+  } | {
+    _key: string;
+    _type: "heroBlock";
+    eyebrow: string | null;
+    heading: string | null;
+    subheading: string | null;
+    layout: "centered" | "imageStart" | "split" | null;
     image: {
-      _type: 'image'
-      alt: null
-      caption: null
-      hotspot: SanityImageHotspot | null
-      crop: SanityImageCrop | null
+      _type: "imageWithAlt";
+      alt: string | null;
+      caption: string | null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
       asset: {
-        _id: string
-        url: string | null
+        _id: string;
+        url: string | null;
         metadata: {
-          lqip: string | null
+          lqip: string | null;
           dimensions: {
-            width: number | null
-            height: number | null
-          } | null
-        } | null
-      } | null
-    } | null
-    canonicalUrl: string | null
-    noIndex: boolean | false
-  }
-} | null
+            width: number | null;
+            height: number | null;
+          } | null;
+        } | null;
+      } | null;
+    } | null;
+    ctas: Array<{
+      _key: string;
+      variant: "ghost" | "primary" | "secondary" | null;
+      link: {
+        label: string | null;
+        labelHe: string | null;
+        kind: "external" | "internal" | null;
+        href: string | null;
+        reference: {
+          _type: "legalDocument";
+          slug: string | null;
+          language: string | null;
+        } | {
+          _type: "page";
+          slug: string | null;
+          language: string | null;
+        } | {
+          _type: "post";
+          slug: string | null;
+          language: string | null;
+        } | null;
+      } | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "logoCloudBlock";
+    heading: string | null;
+    logos: Array<{
+      _key: string;
+      _type: "imageWithAlt";
+      alt: string | null;
+      caption: string | null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          lqip: string | null;
+          dimensions: {
+            width: number | null;
+            height: number | null;
+          } | null;
+        } | null;
+      } | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "positioningBlock";
+    heading: string | null;
+    intro: string | null;
+    notThisItems: Array<string> | null;
+    butThisHeading: string | null;
+    butThisText: string | null;
+  } | {
+    _key: string;
+    _type: "pricingBlock";
+    heading: string | null;
+    intro: string | null;
+    plans: Array<{
+      _key: string;
+      name: string | null;
+      price: string | null;
+      period: string | null;
+      description: string | null;
+      features: Array<string> | null;
+      highlighted: boolean | null;
+      cta: {
+        variant: "ghost" | "primary" | "secondary" | null;
+        link: {
+          label: string | null;
+          labelHe: string | null;
+          kind: "external" | "internal" | null;
+          href: string | null;
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+        } | null;
+      } | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "researchGridBlock";
+    heading: string | null;
+    intro: string | null;
+    emptyStateText: string | null;
+    projects: Array<{
+      _id: string;
+      title: string | null;
+      slug: string | null;
+      status: "active" | "completed" | "planned" | null;
+      excerpt: string | null;
+      focusAreas: Array<string> | null;
+      image: {
+        _type: "imageWithAlt";
+        alt: string | null;
+        caption: string | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+      } | null;
+    }>;
+    publications: Array<{
+      _id: string;
+      type: "media" | "publication" | "talk" | null;
+      title: string | null;
+      outlet: string | null;
+      date: string | null;
+      url: string | null;
+      excerpt: string | null;
+      image: {
+        _type: "imageWithAlt";
+        alt: string | null;
+        caption: string | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+      } | null;
+    }>;
+  } | {
+    _key: string;
+    _type: "researchHighlightsBlock";
+    heading: string | null;
+    intro: string | null;
+    items: Array<{
+      _key: string;
+      title: string | null;
+      description: string | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "richTextBlock";
+    heading: string | null;
+    width: "narrow" | "wide" | null;
+    body: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs: Array<{
+        href?: string;
+        _type: "externalLink";
+        _key: string;
+      } | {
+        reference: {
+          _type: "legalDocument";
+          slug: string | null;
+          language: string | null;
+        } | {
+          _type: "page";
+          slug: string | null;
+          language: string | null;
+        } | {
+          _type: "post";
+          slug: string | null;
+          language: string | null;
+        } | null;
+        _type: "internalLink";
+        _key: string;
+      }> | null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    } | {
+      _key: string;
+      _type: "callout";
+      tone?: "important" | "info" | "tip" | "warning";
+      title?: string;
+      body?: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
+      markDefs: null;
+    } | {
+      _key: string;
+      _type: "imageWithAlt";
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          lqip: string | null;
+          dimensions: {
+            width: number | null;
+            height: number | null;
+          } | null;
+        } | null;
+      } | null;
+      media?: unknown;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
+      alt: string | null;
+      caption: string | null;
+      markDefs: null;
+    } | {
+      _key: string;
+      _type: "videoEmbed";
+      url?: string;
+      title?: string;
+      markDefs: null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "speakingTopicsBlock";
+    heading: string | null;
+    intro: string | null;
+    displayMode: "detailed" | "preview" | null;
+    topics: Array<{
+      _id: string;
+      title: string | null;
+      slug: string | null;
+      shortDescription: string | null;
+      fullDescription: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<{
+          href?: string;
+          _type: "externalLink";
+          _key: string;
+        } | {
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+          _type: "internalLink";
+          _key: string;
+        }> | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      } | {
+        _key: string;
+        _type: "callout";
+        tone?: "important" | "info" | "tip" | "warning";
+        title?: string;
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "imageWithAlt";
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        alt: string | null;
+        caption: string | null;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "videoEmbed";
+        url?: string;
+        title?: string;
+        markDefs: null;
+      }> | null;
+      idealAudience: Array<string> | null;
+      keyTakeaways: Array<string> | null;
+      availableFormats: Array<string> | null;
+      heroImage: {
+        _type: "imageWithAlt";
+        alt: string | null;
+        caption: string | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+      } | null;
+      ctaLabel: string | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "statsBlock";
+    heading: string | null;
+    items: Array<{
+      _key: string;
+      value: string | null;
+      label: string | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "testimonialsBlock";
+    heading: string | null;
+    items: Array<{
+      _key: string;
+      quote: string | null;
+      authorName: string | null;
+      authorRole: string | null;
+      avatar: {
+        _type: "imageWithAlt";
+        alt: string | null;
+        caption: string | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+      } | null;
+    }> | null;
+  }> | null;
+  seo: {
+    title: string | "";
+    description: string | "";
+    keywords: Array<string> | Array<never>;
+    image: {
+      _type: "image";
+      alt: null;
+      caption: null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          lqip: string | null;
+          dimensions: {
+            width: number | null;
+            height: number | null;
+          } | null;
+        } | null;
+      } | null;
+    } | null;
+    canonicalUrl: string | null;
+    noIndex: boolean | false;
+  };
+} | null;
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: PAGE_BY_SLUG_QUERY
-// Query: *[_type == "page" && slug.current == $slug && language == $locale][0]{    _id,    _type,    title,    "slug": slug.current,    language,      pageBuilder[]{    _key,    _type,    _type == "heroBlock" => {      eyebrow, heading, subheading, layout,      image {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },      ctas[] { _key,   variant,  link {   label,  kind,  href,  reference->{ _type, "slug": slug.current, language } } }    },    _type == "richTextBlock" => {      heading, width,      body[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } }    },    _type == "featureGridBlock" => {      heading, intro, columns,      features[] { _key, icon, title, description }    },    _type == "logoCloudBlock" => {      heading,      logos[] { _key,   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } }    },    _type == "testimonialsBlock" => {      heading,      items[] { _key, quote, authorName, authorRole, avatar {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } }    },    _type == "statsBlock" => {      heading,      items[] { _key, value, label }    },    _type == "faqsBlock" => {      heading, source,      items[]->{ _id, question, answer[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } } },      inlineItems[] { _key, question, answer[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } } }    },    _type == "pricingBlock" => {      heading, intro,      plans[] { _key, name, price, period, description, features, highlighted, cta {   variant,  link {   label,  kind,  href,  reference->{ _type, "slug": slug.current, language } } } }    },    _type == "ctaBlock" => {      heading, body, background,      ctas[] { _key,   variant,  link {   label,  kind,  href,  reference->{ _type, "slug": slug.current, language } } }    },    _type == "contactFormBlock" => {      heading, body, successMessage, submitLabel    }  },    "seo": {   "title": coalesce(seo.metaTitle, title, ""),  "description": coalesce(seo.metaDescription, ""),  "keywords": coalesce(seo.keywords, []),  "image": seo.ogImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  "canonicalUrl": seo.canonicalUrl,  "noIndex": seo.noIndex == true }  }
+// Query: *[_type == "page" && slug.current == $slug && language == $locale][0]{    _id,    _type,    title,    "slug": slug.current,    language,      pageBuilder[]{    _key,    _type,    _type == "heroBlock" => {      eyebrow, heading, subheading, layout,      image {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },      ctas[] { _key,   variant,  link {   label,  labelHe,  kind,  href,  reference->{ _type, "slug": slug.current, language } } }    },    _type == "richTextBlock" => {      heading, width,      body[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } }    },    _type == "featureGridBlock" => {      heading, intro, columns,      features[] { _key, icon, title, description }    },    _type == "logoCloudBlock" => {      heading,      logos[] { _key,   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } }    },    _type == "testimonialsBlock" => {      heading,      items[] { _key, quote, authorName, authorRole, avatar {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } }    },    _type == "statsBlock" => {      heading,      items[] { _key, value, label }    },    _type == "faqsBlock" => {      heading, source,      items[]->{ _id, question, answer[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } } },      inlineItems[] { _key, question, answer[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } } }    },    _type == "pricingBlock" => {      heading, intro,      plans[] { _key, name, price, period, description, features, highlighted, cta {   variant,  link {   label,  labelHe,  kind,  href,  reference->{ _type, "slug": slug.current, language } } } }    },    _type == "ctaBlock" => {      heading, body, background,      ctas[] { _key,   variant,  link {   label,  labelHe,  kind,  href,  reference->{ _type, "slug": slug.current, language } } }    },    _type == "contactFormBlock" => {      heading, body, successMessage, submitLabel, interestTypeOptions, privacyNote    },    _type == "positioningBlock" => {      heading, intro, notThisItems, butThisHeading, butThisText    },    _type == "audiencePathsBlock" => {      heading, intro,      paths[]-> {   _id,  audienceName,  headline,  motivation,  valueProposition,  desiredOutcomes,  image {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  cta {   variant,  link {   label,  labelHe,  kind,  href,  reference->{ _type, "slug": slug.current, language } } } }    },    _type == "expeditionProductsBlock" => {      heading, intro, displayMode,      products[]-> {   _id,  title,  "slug": slug.current,  order,  shortDescription,  fullDescription[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } },  idealFor,  duration,  recommendedGroupSize,  includedItems,  potentialOutcomes,  deliverables,  strategicOutcome,  engagementModel,  useCases,  images[] {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  ctaLabel,  ctaInquiryType }    },    _type == "speakingTopicsBlock" => {      heading, intro, displayMode,      topics[]-> {   _id,  title,  "slug": slug.current,  shortDescription,  fullDescription[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } },  idealAudience,  keyTakeaways,  availableFormats,  heroImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  ctaLabel }    },    _type == "researchHighlightsBlock" => {      heading, intro,      items[] { _key, title, description }    },    _type == "researchGridBlock" => {      heading, intro, emptyStateText,      "projects": *[_type == "researchProject" && language == $locale] | order(_createdAt desc) {          _id,  title,  "slug": slug.current,  status,  excerpt,  focusAreas,  "image": images[0] {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } }      },      "publications": *[_type == "publicationOrMedia" && language == $locale] | order(date desc) {          _id,  type,  title,  outlet,  date,  url,  excerpt,  image {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } }      }    },    _type == "founderIntroBlock" => {      heading, intro,      founder-> {   _id,  name,  role,  shortBio,  fullBio[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } },  portrait {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  edgeNarrative,  credentials,  affiliations,  specialties,  speakingAndAdvisoryCopy[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } } }    }  },    "seo": {   "title": coalesce(seo.metaTitle, title, ""),  "description": coalesce(seo.metaDescription, ""),  "keywords": coalesce(seo.keywords, []),  "image": seo.ogImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  "canonicalUrl": seo.canonicalUrl,  "noIndex": seo.noIndex == true }  }
 export type PAGE_BY_SLUG_QUERY_RESULT = {
-  _id: string
-  _type: 'page'
-  title: string | null
-  slug: string | null
-  language: string | null
-  pageBuilder: Array<
-    | {
-        _key: string
-        _type: 'contactFormBlock'
-        heading: string | null
-        body: string | null
-        successMessage: string | null
-        submitLabel: string | null
-      }
-    | {
-        _key: string
-        _type: 'ctaBlock'
-        heading: string | null
-        body: string | null
-        background: 'card' | 'muted' | 'primary' | null
-        ctas: Array<{
-          _key: string
-          variant: 'ghost' | 'primary' | 'secondary' | null
-          link: {
-            label: string | null
-            kind: 'external' | 'internal' | null
-            href: string | null
-            reference:
-              | {
-                  _type: 'legalDocument'
-                  slug: string | null
-                  language: string | null
-                }
-              | {
-                  _type: 'page'
-                  slug: string | null
-                  language: string | null
-                }
-              | {
-                  _type: 'post'
-                  slug: string | null
-                  language: string | null
-                }
-              | null
-          } | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'faqsBlock'
-        heading: string | null
-        source: 'inline' | 'referenced' | null
-        items: Array<{
-          _id: string
-          question: string | null
-          answer: Array<
-            | {
-                children?: Array<{
-                  marks?: Array<string>
-                  text?: string
-                  _type: 'span'
-                  _key: string
-                }>
-                style?: 'blockquote' | 'h2' | 'h3' | 'h4' | 'normal'
-                listItem?: 'bullet' | 'number'
-                markDefs: Array<
-                  | {
-                      href?: string
-                      _type: 'externalLink'
-                      _key: string
-                    }
-                  | {
-                      reference:
-                        | {
-                            _type: 'legalDocument'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | {
-                            _type: 'page'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | {
-                            _type: 'post'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | null
-                      _type: 'internalLink'
-                      _key: string
-                    }
-                > | null
-                level?: number
-                _type: 'block'
-                _key: string
-              }
-            | {
-                _key: string
-                _type: 'callout'
-                tone?: 'important' | 'info' | 'tip' | 'warning'
-                title?: string
-                body?: Array<{
-                  children?: Array<{
-                    marks?: Array<string>
-                    text?: string
-                    _type: 'span'
-                    _key: string
-                  }>
-                  style?: 'normal'
-                  listItem?: 'bullet' | 'number'
-                  markDefs?: Array<{
-                    href?: string
-                    _type: 'link'
-                    _key: string
-                  }>
-                  level?: number
-                  _type: 'block'
-                  _key: string
-                }>
-                markDefs: null
-              }
-            | {
-                _key: string
-                _type: 'imageWithAlt'
-                asset: {
-                  _id: string
-                  url: string | null
-                  metadata: {
-                    lqip: string | null
-                    dimensions: {
-                      width: number | null
-                      height: number | null
-                    } | null
-                  } | null
-                } | null
-                media?: unknown
-                hotspot: SanityImageHotspot | null
-                crop: SanityImageCrop | null
-                alt: string | null
-                caption: string | null
-                markDefs: null
-              }
-            | {
-                _key: string
-                _type: 'videoEmbed'
-                url?: string
-                title?: string
-                markDefs: null
-              }
-          > | null
-        }> | null
-        inlineItems: Array<{
-          _key: string
-          question: string | null
-          answer: Array<
-            | {
-                children?: Array<{
-                  marks?: Array<string>
-                  text?: string
-                  _type: 'span'
-                  _key: string
-                }>
-                style?: 'blockquote' | 'h2' | 'h3' | 'h4' | 'normal'
-                listItem?: 'bullet' | 'number'
-                markDefs: Array<
-                  | {
-                      href?: string
-                      _type: 'externalLink'
-                      _key: string
-                    }
-                  | {
-                      reference:
-                        | {
-                            _type: 'legalDocument'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | {
-                            _type: 'page'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | {
-                            _type: 'post'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | null
-                      _type: 'internalLink'
-                      _key: string
-                    }
-                > | null
-                level?: number
-                _type: 'block'
-                _key: string
-              }
-            | {
-                _key: string
-                _type: 'callout'
-                tone?: 'important' | 'info' | 'tip' | 'warning'
-                title?: string
-                body?: Array<{
-                  children?: Array<{
-                    marks?: Array<string>
-                    text?: string
-                    _type: 'span'
-                    _key: string
-                  }>
-                  style?: 'normal'
-                  listItem?: 'bullet' | 'number'
-                  markDefs?: Array<{
-                    href?: string
-                    _type: 'link'
-                    _key: string
-                  }>
-                  level?: number
-                  _type: 'block'
-                  _key: string
-                }>
-                markDefs: null
-              }
-            | {
-                _key: string
-                _type: 'imageWithAlt'
-                asset: {
-                  _id: string
-                  url: string | null
-                  metadata: {
-                    lqip: string | null
-                    dimensions: {
-                      width: number | null
-                      height: number | null
-                    } | null
-                  } | null
-                } | null
-                media?: unknown
-                hotspot: SanityImageHotspot | null
-                crop: SanityImageCrop | null
-                alt: string | null
-                caption: string | null
-                markDefs: null
-              }
-            | {
-                _key: string
-                _type: 'videoEmbed'
-                url?: string
-                title?: string
-                markDefs: null
-              }
-          > | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'featureGridBlock'
-        heading: string | null
-        intro: string | null
-        columns: 2 | 3 | 4 | null
-        features: Array<{
-          _key: string
-          icon:
-            | 'calendar'
-            | 'chart'
-            | 'heart'
-            | 'message'
-            | 'shield'
-            | 'sparkles'
-            | 'users'
-            | 'zap'
-            | null
-          title: string | null
-          description: string | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'heroBlock'
-        eyebrow: string | null
-        heading: string | null
-        subheading: string | null
-        layout: 'centered' | 'imageStart' | 'split' | null
-        image: {
-          _type: 'imageWithAlt'
-          alt: string | null
-          caption: string | null
-          hotspot: SanityImageHotspot | null
-          crop: SanityImageCrop | null
-          asset: {
-            _id: string
-            url: string | null
-            metadata: {
-              lqip: string | null
-              dimensions: {
-                width: number | null
-                height: number | null
-              } | null
-            } | null
-          } | null
-        } | null
-        ctas: Array<{
-          _key: string
-          variant: 'ghost' | 'primary' | 'secondary' | null
-          link: {
-            label: string | null
-            kind: 'external' | 'internal' | null
-            href: string | null
-            reference:
-              | {
-                  _type: 'legalDocument'
-                  slug: string | null
-                  language: string | null
-                }
-              | {
-                  _type: 'page'
-                  slug: string | null
-                  language: string | null
-                }
-              | {
-                  _type: 'post'
-                  slug: string | null
-                  language: string | null
-                }
-              | null
-          } | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'logoCloudBlock'
-        heading: string | null
-        logos: Array<{
-          _key: string
-          _type: 'imageWithAlt'
-          alt: string | null
-          caption: string | null
-          hotspot: SanityImageHotspot | null
-          crop: SanityImageCrop | null
-          asset: {
-            _id: string
-            url: string | null
-            metadata: {
-              lqip: string | null
-              dimensions: {
-                width: number | null
-                height: number | null
-              } | null
-            } | null
-          } | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'pricingBlock'
-        heading: string | null
-        intro: string | null
-        plans: Array<{
-          _key: string
-          name: string | null
-          price: string | null
-          period: string | null
-          description: string | null
-          features: Array<string> | null
-          highlighted: boolean | null
-          cta: {
-            variant: 'ghost' | 'primary' | 'secondary' | null
-            link: {
-              label: string | null
-              kind: 'external' | 'internal' | null
-              href: string | null
-              reference:
-                | {
-                    _type: 'legalDocument'
-                    slug: string | null
-                    language: string | null
-                  }
-                | {
-                    _type: 'page'
-                    slug: string | null
-                    language: string | null
-                  }
-                | {
-                    _type: 'post'
-                    slug: string | null
-                    language: string | null
-                  }
-                | null
-            } | null
-          } | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'richTextBlock'
-        heading: string | null
-        width: 'narrow' | 'wide' | null
-        body: Array<
-          | {
-              children?: Array<{
-                marks?: Array<string>
-                text?: string
-                _type: 'span'
-                _key: string
-              }>
-              style?: 'blockquote' | 'h2' | 'h3' | 'h4' | 'normal'
-              listItem?: 'bullet' | 'number'
-              markDefs: Array<
-                | {
-                    href?: string
-                    _type: 'externalLink'
-                    _key: string
-                  }
-                | {
-                    reference:
-                      | {
-                          _type: 'legalDocument'
-                          slug: string | null
-                          language: string | null
-                        }
-                      | {
-                          _type: 'page'
-                          slug: string | null
-                          language: string | null
-                        }
-                      | {
-                          _type: 'post'
-                          slug: string | null
-                          language: string | null
-                        }
-                      | null
-                    _type: 'internalLink'
-                    _key: string
-                  }
-              > | null
-              level?: number
-              _type: 'block'
-              _key: string
-            }
-          | {
-              _key: string
-              _type: 'callout'
-              tone?: 'important' | 'info' | 'tip' | 'warning'
-              title?: string
-              body?: Array<{
-                children?: Array<{
-                  marks?: Array<string>
-                  text?: string
-                  _type: 'span'
-                  _key: string
-                }>
-                style?: 'normal'
-                listItem?: 'bullet' | 'number'
-                markDefs?: Array<{
-                  href?: string
-                  _type: 'link'
-                  _key: string
-                }>
-                level?: number
-                _type: 'block'
-                _key: string
-              }>
-              markDefs: null
-            }
-          | {
-              _key: string
-              _type: 'imageWithAlt'
-              asset: {
-                _id: string
-                url: string | null
-                metadata: {
-                  lqip: string | null
-                  dimensions: {
-                    width: number | null
-                    height: number | null
-                  } | null
-                } | null
-              } | null
-              media?: unknown
-              hotspot: SanityImageHotspot | null
-              crop: SanityImageCrop | null
-              alt: string | null
-              caption: string | null
-              markDefs: null
-            }
-          | {
-              _key: string
-              _type: 'videoEmbed'
-              url?: string
-              title?: string
-              markDefs: null
-            }
-        > | null
-      }
-    | {
-        _key: string
-        _type: 'statsBlock'
-        heading: string | null
-        items: Array<{
-          _key: string
-          value: string | null
-          label: string | null
-        }> | null
-      }
-    | {
-        _key: string
-        _type: 'testimonialsBlock'
-        heading: string | null
-        items: Array<{
-          _key: string
-          quote: string | null
-          authorName: string | null
-          authorRole: string | null
-          avatar: {
-            _type: 'imageWithAlt'
-            alt: string | null
-            caption: string | null
-            hotspot: SanityImageHotspot | null
-            crop: SanityImageCrop | null
-            asset: {
-              _id: string
-              url: string | null
-              metadata: {
-                lqip: string | null
-                dimensions: {
-                  width: number | null
-                  height: number | null
-                } | null
-              } | null
-            } | null
-          } | null
-        }> | null
-      }
-  > | null
-  seo: {
-    title: string | ''
-    description: string | ''
-    keywords: Array<string> | Array<never>
+  _id: string;
+  _type: "page";
+  title: string | null;
+  slug: string | null;
+  language: string | null;
+  pageBuilder: Array<{
+    _key: string;
+    _type: "audiencePathsBlock";
+    heading: string | null;
+    intro: string | null;
+    paths: Array<{
+      _id: string;
+      audienceName: string | null;
+      headline: string | null;
+      motivation: string | null;
+      valueProposition: string | null;
+      desiredOutcomes: Array<string> | null;
+      image: {
+        _type: "imageWithAlt";
+        alt: string | null;
+        caption: string | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+      } | null;
+      cta: {
+        variant: "ghost" | "primary" | "secondary" | null;
+        link: {
+          label: string | null;
+          labelHe: string | null;
+          kind: "external" | "internal" | null;
+          href: string | null;
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+        } | null;
+      } | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "contactFormBlock";
+    heading: string | null;
+    body: string | null;
+    successMessage: string | null;
+    submitLabel: string | null;
+    interestTypeOptions: Array<string> | null;
+    privacyNote: string | null;
+  } | {
+    _key: string;
+    _type: "ctaBlock";
+    heading: string | null;
+    body: string | null;
+    background: "card" | "muted" | "primary" | null;
+    ctas: Array<{
+      _key: string;
+      variant: "ghost" | "primary" | "secondary" | null;
+      link: {
+        label: string | null;
+        labelHe: string | null;
+        kind: "external" | "internal" | null;
+        href: string | null;
+        reference: {
+          _type: "legalDocument";
+          slug: string | null;
+          language: string | null;
+        } | {
+          _type: "page";
+          slug: string | null;
+          language: string | null;
+        } | {
+          _type: "post";
+          slug: string | null;
+          language: string | null;
+        } | null;
+      } | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "expeditionProductsBlock";
+    heading: string | null;
+    intro: string | null;
+    displayMode: "cards" | "comparisonTable" | "detailed" | null;
+    products: Array<{
+      _id: string;
+      title: string | null;
+      slug: string | null;
+      order: number | null;
+      shortDescription: string | null;
+      fullDescription: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<{
+          href?: string;
+          _type: "externalLink";
+          _key: string;
+        } | {
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+          _type: "internalLink";
+          _key: string;
+        }> | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      } | {
+        _key: string;
+        _type: "callout";
+        tone?: "important" | "info" | "tip" | "warning";
+        title?: string;
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "imageWithAlt";
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        alt: string | null;
+        caption: string | null;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "videoEmbed";
+        url?: string;
+        title?: string;
+        markDefs: null;
+      }> | null;
+      idealFor: string | null;
+      duration: string | null;
+      recommendedGroupSize: string | null;
+      includedItems: Array<string> | null;
+      potentialOutcomes: Array<string> | null;
+      deliverables: Array<string> | null;
+      strategicOutcome: string | null;
+      engagementModel: string | null;
+      useCases: Array<string> | null;
+      images: Array<{
+        _type: "imageWithAlt";
+        alt: string | null;
+        caption: string | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+      }> | null;
+      ctaLabel: string | null;
+      ctaInquiryType: "advisory" | "media" | "other" | "research" | "signature" | "speaking" | "sprint" | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "faqsBlock";
+    heading: string | null;
+    source: "inline" | "referenced" | null;
+    items: Array<{
+      _id: string;
+      question: string | null;
+      answer: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<{
+          href?: string;
+          _type: "externalLink";
+          _key: string;
+        } | {
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+          _type: "internalLink";
+          _key: string;
+        }> | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      } | {
+        _key: string;
+        _type: "callout";
+        tone?: "important" | "info" | "tip" | "warning";
+        title?: string;
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "imageWithAlt";
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        alt: string | null;
+        caption: string | null;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "videoEmbed";
+        url?: string;
+        title?: string;
+        markDefs: null;
+      }> | null;
+    }> | null;
+    inlineItems: Array<{
+      _key: string;
+      question: string | null;
+      answer: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<{
+          href?: string;
+          _type: "externalLink";
+          _key: string;
+        } | {
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+          _type: "internalLink";
+          _key: string;
+        }> | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      } | {
+        _key: string;
+        _type: "callout";
+        tone?: "important" | "info" | "tip" | "warning";
+        title?: string;
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "imageWithAlt";
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        alt: string | null;
+        caption: string | null;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "videoEmbed";
+        url?: string;
+        title?: string;
+        markDefs: null;
+      }> | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "featureGridBlock";
+    heading: string | null;
+    intro: string | null;
+    columns: 2 | 3 | 4 | null;
+    features: Array<{
+      _key: string;
+      icon: "calendar" | "chart" | "heart" | "message" | "shield" | "sparkles" | "users" | "zap" | null;
+      title: string | null;
+      description: string | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "founderIntroBlock";
+    heading: string | null;
+    intro: string | null;
+    founder: {
+      _id: string;
+      name: string | null;
+      role: string | null;
+      shortBio: string | null;
+      fullBio: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<{
+          href?: string;
+          _type: "externalLink";
+          _key: string;
+        } | {
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+          _type: "internalLink";
+          _key: string;
+        }> | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      } | {
+        _key: string;
+        _type: "callout";
+        tone?: "important" | "info" | "tip" | "warning";
+        title?: string;
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "imageWithAlt";
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        alt: string | null;
+        caption: string | null;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "videoEmbed";
+        url?: string;
+        title?: string;
+        markDefs: null;
+      }> | null;
+      portrait: {
+        _type: "imageWithAlt";
+        alt: string | null;
+        caption: string | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+      } | null;
+      edgeNarrative: string | null;
+      credentials: Array<string> | null;
+      affiliations: Array<string> | null;
+      specialties: Array<string> | null;
+      speakingAndAdvisoryCopy: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<{
+          href?: string;
+          _type: "externalLink";
+          _key: string;
+        } | {
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+          _type: "internalLink";
+          _key: string;
+        }> | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      } | {
+        _key: string;
+        _type: "callout";
+        tone?: "important" | "info" | "tip" | "warning";
+        title?: string;
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "imageWithAlt";
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        alt: string | null;
+        caption: string | null;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "videoEmbed";
+        url?: string;
+        title?: string;
+        markDefs: null;
+      }> | null;
+    } | null;
+  } | {
+    _key: string;
+    _type: "heroBlock";
+    eyebrow: string | null;
+    heading: string | null;
+    subheading: string | null;
+    layout: "centered" | "imageStart" | "split" | null;
     image: {
-      _type: 'image'
-      alt: null
-      caption: null
-      hotspot: SanityImageHotspot | null
-      crop: SanityImageCrop | null
+      _type: "imageWithAlt";
+      alt: string | null;
+      caption: string | null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
       asset: {
-        _id: string
-        url: string | null
+        _id: string;
+        url: string | null;
         metadata: {
-          lqip: string | null
+          lqip: string | null;
           dimensions: {
-            width: number | null
-            height: number | null
-          } | null
-        } | null
-      } | null
-    } | null
-    canonicalUrl: string | null
-    noIndex: boolean | false
-  }
-} | null
+            width: number | null;
+            height: number | null;
+          } | null;
+        } | null;
+      } | null;
+    } | null;
+    ctas: Array<{
+      _key: string;
+      variant: "ghost" | "primary" | "secondary" | null;
+      link: {
+        label: string | null;
+        labelHe: string | null;
+        kind: "external" | "internal" | null;
+        href: string | null;
+        reference: {
+          _type: "legalDocument";
+          slug: string | null;
+          language: string | null;
+        } | {
+          _type: "page";
+          slug: string | null;
+          language: string | null;
+        } | {
+          _type: "post";
+          slug: string | null;
+          language: string | null;
+        } | null;
+      } | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "logoCloudBlock";
+    heading: string | null;
+    logos: Array<{
+      _key: string;
+      _type: "imageWithAlt";
+      alt: string | null;
+      caption: string | null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          lqip: string | null;
+          dimensions: {
+            width: number | null;
+            height: number | null;
+          } | null;
+        } | null;
+      } | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "positioningBlock";
+    heading: string | null;
+    intro: string | null;
+    notThisItems: Array<string> | null;
+    butThisHeading: string | null;
+    butThisText: string | null;
+  } | {
+    _key: string;
+    _type: "pricingBlock";
+    heading: string | null;
+    intro: string | null;
+    plans: Array<{
+      _key: string;
+      name: string | null;
+      price: string | null;
+      period: string | null;
+      description: string | null;
+      features: Array<string> | null;
+      highlighted: boolean | null;
+      cta: {
+        variant: "ghost" | "primary" | "secondary" | null;
+        link: {
+          label: string | null;
+          labelHe: string | null;
+          kind: "external" | "internal" | null;
+          href: string | null;
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+        } | null;
+      } | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "researchGridBlock";
+    heading: string | null;
+    intro: string | null;
+    emptyStateText: string | null;
+    projects: Array<{
+      _id: string;
+      title: string | null;
+      slug: string | null;
+      status: "active" | "completed" | "planned" | null;
+      excerpt: string | null;
+      focusAreas: Array<string> | null;
+      image: {
+        _type: "imageWithAlt";
+        alt: string | null;
+        caption: string | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+      } | null;
+    }>;
+    publications: Array<{
+      _id: string;
+      type: "media" | "publication" | "talk" | null;
+      title: string | null;
+      outlet: string | null;
+      date: string | null;
+      url: string | null;
+      excerpt: string | null;
+      image: {
+        _type: "imageWithAlt";
+        alt: string | null;
+        caption: string | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+      } | null;
+    }>;
+  } | {
+    _key: string;
+    _type: "researchHighlightsBlock";
+    heading: string | null;
+    intro: string | null;
+    items: Array<{
+      _key: string;
+      title: string | null;
+      description: string | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "richTextBlock";
+    heading: string | null;
+    width: "narrow" | "wide" | null;
+    body: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs: Array<{
+        href?: string;
+        _type: "externalLink";
+        _key: string;
+      } | {
+        reference: {
+          _type: "legalDocument";
+          slug: string | null;
+          language: string | null;
+        } | {
+          _type: "page";
+          slug: string | null;
+          language: string | null;
+        } | {
+          _type: "post";
+          slug: string | null;
+          language: string | null;
+        } | null;
+        _type: "internalLink";
+        _key: string;
+      }> | null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    } | {
+      _key: string;
+      _type: "callout";
+      tone?: "important" | "info" | "tip" | "warning";
+      title?: string;
+      body?: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
+      markDefs: null;
+    } | {
+      _key: string;
+      _type: "imageWithAlt";
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          lqip: string | null;
+          dimensions: {
+            width: number | null;
+            height: number | null;
+          } | null;
+        } | null;
+      } | null;
+      media?: unknown;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
+      alt: string | null;
+      caption: string | null;
+      markDefs: null;
+    } | {
+      _key: string;
+      _type: "videoEmbed";
+      url?: string;
+      title?: string;
+      markDefs: null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "speakingTopicsBlock";
+    heading: string | null;
+    intro: string | null;
+    displayMode: "detailed" | "preview" | null;
+    topics: Array<{
+      _id: string;
+      title: string | null;
+      slug: string | null;
+      shortDescription: string | null;
+      fullDescription: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs: Array<{
+          href?: string;
+          _type: "externalLink";
+          _key: string;
+        } | {
+          reference: {
+            _type: "legalDocument";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          } | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          } | null;
+          _type: "internalLink";
+          _key: string;
+        }> | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      } | {
+        _key: string;
+        _type: "callout";
+        tone?: "important" | "info" | "tip" | "warning";
+        title?: string;
+        body?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "imageWithAlt";
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+        media?: unknown;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        alt: string | null;
+        caption: string | null;
+        markDefs: null;
+      } | {
+        _key: string;
+        _type: "videoEmbed";
+        url?: string;
+        title?: string;
+        markDefs: null;
+      }> | null;
+      idealAudience: Array<string> | null;
+      keyTakeaways: Array<string> | null;
+      availableFormats: Array<string> | null;
+      heroImage: {
+        _type: "imageWithAlt";
+        alt: string | null;
+        caption: string | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+      } | null;
+      ctaLabel: string | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "statsBlock";
+    heading: string | null;
+    items: Array<{
+      _key: string;
+      value: string | null;
+      label: string | null;
+    }> | null;
+  } | {
+    _key: string;
+    _type: "testimonialsBlock";
+    heading: string | null;
+    items: Array<{
+      _key: string;
+      quote: string | null;
+      authorName: string | null;
+      authorRole: string | null;
+      avatar: {
+        _type: "imageWithAlt";
+        alt: string | null;
+        caption: string | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            lqip: string | null;
+            dimensions: {
+              width: number | null;
+              height: number | null;
+            } | null;
+          } | null;
+        } | null;
+      } | null;
+    }> | null;
+  }> | null;
+  seo: {
+    title: string | "";
+    description: string | "";
+    keywords: Array<string> | Array<never>;
+    image: {
+      _type: "image";
+      alt: null;
+      caption: null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          lqip: string | null;
+          dimensions: {
+            width: number | null;
+            height: number | null;
+          } | null;
+        } | null;
+      } | null;
+    } | null;
+    canonicalUrl: string | null;
+    noIndex: boolean | false;
+  };
+} | null;
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: PAGE_SLUGS_QUERY
 // Query: *[_type == "page" && defined(slug.current) && slug.current != "home"]{    "slug": slug.current,    language  }
 export type PAGE_SLUGS_QUERY_RESULT = Array<{
-  slug: string | null
-  language: string | null
-}>
+  slug: string | null;
+  language: string | null;
+}>;
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: POSTS_QUERY
 // Query: *[_type == "post" && language == $locale && defined(slug.current)]    | order(publishedAt desc)[$start...$end]{      _id,      title,      "slug": slug.current,      excerpt,      publishedAt,      coverImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },      author->{ name, "slug": slug.current },      categories[]->{ _id, title, "slug": slug.current }    }
 export type POSTS_QUERY_RESULT = Array<{
-  _id: string
-  title: string | null
-  slug: string | null
-  excerpt: string | null
-  publishedAt: string | null
+  _id: string;
+  title: string | null;
+  slug: string | null;
+  excerpt: string | null;
+  publishedAt: string | null;
   coverImage: {
-    _type: 'imageWithAlt'
-    alt: string | null
-    caption: string | null
-    hotspot: SanityImageHotspot | null
-    crop: SanityImageCrop | null
+    _type: "imageWithAlt";
+    alt: string | null;
+    caption: string | null;
+    hotspot: SanityImageHotspot | null;
+    crop: SanityImageCrop | null;
     asset: {
-      _id: string
-      url: string | null
+      _id: string;
+      url: string | null;
       metadata: {
-        lqip: string | null
+        lqip: string | null;
         dimensions: {
-          width: number | null
-          height: number | null
-        } | null
-      } | null
-    } | null
-  } | null
+          width: number | null;
+          height: number | null;
+        } | null;
+      } | null;
+    } | null;
+  } | null;
   author: {
-    name: string | null
-    slug: string | null
-  } | null
+    name: string | null;
+    slug: string | null;
+  } | null;
   categories: Array<{
-    _id: string
-    title: string | null
-    slug: string | null
-  }> | null
-}>
+    _id: string;
+    title: string | null;
+    slug: string | null;
+  }> | null;
+}>;
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: POST_BY_SLUG_QUERY
 // Query: *[_type == "post" && slug.current == $slug && language == $locale][0]{    _id,    _type,    title,    "slug": slug.current,    language,    excerpt,    publishedAt,    coverImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },    author->{ name, "slug": slug.current, photo {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } },    categories[]->{ _id, title, "slug": slug.current },    body[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } },    "plainBody": pt::text(body),    "seo": {   "title": coalesce(seo.metaTitle, title, ""),  "description": coalesce(seo.metaDescription, ""),  "keywords": coalesce(seo.keywords, []),  "image": seo.ogImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  "canonicalUrl": seo.canonicalUrl,  "noIndex": seo.noIndex == true }  }
 export type POST_BY_SLUG_QUERY_RESULT = {
-  _id: string
-  _type: 'post'
-  title: string | null
-  slug: string | null
-  language: string | null
-  excerpt: string | null
-  publishedAt: string | null
+  _id: string;
+  _type: "post";
+  title: string | null;
+  slug: string | null;
+  language: string | null;
+  excerpt: string | null;
+  publishedAt: string | null;
   coverImage: {
-    _type: 'imageWithAlt'
-    alt: string | null
-    caption: string | null
-    hotspot: SanityImageHotspot | null
-    crop: SanityImageCrop | null
+    _type: "imageWithAlt";
+    alt: string | null;
+    caption: string | null;
+    hotspot: SanityImageHotspot | null;
+    crop: SanityImageCrop | null;
     asset: {
-      _id: string
-      url: string | null
+      _id: string;
+      url: string | null;
       metadata: {
-        lqip: string | null
+        lqip: string | null;
         dimensions: {
-          width: number | null
-          height: number | null
-        } | null
-      } | null
-    } | null
-  } | null
+          width: number | null;
+          height: number | null;
+        } | null;
+      } | null;
+    } | null;
+  } | null;
   author: {
-    name: string | null
-    slug: string | null
+    name: string | null;
+    slug: string | null;
     photo: {
-      _type: 'imageWithAlt'
-      alt: string | null
-      caption: string | null
-      hotspot: SanityImageHotspot | null
-      crop: SanityImageCrop | null
+      _type: "imageWithAlt";
+      alt: string | null;
+      caption: string | null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
       asset: {
-        _id: string
-        url: string | null
+        _id: string;
+        url: string | null;
         metadata: {
-          lqip: string | null
+          lqip: string | null;
           dimensions: {
-            width: number | null
-            height: number | null
-          } | null
-        } | null
-      } | null
-    } | null
-  } | null
+            width: number | null;
+            height: number | null;
+          } | null;
+        } | null;
+      } | null;
+    } | null;
+  } | null;
   categories: Array<{
-    _id: string
-    title: string | null
-    slug: string | null
-  }> | null
-  body: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: 'span'
-          _key: string
-        }>
-        style?: 'blockquote' | 'h2' | 'h3' | 'h4' | 'normal'
-        listItem?: 'bullet' | 'number'
-        markDefs: Array<
-          | {
-              href?: string
-              _type: 'externalLink'
-              _key: string
-            }
-          | {
-              reference:
-                | {
-                    _type: 'legalDocument'
-                    slug: string | null
-                    language: string | null
-                  }
-                | {
-                    _type: 'page'
-                    slug: string | null
-                    language: string | null
-                  }
-                | {
-                    _type: 'post'
-                    slug: string | null
-                    language: string | null
-                  }
-                | null
-              _type: 'internalLink'
-              _key: string
-            }
-        > | null
-        level?: number
-        _type: 'block'
-        _key: string
-      }
-    | {
-        _key: string
-        _type: 'callout'
-        tone?: 'important' | 'info' | 'tip' | 'warning'
-        title?: string
-        body?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        markDefs: null
-      }
-    | {
-        _key: string
-        _type: 'imageWithAlt'
-        asset: {
-          _id: string
-          url: string | null
-          metadata: {
-            lqip: string | null
-            dimensions: {
-              width: number | null
-              height: number | null
-            } | null
-          } | null
-        } | null
-        media?: unknown
-        hotspot: SanityImageHotspot | null
-        crop: SanityImageCrop | null
-        alt: string | null
-        caption: string | null
-        markDefs: null
-      }
-    | {
-        _key: string
-        _type: 'videoEmbed'
-        url?: string
-        title?: string
-        markDefs: null
-      }
-  > | null
-  plainBody: string
+    _id: string;
+    title: string | null;
+    slug: string | null;
+  }> | null;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs: Array<{
+      href?: string;
+      _type: "externalLink";
+      _key: string;
+    } | {
+      reference: {
+        _type: "legalDocument";
+        slug: string | null;
+        language: string | null;
+      } | {
+        _type: "page";
+        slug: string | null;
+        language: string | null;
+      } | {
+        _type: "post";
+        slug: string | null;
+        language: string | null;
+      } | null;
+      _type: "internalLink";
+      _key: string;
+    }> | null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    _key: string;
+    _type: "callout";
+    tone?: "important" | "info" | "tip" | "warning";
+    title?: string;
+    body?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    markDefs: null;
+  } | {
+    _key: string;
+    _type: "imageWithAlt";
+    asset: {
+      _id: string;
+      url: string | null;
+      metadata: {
+        lqip: string | null;
+        dimensions: {
+          width: number | null;
+          height: number | null;
+        } | null;
+      } | null;
+    } | null;
+    media?: unknown;
+    hotspot: SanityImageHotspot | null;
+    crop: SanityImageCrop | null;
+    alt: string | null;
+    caption: string | null;
+    markDefs: null;
+  } | {
+    _key: string;
+    _type: "videoEmbed";
+    url?: string;
+    title?: string;
+    markDefs: null;
+  }> | null;
+  plainBody: string;
   seo: {
-    title: string | ''
-    description: string | ''
-    keywords: Array<string> | Array<never>
+    title: string | "";
+    description: string | "";
+    keywords: Array<string> | Array<never>;
     image: {
-      _type: 'image'
-      alt: null
-      caption: null
-      hotspot: SanityImageHotspot | null
-      crop: SanityImageCrop | null
+      _type: "image";
+      alt: null;
+      caption: null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
       asset: {
-        _id: string
-        url: string | null
+        _id: string;
+        url: string | null;
         metadata: {
-          lqip: string | null
+          lqip: string | null;
           dimensions: {
-            width: number | null
-            height: number | null
-          } | null
-        } | null
-      } | null
-    } | null
-    canonicalUrl: string | null
-    noIndex: boolean | false
-  }
-} | null
+            width: number | null;
+            height: number | null;
+          } | null;
+        } | null;
+      } | null;
+    } | null;
+    canonicalUrl: string | null;
+    noIndex: boolean | false;
+  };
+} | null;
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: POST_SLUGS_QUERY
 // Query: *[_type == "post" && defined(slug.current)]{    "slug": slug.current,    language  }
 export type POST_SLUGS_QUERY_RESULT = Array<{
-  slug: string | null
-  language: string | null
-}>
+  slug: string | null;
+  language: string | null;
+}>;
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: LEGAL_DOCUMENT_QUERY
 // Query: *[_type == "legalDocument" && slug.current == $slug && language == $locale][0]{    _id,    title,    "slug": slug.current,    documentType,    version,    effectiveDate,    body[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } },    "seo": {   "title": coalesce(seo.metaTitle, title, ""),  "description": coalesce(seo.metaDescription, ""),  "keywords": coalesce(seo.keywords, []),  "image": seo.ogImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  "canonicalUrl": seo.canonicalUrl,  "noIndex": seo.noIndex == true }  }
 export type LEGAL_DOCUMENT_QUERY_RESULT = {
-  _id: string
-  title: string | null
-  slug: string | null
-  documentType: 'accessibility' | 'cookies' | 'privacy' | 'terms' | null
-  version: string | null
-  effectiveDate: string | null
-  body: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: 'span'
-          _key: string
-        }>
-        style?: 'blockquote' | 'h2' | 'h3' | 'h4' | 'normal'
-        listItem?: 'bullet' | 'number'
-        markDefs: Array<
-          | {
-              href?: string
-              _type: 'externalLink'
-              _key: string
-            }
-          | {
-              reference:
-                | {
-                    _type: 'legalDocument'
-                    slug: string | null
-                    language: string | null
-                  }
-                | {
-                    _type: 'page'
-                    slug: string | null
-                    language: string | null
-                  }
-                | {
-                    _type: 'post'
-                    slug: string | null
-                    language: string | null
-                  }
-                | null
-              _type: 'internalLink'
-              _key: string
-            }
-        > | null
-        level?: number
-        _type: 'block'
-        _key: string
-      }
-    | {
-        _key: string
-        _type: 'callout'
-        tone?: 'important' | 'info' | 'tip' | 'warning'
-        title?: string
-        body?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        markDefs: null
-      }
-    | {
-        _key: string
-        _type: 'imageWithAlt'
-        asset: {
-          _id: string
-          url: string | null
-          metadata: {
-            lqip: string | null
-            dimensions: {
-              width: number | null
-              height: number | null
-            } | null
-          } | null
-        } | null
-        media?: unknown
-        hotspot: SanityImageHotspot | null
-        crop: SanityImageCrop | null
-        alt: string | null
-        caption: string | null
-        markDefs: null
-      }
-    | {
-        _key: string
-        _type: 'videoEmbed'
-        url?: string
-        title?: string
-        markDefs: null
-      }
-  > | null
+  _id: string;
+  title: string | null;
+  slug: string | null;
+  documentType: "accessibility" | "cookies" | "privacy" | "terms" | null;
+  version: string | null;
+  effectiveDate: string | null;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs: Array<{
+      href?: string;
+      _type: "externalLink";
+      _key: string;
+    } | {
+      reference: {
+        _type: "legalDocument";
+        slug: string | null;
+        language: string | null;
+      } | {
+        _type: "page";
+        slug: string | null;
+        language: string | null;
+      } | {
+        _type: "post";
+        slug: string | null;
+        language: string | null;
+      } | null;
+      _type: "internalLink";
+      _key: string;
+    }> | null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    _key: string;
+    _type: "callout";
+    tone?: "important" | "info" | "tip" | "warning";
+    title?: string;
+    body?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    markDefs: null;
+  } | {
+    _key: string;
+    _type: "imageWithAlt";
+    asset: {
+      _id: string;
+      url: string | null;
+      metadata: {
+        lqip: string | null;
+        dimensions: {
+          width: number | null;
+          height: number | null;
+        } | null;
+      } | null;
+    } | null;
+    media?: unknown;
+    hotspot: SanityImageHotspot | null;
+    crop: SanityImageCrop | null;
+    alt: string | null;
+    caption: string | null;
+    markDefs: null;
+  } | {
+    _key: string;
+    _type: "videoEmbed";
+    url?: string;
+    title?: string;
+    markDefs: null;
+  }> | null;
   seo: {
-    title: string | ''
-    description: string | ''
-    keywords: Array<string> | Array<never>
+    title: string | "";
+    description: string | "";
+    keywords: Array<string> | Array<never>;
     image: {
-      _type: 'image'
-      alt: null
-      caption: null
-      hotspot: SanityImageHotspot | null
-      crop: SanityImageCrop | null
+      _type: "image";
+      alt: null;
+      caption: null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
       asset: {
-        _id: string
-        url: string | null
+        _id: string;
+        url: string | null;
         metadata: {
-          lqip: string | null
+          lqip: string | null;
           dimensions: {
-            width: number | null
-            height: number | null
-          } | null
-        } | null
-      } | null
-    } | null
-    canonicalUrl: string | null
-    noIndex: boolean | false
-  }
-} | null
+            width: number | null;
+            height: number | null;
+          } | null;
+        } | null;
+      } | null;
+    } | null;
+    canonicalUrl: string | null;
+    noIndex: boolean | false;
+  };
+} | null;
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: TRANSLATIONS_QUERY
 // Query: *[_type == "translation.metadata" && references($documentId)][0]{    translations[] {      _key,      "value": value->{ _type, "slug": slug.current, language }    }  }
 export type TRANSLATIONS_QUERY_RESULT = {
   translations: Array<{
-    _key: string
-    value:
-      | {
-          _type: 'legalDocument'
-          slug: string | null
-          language: string | null
-        }
-      | {
-          _type: 'page'
-          slug: string | null
-          language: string | null
-        }
-      | {
-          _type: 'post'
-          slug: string | null
-          language: string | null
-        }
-      | null
-  }> | null
-} | null
+    _key: string;
+    value: {
+      _type: "audiencePath";
+      slug: string | null;
+      language: string | null;
+    } | {
+      _type: "expeditionProduct";
+      slug: string | null;
+      language: string | null;
+    } | {
+      _type: "founderProfile";
+      slug: string | null;
+      language: string | null;
+    } | {
+      _type: "legalDocument";
+      slug: string | null;
+      language: string | null;
+    } | {
+      _type: "page";
+      slug: string | null;
+      language: string | null;
+    } | {
+      _type: "post";
+      slug: string | null;
+      language: string | null;
+    } | {
+      _type: "publicationOrMedia";
+      slug: null;
+      language: string | null;
+    } | {
+      _type: "researchProject";
+      slug: string | null;
+      language: string | null;
+    } | {
+      _type: "speakingTopic";
+      slug: string | null;
+      language: string | null;
+    } | null;
+  }> | null;
+} | null;
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: REDIRECTS_QUERY
 // Query: *[_type == "redirect" && isEnabled == true]{    source,    destination,    permanent  }
 export type REDIRECTS_QUERY_RESULT = Array<{
-  source: string | null
-  destination: string | null
-  permanent: boolean | null
-}>
+  source: string | null;
+  destination: string | null;
+  permanent: boolean | null;
+}>;
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: SITEMAP_QUERY
 // Query: {    "pages": *[_type == "page" && defined(slug.current) && seo.noIndex != true]{      "slug": slug.current,      language,      _updatedAt    },    "posts": *[_type == "post" && defined(slug.current) && seo.noIndex != true]{      "slug": slug.current,      language,      _updatedAt    },    "legal": *[_type == "legalDocument" && defined(slug.current) && seo.noIndex != true]{      "slug": slug.current,      language,      _updatedAt    },    "categories": *[      _type == "category" &&      defined(slug.current) &&      count(*[_type == "post" && references(^._id) && seo.noIndex != true]) > 0    ]{      "slug": slug.current,      _updatedAt    }  }
 export type SITEMAP_QUERY_RESULT = {
   pages: Array<{
-    slug: string | null
-    language: string | null
-    _updatedAt: string
-  }>
+    slug: string | null;
+    language: string | null;
+    _updatedAt: string;
+  }>;
   posts: Array<{
-    slug: string | null
-    language: string | null
-    _updatedAt: string
-  }>
+    slug: string | null;
+    language: string | null;
+    _updatedAt: string;
+  }>;
   legal: Array<{
-    slug: string | null
-    language: string | null
-    _updatedAt: string
-  }>
+    slug: string | null;
+    language: string | null;
+    _updatedAt: string;
+  }>;
   categories: Array<{
-    slug: string | null
-    _updatedAt: string
-  }>
-}
+    slug: string | null;
+    _updatedAt: string;
+  }>;
+};
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: HERO_PRESENTATION_QUERY
 // Query: *[_id == $documentId][0]{    _id,    "block": pageBuilder[_key == $blockKey && _type == "heroBlock"][0]{      eyebrow, heading, subheading, layout    }  }
-export type HERO_PRESENTATION_QUERY_RESULT =
-  | {
-      _id: string
-      block: null
-    }
-  | {
-      _id: string
-      block: {
-        eyebrow: string | null
-        heading: string | null
-        subheading: string | null
-        layout: 'centered' | 'imageStart' | 'split' | null
-      } | null
-    }
-  | null
+export type HERO_PRESENTATION_QUERY_RESULT = {
+  _id: string;
+  block: null;
+} | {
+  _id: string;
+  block: {
+    eyebrow: string | null;
+    heading: string | null;
+    subheading: string | null;
+    layout: "centered" | "imageStart" | "split" | null;
+  } | null;
+} | null;
 
 // Query TypeMap
-import '@sanity/client'
-declare module '@sanity/client' {
+import "@sanity/client";
+declare module "@sanity/client" {
   interface SanityQueries {
-    '\n  *[_type == "siteSettings"][0]{\n    title,\n    description,\n    contactEmail,\n    logo { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n    defaultOgImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n    socials[] { _key, platform, url },\n    analytics { gaMeasurementId, posthogKey }\n  }\n': SITE_SETTINGS_QUERY_RESULT
-    '\n  *[_type == "navigation"][0]{\n    headerLinks[] { _key, \n  label,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n },\n    footerGroups[] { _key, title, links[] { _key, \n  label,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n } },\n    footerNote\n  }\n': NAVIGATION_QUERY_RESULT
-    '\n  *[_type == "page" && slug.current == "home" && language == $locale][0]{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n    language,\n    \n  pageBuilder[]{\n    _key,\n    _type,\n    _type == "heroBlock" => {\n      eyebrow, heading, subheading, layout,\n      image { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n      ctas[] { _key, \n  variant,\n  link { \n  label,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n }\n }\n    },\n    _type == "richTextBlock" => {\n      heading, width,\n      body[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n }\n    },\n    _type == "featureGridBlock" => {\n      heading, intro, columns,\n      features[] { _key, icon, title, description }\n    },\n    _type == "logoCloudBlock" => {\n      heading,\n      logos[] { _key, \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n    },\n    _type == "testimonialsBlock" => {\n      heading,\n      items[] { _key, quote, authorName, authorRole, avatar { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n } }\n    },\n    _type == "statsBlock" => {\n      heading,\n      items[] { _key, value, label }\n    },\n    _type == "faqsBlock" => {\n      heading, source,\n      items[]->{ _id, question, answer[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n } },\n      inlineItems[] { _key, question, answer[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n } }\n    },\n    _type == "pricingBlock" => {\n      heading, intro,\n      plans[] { _key, name, price, period, description, features, highlighted, cta { \n  variant,\n  link { \n  label,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n }\n } }\n    },\n    _type == "ctaBlock" => {\n      heading, body, background,\n      ctas[] { _key, \n  variant,\n  link { \n  label,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n }\n }\n    },\n    _type == "contactFormBlock" => {\n      heading, body, successMessage, submitLabel\n    }\n  }\n,\n    "seo": { \n  "title": coalesce(seo.metaTitle, title, ""),\n  "description": coalesce(seo.metaDescription, ""),\n  "keywords": coalesce(seo.keywords, []),\n  "image": seo.ogImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  "canonicalUrl": seo.canonicalUrl,\n  "noIndex": seo.noIndex == true\n }\n  }\n': HOME_PAGE_QUERY_RESULT
-    '\n  *[_type == "page" && slug.current == $slug && language == $locale][0]{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n    language,\n    \n  pageBuilder[]{\n    _key,\n    _type,\n    _type == "heroBlock" => {\n      eyebrow, heading, subheading, layout,\n      image { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n      ctas[] { _key, \n  variant,\n  link { \n  label,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n }\n }\n    },\n    _type == "richTextBlock" => {\n      heading, width,\n      body[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n }\n    },\n    _type == "featureGridBlock" => {\n      heading, intro, columns,\n      features[] { _key, icon, title, description }\n    },\n    _type == "logoCloudBlock" => {\n      heading,\n      logos[] { _key, \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n    },\n    _type == "testimonialsBlock" => {\n      heading,\n      items[] { _key, quote, authorName, authorRole, avatar { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n } }\n    },\n    _type == "statsBlock" => {\n      heading,\n      items[] { _key, value, label }\n    },\n    _type == "faqsBlock" => {\n      heading, source,\n      items[]->{ _id, question, answer[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n } },\n      inlineItems[] { _key, question, answer[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n } }\n    },\n    _type == "pricingBlock" => {\n      heading, intro,\n      plans[] { _key, name, price, period, description, features, highlighted, cta { \n  variant,\n  link { \n  label,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n }\n } }\n    },\n    _type == "ctaBlock" => {\n      heading, body, background,\n      ctas[] { _key, \n  variant,\n  link { \n  label,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n }\n }\n    },\n    _type == "contactFormBlock" => {\n      heading, body, successMessage, submitLabel\n    }\n  }\n,\n    "seo": { \n  "title": coalesce(seo.metaTitle, title, ""),\n  "description": coalesce(seo.metaDescription, ""),\n  "keywords": coalesce(seo.keywords, []),\n  "image": seo.ogImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  "canonicalUrl": seo.canonicalUrl,\n  "noIndex": seo.noIndex == true\n }\n  }\n': PAGE_BY_SLUG_QUERY_RESULT
-    '\n  *[_type == "page" && defined(slug.current) && slug.current != "home"]{\n    "slug": slug.current,\n    language\n  }\n': PAGE_SLUGS_QUERY_RESULT
-    '\n  *[_type == "post" && language == $locale && defined(slug.current)]\n    | order(publishedAt desc)[$start...$end]{\n      _id,\n      title,\n      "slug": slug.current,\n      excerpt,\n      publishedAt,\n      coverImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n      author->{ name, "slug": slug.current },\n      categories[]->{ _id, title, "slug": slug.current }\n    }\n': POSTS_QUERY_RESULT
-    '\n  *[_type == "post" && slug.current == $slug && language == $locale][0]{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n    language,\n    excerpt,\n    publishedAt,\n    coverImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n    author->{ name, "slug": slug.current, photo { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n } },\n    categories[]->{ _id, title, "slug": slug.current },\n    body[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n    "plainBody": pt::text(body),\n    "seo": { \n  "title": coalesce(seo.metaTitle, title, ""),\n  "description": coalesce(seo.metaDescription, ""),\n  "keywords": coalesce(seo.keywords, []),\n  "image": seo.ogImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  "canonicalUrl": seo.canonicalUrl,\n  "noIndex": seo.noIndex == true\n }\n  }\n': POST_BY_SLUG_QUERY_RESULT
-    '\n  *[_type == "post" && defined(slug.current)]{\n    "slug": slug.current,\n    language\n  }\n': POST_SLUGS_QUERY_RESULT
-    '\n  *[_type == "legalDocument" && slug.current == $slug && language == $locale][0]{\n    _id,\n    title,\n    "slug": slug.current,\n    documentType,\n    version,\n    effectiveDate,\n    body[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n    "seo": { \n  "title": coalesce(seo.metaTitle, title, ""),\n  "description": coalesce(seo.metaDescription, ""),\n  "keywords": coalesce(seo.keywords, []),\n  "image": seo.ogImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  "canonicalUrl": seo.canonicalUrl,\n  "noIndex": seo.noIndex == true\n }\n  }\n': LEGAL_DOCUMENT_QUERY_RESULT
-    '\n  *[_type == "translation.metadata" && references($documentId)][0]{\n    translations[] {\n      _key,\n      "value": value->{ _type, "slug": slug.current, language }\n    }\n  }\n': TRANSLATIONS_QUERY_RESULT
-    '\n  *[_type == "redirect" && isEnabled == true]{\n    source,\n    destination,\n    permanent\n  }\n': REDIRECTS_QUERY_RESULT
-    '\n  {\n    "pages": *[_type == "page" && defined(slug.current) && seo.noIndex != true]{\n      "slug": slug.current,\n      language,\n      _updatedAt\n    },\n    "posts": *[_type == "post" && defined(slug.current) && seo.noIndex != true]{\n      "slug": slug.current,\n      language,\n      _updatedAt\n    },\n    "legal": *[_type == "legalDocument" && defined(slug.current) && seo.noIndex != true]{\n      "slug": slug.current,\n      language,\n      _updatedAt\n    },\n    "categories": *[\n      _type == "category" &&\n      defined(slug.current) &&\n      count(*[_type == "post" && references(^._id) && seo.noIndex != true]) > 0\n    ]{\n      "slug": slug.current,\n      _updatedAt\n    }\n  }\n': SITEMAP_QUERY_RESULT
-    '\n  *[_id == $documentId][0]{\n    _id,\n    "block": pageBuilder[_key == $blockKey && _type == "heroBlock"][0]{\n      eyebrow, heading, subheading, layout\n    }\n  }\n': HERO_PRESENTATION_QUERY_RESULT
+    "\n  *[_type == \"siteSettings\"][0]{\n    title,\n    description,\n    contactEmail,\n    logo { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n    defaultOgImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n    socials[] { _key, platform, url },\n    analytics { gaMeasurementId, posthogKey }\n  }\n": SITE_SETTINGS_QUERY_RESULT;
+    "\n  *[_type == \"navigation\"][0]{\n    headerLinks[] { _key, \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, \"slug\": slug.current, language }\n },\n    footerGroups[] { _key, title, links[] { _key, \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, \"slug\": slug.current, language }\n } },\n    footerNote\n  }\n": NAVIGATION_QUERY_RESULT;
+    "\n  *[_type == \"page\" && slug.current == \"home\" && language == $locale][0]{\n    _id,\n    _type,\n    title,\n    \"slug\": slug.current,\n    language,\n    \n  pageBuilder[]{\n    _key,\n    _type,\n    _type == \"heroBlock\" => {\n      eyebrow, heading, subheading, layout,\n      image { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n      ctas[] { _key, \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, \"slug\": slug.current, language }\n }\n }\n    },\n    _type == \"richTextBlock\" => {\n      heading, width,\n      body[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n }\n    },\n    _type == \"featureGridBlock\" => {\n      heading, intro, columns,\n      features[] { _key, icon, title, description }\n    },\n    _type == \"logoCloudBlock\" => {\n      heading,\n      logos[] { _key, \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n    },\n    _type == \"testimonialsBlock\" => {\n      heading,\n      items[] { _key, quote, authorName, authorRole, avatar { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n } }\n    },\n    _type == \"statsBlock\" => {\n      heading,\n      items[] { _key, value, label }\n    },\n    _type == \"faqsBlock\" => {\n      heading, source,\n      items[]->{ _id, question, answer[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n } },\n      inlineItems[] { _key, question, answer[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n } }\n    },\n    _type == \"pricingBlock\" => {\n      heading, intro,\n      plans[] { _key, name, price, period, description, features, highlighted, cta { \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, \"slug\": slug.current, language }\n }\n } }\n    },\n    _type == \"ctaBlock\" => {\n      heading, body, background,\n      ctas[] { _key, \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, \"slug\": slug.current, language }\n }\n }\n    },\n    _type == \"contactFormBlock\" => {\n      heading, body, successMessage, submitLabel, interestTypeOptions, privacyNote\n    },\n    _type == \"positioningBlock\" => {\n      heading, intro, notThisItems, butThisHeading, butThisText\n    },\n    _type == \"audiencePathsBlock\" => {\n      heading, intro,\n      paths[]-> { \n  _id,\n  audienceName,\n  headline,\n  motivation,\n  valueProposition,\n  desiredOutcomes,\n  image { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  cta { \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, \"slug\": slug.current, language }\n }\n }\n }\n    },\n    _type == \"expeditionProductsBlock\" => {\n      heading, intro, displayMode,\n      products[]-> { \n  _id,\n  title,\n  \"slug\": slug.current,\n  order,\n  shortDescription,\n  fullDescription[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n  idealFor,\n  duration,\n  recommendedGroupSize,\n  includedItems,\n  potentialOutcomes,\n  deliverables,\n  strategicOutcome,\n  engagementModel,\n  useCases,\n  images[] { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  ctaLabel,\n  ctaInquiryType\n }\n    },\n    _type == \"speakingTopicsBlock\" => {\n      heading, intro, displayMode,\n      topics[]-> { \n  _id,\n  title,\n  \"slug\": slug.current,\n  shortDescription,\n  fullDescription[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n  idealAudience,\n  keyTakeaways,\n  availableFormats,\n  heroImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  ctaLabel\n }\n    },\n    _type == \"researchHighlightsBlock\" => {\n      heading, intro,\n      items[] { _key, title, description }\n    },\n    _type == \"researchGridBlock\" => {\n      heading, intro, emptyStateText,\n      \"projects\": *[_type == \"researchProject\" && language == $locale] | order(_createdAt desc) {\n        \n  _id,\n  title,\n  \"slug\": slug.current,\n  status,\n  excerpt,\n  focusAreas,\n  \"image\": images[0] { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n\n      },\n      \"publications\": *[_type == \"publicationOrMedia\" && language == $locale] | order(date desc) {\n        \n  _id,\n  type,\n  title,\n  outlet,\n  date,\n  url,\n  excerpt,\n  image { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n\n      }\n    },\n    _type == \"founderIntroBlock\" => {\n      heading, intro,\n      founder-> { \n  _id,\n  name,\n  role,\n  shortBio,\n  fullBio[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n  portrait { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  edgeNarrative,\n  credentials,\n  affiliations,\n  specialties,\n  speakingAndAdvisoryCopy[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n }\n }\n    }\n  }\n,\n    \"seo\": { \n  \"title\": coalesce(seo.metaTitle, title, \"\"),\n  \"description\": coalesce(seo.metaDescription, \"\"),\n  \"keywords\": coalesce(seo.keywords, []),\n  \"image\": seo.ogImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  \"canonicalUrl\": seo.canonicalUrl,\n  \"noIndex\": seo.noIndex == true\n }\n  }\n": HOME_PAGE_QUERY_RESULT;
+    "\n  *[_type == \"page\" && slug.current == $slug && language == $locale][0]{\n    _id,\n    _type,\n    title,\n    \"slug\": slug.current,\n    language,\n    \n  pageBuilder[]{\n    _key,\n    _type,\n    _type == \"heroBlock\" => {\n      eyebrow, heading, subheading, layout,\n      image { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n      ctas[] { _key, \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, \"slug\": slug.current, language }\n }\n }\n    },\n    _type == \"richTextBlock\" => {\n      heading, width,\n      body[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n }\n    },\n    _type == \"featureGridBlock\" => {\n      heading, intro, columns,\n      features[] { _key, icon, title, description }\n    },\n    _type == \"logoCloudBlock\" => {\n      heading,\n      logos[] { _key, \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n    },\n    _type == \"testimonialsBlock\" => {\n      heading,\n      items[] { _key, quote, authorName, authorRole, avatar { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n } }\n    },\n    _type == \"statsBlock\" => {\n      heading,\n      items[] { _key, value, label }\n    },\n    _type == \"faqsBlock\" => {\n      heading, source,\n      items[]->{ _id, question, answer[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n } },\n      inlineItems[] { _key, question, answer[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n } }\n    },\n    _type == \"pricingBlock\" => {\n      heading, intro,\n      plans[] { _key, name, price, period, description, features, highlighted, cta { \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, \"slug\": slug.current, language }\n }\n } }\n    },\n    _type == \"ctaBlock\" => {\n      heading, body, background,\n      ctas[] { _key, \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, \"slug\": slug.current, language }\n }\n }\n    },\n    _type == \"contactFormBlock\" => {\n      heading, body, successMessage, submitLabel, interestTypeOptions, privacyNote\n    },\n    _type == \"positioningBlock\" => {\n      heading, intro, notThisItems, butThisHeading, butThisText\n    },\n    _type == \"audiencePathsBlock\" => {\n      heading, intro,\n      paths[]-> { \n  _id,\n  audienceName,\n  headline,\n  motivation,\n  valueProposition,\n  desiredOutcomes,\n  image { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  cta { \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, \"slug\": slug.current, language }\n }\n }\n }\n    },\n    _type == \"expeditionProductsBlock\" => {\n      heading, intro, displayMode,\n      products[]-> { \n  _id,\n  title,\n  \"slug\": slug.current,\n  order,\n  shortDescription,\n  fullDescription[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n  idealFor,\n  duration,\n  recommendedGroupSize,\n  includedItems,\n  potentialOutcomes,\n  deliverables,\n  strategicOutcome,\n  engagementModel,\n  useCases,\n  images[] { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  ctaLabel,\n  ctaInquiryType\n }\n    },\n    _type == \"speakingTopicsBlock\" => {\n      heading, intro, displayMode,\n      topics[]-> { \n  _id,\n  title,\n  \"slug\": slug.current,\n  shortDescription,\n  fullDescription[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n  idealAudience,\n  keyTakeaways,\n  availableFormats,\n  heroImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  ctaLabel\n }\n    },\n    _type == \"researchHighlightsBlock\" => {\n      heading, intro,\n      items[] { _key, title, description }\n    },\n    _type == \"researchGridBlock\" => {\n      heading, intro, emptyStateText,\n      \"projects\": *[_type == \"researchProject\" && language == $locale] | order(_createdAt desc) {\n        \n  _id,\n  title,\n  \"slug\": slug.current,\n  status,\n  excerpt,\n  focusAreas,\n  \"image\": images[0] { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n\n      },\n      \"publications\": *[_type == \"publicationOrMedia\" && language == $locale] | order(date desc) {\n        \n  _id,\n  type,\n  title,\n  outlet,\n  date,\n  url,\n  excerpt,\n  image { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n\n      }\n    },\n    _type == \"founderIntroBlock\" => {\n      heading, intro,\n      founder-> { \n  _id,\n  name,\n  role,\n  shortBio,\n  fullBio[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n  portrait { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  edgeNarrative,\n  credentials,\n  affiliations,\n  specialties,\n  speakingAndAdvisoryCopy[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n }\n }\n    }\n  }\n,\n    \"seo\": { \n  \"title\": coalesce(seo.metaTitle, title, \"\"),\n  \"description\": coalesce(seo.metaDescription, \"\"),\n  \"keywords\": coalesce(seo.keywords, []),\n  \"image\": seo.ogImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  \"canonicalUrl\": seo.canonicalUrl,\n  \"noIndex\": seo.noIndex == true\n }\n  }\n": PAGE_BY_SLUG_QUERY_RESULT;
+    "\n  *[_type == \"page\" && defined(slug.current) && slug.current != \"home\"]{\n    \"slug\": slug.current,\n    language\n  }\n": PAGE_SLUGS_QUERY_RESULT;
+    "\n  *[_type == \"post\" && language == $locale && defined(slug.current)]\n    | order(publishedAt desc)[$start...$end]{\n      _id,\n      title,\n      \"slug\": slug.current,\n      excerpt,\n      publishedAt,\n      coverImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n      author->{ name, \"slug\": slug.current },\n      categories[]->{ _id, title, \"slug\": slug.current }\n    }\n": POSTS_QUERY_RESULT;
+    "\n  *[_type == \"post\" && slug.current == $slug && language == $locale][0]{\n    _id,\n    _type,\n    title,\n    \"slug\": slug.current,\n    language,\n    excerpt,\n    publishedAt,\n    coverImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n    author->{ name, \"slug\": slug.current, photo { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n } },\n    categories[]->{ _id, title, \"slug\": slug.current },\n    body[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n    \"plainBody\": pt::text(body),\n    \"seo\": { \n  \"title\": coalesce(seo.metaTitle, title, \"\"),\n  \"description\": coalesce(seo.metaDescription, \"\"),\n  \"keywords\": coalesce(seo.keywords, []),\n  \"image\": seo.ogImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  \"canonicalUrl\": seo.canonicalUrl,\n  \"noIndex\": seo.noIndex == true\n }\n  }\n": POST_BY_SLUG_QUERY_RESULT;
+    "\n  *[_type == \"post\" && defined(slug.current)]{\n    \"slug\": slug.current,\n    language\n  }\n": POST_SLUGS_QUERY_RESULT;
+    "\n  *[_type == \"legalDocument\" && slug.current == $slug && language == $locale][0]{\n    _id,\n    title,\n    \"slug\": slug.current,\n    documentType,\n    version,\n    effectiveDate,\n    body[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == \"internalLink\" => {\n      reference->{ _type, \"slug\": slug.current, language }\n    }\n  },\n  _type == \"imageWithAlt\" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n    \"seo\": { \n  \"title\": coalesce(seo.metaTitle, title, \"\"),\n  \"description\": coalesce(seo.metaDescription, \"\"),\n  \"keywords\": coalesce(seo.keywords, []),\n  \"image\": seo.ogImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  \"canonicalUrl\": seo.canonicalUrl,\n  \"noIndex\": seo.noIndex == true\n }\n  }\n": LEGAL_DOCUMENT_QUERY_RESULT;
+    "\n  *[_type == \"translation.metadata\" && references($documentId)][0]{\n    translations[] {\n      _key,\n      \"value\": value->{ _type, \"slug\": slug.current, language }\n    }\n  }\n": TRANSLATIONS_QUERY_RESULT;
+    "\n  *[_type == \"redirect\" && isEnabled == true]{\n    source,\n    destination,\n    permanent\n  }\n": REDIRECTS_QUERY_RESULT;
+    "\n  {\n    \"pages\": *[_type == \"page\" && defined(slug.current) && seo.noIndex != true]{\n      \"slug\": slug.current,\n      language,\n      _updatedAt\n    },\n    \"posts\": *[_type == \"post\" && defined(slug.current) && seo.noIndex != true]{\n      \"slug\": slug.current,\n      language,\n      _updatedAt\n    },\n    \"legal\": *[_type == \"legalDocument\" && defined(slug.current) && seo.noIndex != true]{\n      \"slug\": slug.current,\n      language,\n      _updatedAt\n    },\n    \"categories\": *[\n      _type == \"category\" &&\n      defined(slug.current) &&\n      count(*[_type == \"post\" && references(^._id) && seo.noIndex != true]) > 0\n    ]{\n      \"slug\": slug.current,\n      _updatedAt\n    }\n  }\n": SITEMAP_QUERY_RESULT;
+    "\n  *[_id == $documentId][0]{\n    _id,\n    \"block\": pageBuilder[_key == $blockKey && _type == \"heroBlock\"][0]{\n      eyebrow, heading, subheading, layout\n    }\n  }\n": HERO_PRESENTATION_QUERY_RESULT;
   }
 }
+

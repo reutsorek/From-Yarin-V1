@@ -9,8 +9,12 @@ if (!token) {
   )
 }
 
+/**
+ * browserToken (standalone Live Draft Content preview, outside Presentation) requires a
+ * configured Studio URL. This project's Studio is not deployed to a public URL yet, so only
+ * serverToken is set; draft mode preview inside Presentation still works without it.
+ */
 export const { sanityFetch, SanityLive } = defineLive({
   client,
   serverToken: token,
-  browserToken: token,
 })

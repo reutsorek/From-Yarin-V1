@@ -14,13 +14,22 @@ export interface NavLinkProps {
 export function NavLink({ link, locale, className, onNavigate }: NavLinkProps) {
   if (!link?.label) return null
 
+  // Navigation is a single shared document, not localized like page content, so the label and
+  // href must resolve against the locale being browsed, not the referenced document's own language.
+  const label = (locale === 'he' && link.labelHe) || link.label
+
   const internalHref =
-    stegaClean(link.kind) === 'external' ? null : resolveInternalHref(link.reference, locale)
+    stegaClean(link.kind) === 'external'
+      ? null
+      : resolveInternalHref(
+          link.reference ? { ...link.reference, language: locale } : link.reference,
+          locale,
+        )
 
   if (internalHref) {
     return (
       <Link href={internalHref} className={className} onClick={onNavigate}>
-        {link.label}
+        {label}
       </Link>
     )
   }

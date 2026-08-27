@@ -20,6 +20,7 @@ export const IMAGE_FRAGMENT = /* groq */ `
 
 export const LINK_FRAGMENT = /* groq */ `
   label,
+  labelHe,
   kind,
   href,
   reference->{ _type, "slug": slug.current, language }
@@ -49,6 +50,86 @@ export const SEO_FRAGMENT = /* groq */ `
   "image": seo.ogImage { ${IMAGE_FRAGMENT} },
   "canonicalUrl": seo.canonicalUrl,
   "noIndex": seo.noIndex == true
+`
+
+export const EXPEDITION_PRODUCT_FRAGMENT = /* groq */ `
+  _id,
+  title,
+  "slug": slug.current,
+  order,
+  shortDescription,
+  fullDescription[] { ${PORTABLE_TEXT_FRAGMENT} },
+  idealFor,
+  duration,
+  recommendedGroupSize,
+  includedItems,
+  potentialOutcomes,
+  deliverables,
+  strategicOutcome,
+  engagementModel,
+  useCases,
+  images[] { ${IMAGE_FRAGMENT} },
+  ctaLabel,
+  ctaInquiryType
+`
+
+export const AUDIENCE_PATH_FRAGMENT = /* groq */ `
+  _id,
+  audienceName,
+  headline,
+  motivation,
+  valueProposition,
+  desiredOutcomes,
+  image { ${IMAGE_FRAGMENT} },
+  cta { ${CTA_FRAGMENT} }
+`
+
+export const SPEAKING_TOPIC_FRAGMENT = /* groq */ `
+  _id,
+  title,
+  "slug": slug.current,
+  shortDescription,
+  fullDescription[] { ${PORTABLE_TEXT_FRAGMENT} },
+  idealAudience,
+  keyTakeaways,
+  availableFormats,
+  heroImage { ${IMAGE_FRAGMENT} },
+  ctaLabel
+`
+
+export const RESEARCH_PROJECT_FRAGMENT = /* groq */ `
+  _id,
+  title,
+  "slug": slug.current,
+  status,
+  excerpt,
+  focusAreas,
+  "image": images[0] { ${IMAGE_FRAGMENT} }
+`
+
+export const PUBLICATION_FRAGMENT = /* groq */ `
+  _id,
+  type,
+  title,
+  outlet,
+  date,
+  url,
+  excerpt,
+  image { ${IMAGE_FRAGMENT} }
+`
+
+export const FOUNDER_PROFILE_FRAGMENT = /* groq */ `
+  _id,
+  name,
+  role,
+  shortBio,
+  fullBio[] { ${PORTABLE_TEXT_FRAGMENT} },
+  portrait { ${IMAGE_FRAGMENT} },
+  edgeNarrative,
+  credentials,
+  affiliations,
+  specialties,
+  speakingAndAdvisoryCopy[] { ${PORTABLE_TEXT_FRAGMENT} }
 `
 
 export const PAGE_BUILDER_FRAGMENT = /* groq */ `
@@ -94,7 +175,39 @@ export const PAGE_BUILDER_FRAGMENT = /* groq */ `
       ctas[] { _key, ${CTA_FRAGMENT} }
     },
     _type == "contactFormBlock" => {
-      heading, body, successMessage, submitLabel
+      heading, body, successMessage, submitLabel, interestTypeOptions, privacyNote
+    },
+    _type == "positioningBlock" => {
+      heading, intro, notThisItems, butThisHeading, butThisText
+    },
+    _type == "audiencePathsBlock" => {
+      heading, intro,
+      paths[]-> { ${AUDIENCE_PATH_FRAGMENT} }
+    },
+    _type == "expeditionProductsBlock" => {
+      heading, intro, displayMode,
+      products[]-> { ${EXPEDITION_PRODUCT_FRAGMENT} }
+    },
+    _type == "speakingTopicsBlock" => {
+      heading, intro, displayMode,
+      topics[]-> { ${SPEAKING_TOPIC_FRAGMENT} }
+    },
+    _type == "researchHighlightsBlock" => {
+      heading, intro,
+      items[] { _key, title, description }
+    },
+    _type == "researchGridBlock" => {
+      heading, intro, emptyStateText,
+      "projects": *[_type == "researchProject" && language == $locale] | order(_createdAt desc) {
+        ${RESEARCH_PROJECT_FRAGMENT}
+      },
+      "publications": *[_type == "publicationOrMedia" && language == $locale] | order(date desc) {
+        ${PUBLICATION_FRAGMENT}
+      }
+    },
+    _type == "founderIntroBlock" => {
+      heading, intro,
+      founder-> { ${FOUNDER_PROFILE_FRAGMENT} }
     }
   }
 `

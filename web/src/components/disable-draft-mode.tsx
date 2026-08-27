@@ -1,13 +1,13 @@
 'use client'
 
-import { useVisualEditingEnvironment } from 'next-sanity/hooks'
+import { useDraftModeEnvironment } from 'next-sanity/hooks'
 
 export function DisableDraftMode() {
-  const environment = useVisualEditingEnvironment()
+  const environment = useDraftModeEnvironment()
 
   // Inside the Presentation tool the Studio owns the toggle, so the button would
   // only get in the way.
-  if (environment !== 'standalone') return null
+  if (environment === 'presentation-iframe' || environment === 'presentation-window') return null
 
   return (
     // A route handler needs a full navigation, so next/link is wrong here.

@@ -10,6 +10,12 @@ export const page = defineType({
   groups: contentGroups,
   fields: [
     defineField({
+      name: 'zzzProbe2',
+      title: 'Probe 2',
+      type: 'string',
+      group: 'content',
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',

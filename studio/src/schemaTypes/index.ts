@@ -17,6 +17,13 @@ import { faqsBlock } from './blocks/faqs'
 import { pricingBlock } from './blocks/pricing'
 import { ctaBlock } from './blocks/cta'
 import { contactFormBlock } from './blocks/contactForm'
+import { positioningBlock } from './blocks/positioning'
+import { audiencePathsBlock } from './blocks/audiencePaths'
+import { expeditionProductsBlock } from './blocks/expeditionProducts'
+import { speakingTopicsBlock } from './blocks/speakingTopics'
+import { researchHighlightsBlock } from './blocks/researchHighlights'
+import { researchGridBlock } from './blocks/researchGrid'
+import { founderIntroBlock } from './blocks/founderIntro'
 import { pageBuilder } from './blocks/pageBuilder'
 
 import { page } from './documents/page'
@@ -28,6 +35,13 @@ import { legalDocument } from './documents/legalDocument'
 import { redirect } from './documents/redirect'
 import { siteSettings } from './documents/siteSettings'
 import { navigation } from './documents/navigation'
+import { founderProfile } from './documents/founderProfile'
+import { expeditionProduct } from './documents/expeditionProduct'
+import { audiencePath } from './documents/audiencePath'
+import { researchProject } from './documents/researchProject'
+import { publicationOrMedia } from './documents/publicationOrMedia'
+import { speakingTopic } from './documents/speakingTopic'
+import { inquiry } from './documents/inquiry'
 
 /**
  * Cross-cutting document validation, applied here rather than field-by-field so a
@@ -68,6 +82,13 @@ const definitions: SchemaTypeDefinition[] = [
   pricingBlock,
   ctaBlock,
   contactFormBlock,
+  positioningBlock,
+  audiencePathsBlock,
+  expeditionProductsBlock,
+  speakingTopicsBlock,
+  researchHighlightsBlock,
+  researchGridBlock,
+  founderIntroBlock,
   // documents
   page,
   post,
@@ -78,9 +99,26 @@ const definitions: SchemaTypeDefinition[] = [
   redirect,
   siteSettings,
   navigation,
+  founderProfile,
+  expeditionProduct,
+  audiencePath,
+  researchProject,
+  publicationOrMedia,
+  speakingTopic,
+  inquiry,
 ]
 
 export const schemaTypes = definitions.map(withDocumentGuards)
 
 export const SINGLETON_TYPES = ['siteSettings', 'navigation'] as const
-export const LOCALIZED_TYPES = ['page', 'post', 'legalDocument'] as const
+export const LOCALIZED_TYPES = [
+  'page',
+  'post',
+  'legalDocument',
+  'founderProfile',
+  'expeditionProduct',
+  'audiencePath',
+  'researchProject',
+  'publicationOrMedia',
+  'speakingTopic',
+] as const

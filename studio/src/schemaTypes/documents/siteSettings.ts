@@ -45,6 +45,7 @@ export const siteSettings = defineType({
                   { title: 'LinkedIn', value: 'linkedin' },
                   { title: 'YouTube', value: 'youtube' },
                   { title: 'TikTok', value: 'tiktok' },
+                  { title: 'Google Scholar', value: 'googleScholar' },
                 ],
               },
             }),
@@ -62,6 +63,7 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({ name: 'contactEmail', title: 'Contact email', type: 'string' }),
+    defineField({ name: 'phone', title: 'Phone', type: 'string' }),
     defineField({
       name: 'analytics',
       title: 'Analytics',

@@ -2,8 +2,13 @@
  * Derived from the generated query result types, never hand written. Adding a block
  * to the schema and regenerating makes the PageBuilder switch non-exhaustive, which
  * is a type error rather than a blank section on the page.
+ *
+ * The installed next-sanity version (pinned to match this project's Sanity Studio
+ * version) types sanityFetch's data as the plain query result, not stega-branded, so
+ * these types intentionally do not re-wrap in StegaBranded. Call stegaClean() before
+ * comparing a string to a literal, using one as a key, or passing it to a third party;
+ * the type system will not catch a missed call the way it would with branding.
  */
-import type { StegaBranded } from '@sanity/client/stega'
 import type {
   HOME_PAGE_QUERY_RESULT,
   NAVIGATION_QUERY_RESULT,
@@ -11,12 +16,7 @@ import type {
   SITE_SETTINGS_QUERY_RESULT,
 } from '@/sanity.types'
 
-/**
- * sanityFetch brands every string in the result as StegaString, so the component
- * types have to be branded too. Comparing a branded string to a literal is a type
- * error on purpose: that is the case where you owe the code a stegaClean().
- */
-type Page = NonNullable<StegaBranded<HOME_PAGE_QUERY_RESULT>>
+type Page = NonNullable<HOME_PAGE_QUERY_RESULT>
 
 export type PageBuilderBlock = NonNullable<Page['pageBuilder']>[number]
 
@@ -32,6 +32,21 @@ export type FaqsBlockValue = BlockOf<'faqsBlock'>
 export type PricingBlockValue = BlockOf<'pricingBlock'>
 export type CtaBlockValue = BlockOf<'ctaBlock'>
 export type ContactFormBlockValue = BlockOf<'contactFormBlock'>
+export type PositioningBlockValue = BlockOf<'positioningBlock'>
+export type AudiencePathsBlockValue = BlockOf<'audiencePathsBlock'>
+export type ExpeditionProductsBlockValue = BlockOf<'expeditionProductsBlock'>
+export type SpeakingTopicsBlockValue = BlockOf<'speakingTopicsBlock'>
+export type ResearchHighlightsBlockValue = BlockOf<'researchHighlightsBlock'>
+export type ResearchGridBlockValue = BlockOf<'researchGridBlock'>
+export type FounderIntroBlockValue = BlockOf<'founderIntroBlock'>
+
+export type AudiencePathItem = NonNullable<AudiencePathsBlockValue['paths']>[number]
+export type ExpeditionProductItem = NonNullable<ExpeditionProductsBlockValue['products']>[number]
+export type SpeakingTopicItem = NonNullable<SpeakingTopicsBlockValue['topics']>[number]
+export type ResearchFocusAreaItem = NonNullable<ResearchHighlightsBlockValue['items']>[number]
+export type ResearchProjectItem = NonNullable<ResearchGridBlockValue['projects']>[number]
+export type PublicationItem = NonNullable<ResearchGridBlockValue['publications']>[number]
+export type FounderProfileValue = NonNullable<FounderIntroBlockValue['founder']>
 
 export type ProjectedCta = NonNullable<HeroBlockValue['ctas']>[number]
 export type ProjectedLink = NonNullable<ProjectedCta['link']>
@@ -47,14 +62,14 @@ export type PricingPlan = NonNullable<PricingBlockValue['plans']>[number]
 
 export type PortableTextValue = NonNullable<RichTextBlockValue['body']>
 
-export type NavigationValue = StegaBranded<NAVIGATION_QUERY_RESULT>
+export type NavigationValue = NAVIGATION_QUERY_RESULT
 export type NavigationLink = NonNullable<NonNullable<NavigationValue>['headerLinks']>[number]
 export type FooterGroup = NonNullable<NonNullable<NavigationValue>['footerGroups']>[number]
 
-export type SiteSettingsValue = StegaBranded<SITE_SETTINGS_QUERY_RESULT>
+export type SiteSettingsValue = SITE_SETTINGS_QUERY_RESULT
 export type SocialLink = NonNullable<NonNullable<SiteSettingsValue>['socials']>[number]
 
-export type PostValue = NonNullable<StegaBranded<POST_BY_SLUG_QUERY_RESULT>>
+export type PostValue = NonNullable<POST_BY_SLUG_QUERY_RESULT>
 
 export interface BlockProps {
   locale: string

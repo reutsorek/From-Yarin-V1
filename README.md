@@ -1,4 +1,4 @@
-# Next Sanity Boilerplate
+# From-Yarin-V1
 
 A production ready starter for a bilingual (Hebrew and English) marketing site: a Next.js App Router
 front end, a Sanity Studio with a page builder, RTL first styling, live preview, and CI that keeps

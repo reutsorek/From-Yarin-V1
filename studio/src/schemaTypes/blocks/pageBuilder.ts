@@ -15,6 +15,13 @@ export const pageBuilder = defineType({
     defineArrayMember({ type: 'pricingBlock' }),
     defineArrayMember({ type: 'ctaBlock' }),
     defineArrayMember({ type: 'contactFormBlock' }),
+    defineArrayMember({ type: 'positioningBlock' }),
+    defineArrayMember({ type: 'audiencePathsBlock' }),
+    defineArrayMember({ type: 'expeditionProductsBlock' }),
+    defineArrayMember({ type: 'speakingTopicsBlock' }),
+    defineArrayMember({ type: 'researchHighlightsBlock' }),
+    defineArrayMember({ type: 'researchGridBlock' }),
+    defineArrayMember({ type: 'founderIntroBlock' }),
   ],
   options: {
     insertMenu: {

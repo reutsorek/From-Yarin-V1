@@ -1,5 +1,5 @@
 {
-  "name": "next-sanity-boilerplate",
+  "name": "3xjmiovf",
   "private": true,
   "version": "0.1.0",
   "workspaces": [
@@ -10,8 +10,10 @@
   "engines": {
     "node": ">=22.12"
   },
+  "overrides": {
+    "react-dropzone": "^14.3.8"
+  },
   "scripts": {
-    "init": "node scripts/init.mjs",
     "dev": "concurrently -n web,studio -c cyan,magenta \"npm run dev -w web\" \"npm run dev -w studio\"",
     "build": "npm run typegen && npm run build -w web",
     "start": "npm run start -w web",

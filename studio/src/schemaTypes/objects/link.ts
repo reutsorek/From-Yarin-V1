@@ -16,6 +16,13 @@ export const link = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'labelHe',
+      title: 'Label (Hebrew)',
+      type: 'string',
+      description:
+        'Only needed on the shared Navigation document, which is not localized. Shown instead of Label when browsing in Hebrew.',
+    }),
+    defineField({
       name: 'kind',
       title: 'Links to',
       type: 'string',

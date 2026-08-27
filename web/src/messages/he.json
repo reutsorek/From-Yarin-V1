@@ -2,7 +2,8 @@
   "nav": {
     "menu": "תפריט",
     "close": "סגירה",
-    "skipToContent": "דילוג לתוכן"
+    "skipToContent": "דילוג לתוכן",
+    "startConversation": "פתיחת שיחה"
   },
   "common": {
     "readMore": "קראו עוד",
@@ -11,11 +12,30 @@
     "retry": "נסו שוב"
   },
   "contact": {
-    "name": "שם",
+    "fullName": "שם מלא",
     "email": "אימייל",
+    "organization": "ארגון",
+    "roleTitle": "תפקיד",
+    "phone": "טלפון",
+    "countryRegion": "מדינה / אזור",
+    "interestType": "אני מתעניין/ת ב",
+    "interestTypePlaceholder": "בחרו אפשרות",
+    "interestOptions": {
+      "sprint": "ספרינט סביבות קיצון",
+      "signature": "המשלחת המדעית הדגל",
+      "research": "שיתוף פעולה מחקרי",
+      "advisory": "ייעוץ אסטרטגי",
+      "speaking": "הרצאה או נאום מרכזי",
+      "media": "מדיה או תיעוד",
+      "other": "אחר"
+    },
+    "preferredTiming": "מועד מועדף",
+    "budgetRange": "טווח תקציב או היקף משוער",
     "message": "הודעה",
+    "privacyConsent": "אני מסכים/ה שהפרטים שמסרתי ישמשו למענה לפנייה זו.",
+    "captchaRequired": "יש להשלים את אימות האבטחה לפני השליחה.",
     "submit": "שליחה",
-    "success": "תודה, נחזור אליכם בהקדם.",
+    "success": "תודה. הפנייה התקבלה. נחזור אליכם באופן אישי.",
     "error": "לא הצלחנו לשלוח את ההודעה. נסו שוב."
   },
   "blog": {

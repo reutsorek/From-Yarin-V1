@@ -8,6 +8,13 @@ import { FaqsBlock } from './blocks/faqs'
 import { PricingBlock } from './blocks/pricing'
 import { CtaBlock } from './blocks/cta'
 import { ContactFormBlock } from './blocks/contact-form'
+import { PositioningBlock } from './blocks/positioning'
+import { AudiencePathsBlock } from './blocks/audience-paths'
+import { ExpeditionProductsBlock } from './blocks/expedition-products'
+import { SpeakingTopicsBlock } from './blocks/speaking-topics'
+import { ResearchHighlightsBlock } from './blocks/research-highlights'
+import { ResearchGridBlock } from './blocks/research-grid'
+import { FounderIntroBlock } from './blocks/founder-intro'
 import type { PageBuilderBlock } from './blocks/types'
 
 export interface PageBuilderProps {
@@ -58,6 +65,20 @@ function BlockRenderer({
       return <CtaBlock {...block} locale={locale} />
     case 'contactFormBlock':
       return <ContactFormBlock {...block} locale={locale} />
+    case 'positioningBlock':
+      return <PositioningBlock {...block} locale={locale} />
+    case 'audiencePathsBlock':
+      return <AudiencePathsBlock {...block} locale={locale} />
+    case 'expeditionProductsBlock':
+      return <ExpeditionProductsBlock {...block} locale={locale} />
+    case 'speakingTopicsBlock':
+      return <SpeakingTopicsBlock {...block} locale={locale} />
+    case 'researchHighlightsBlock':
+      return <ResearchHighlightsBlock {...block} locale={locale} />
+    case 'researchGridBlock':
+      return <ResearchGridBlock {...block} locale={locale} />
+    case 'founderIntroBlock':
+      return <FounderIntroBlock {...block} locale={locale} />
     default: {
       // Adding a block schema without a renderer must fail typecheck here, not at runtime.
       const _exhaustive: never = block
