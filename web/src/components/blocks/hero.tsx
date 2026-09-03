@@ -109,7 +109,7 @@ export function HeroBlock({
       {isSplit ? (
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className={cn(imageFirst && 'lg:order-2')}>{copy}</div>
-          <div className={cn(imageFirst && 'lg:order-1')}>
+          <figure className={cn('flex flex-col gap-2', imageFirst && 'lg:order-1')}>
             <SanityImage
               image={image}
               width={960}
@@ -117,7 +117,10 @@ export function HeroBlock({
               priority
               className="h-auto w-full rounded-lg object-cover shadow-sm"
             />
-          </div>
+            {image?.caption ? (
+              <figcaption className="text-muted-foreground text-xs">{image.caption}</figcaption>
+            ) : null}
+          </figure>
         </div>
       ) : (
         <div className="mx-auto max-w-3xl">{copy}</div>
