@@ -44,7 +44,8 @@
     "publishedOn": "Published on {date}"
   },
   "localeSwitcher": {
-    "label": "Language"
+    "label": "Language",
+    "switchTo": "Switch to {language}"
   },
   "notFound": {
     "title": "Page not found",

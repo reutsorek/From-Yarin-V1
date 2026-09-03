@@ -87,6 +87,23 @@ function ProjectCard({ project }: { project: ResearchProjectItem }) {
           ))}
         </div>
       ) : null}
+      {project.links?.length ? (
+        <div className="mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-1">
+          {project.links.map((link, index) =>
+            link.url ? (
+              <a
+                key={index}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary text-sm font-medium hover:underline"
+              >
+                {link.label ?? link.url}
+              </a>
+            ) : null,
+          )}
+        </div>
+      ) : null}
     </div>
   )
 }
@@ -106,7 +123,7 @@ function PublicationRow({ publication }: { publication: PublicationItem }) {
       </div>
       {publication.outlet || publication.date ? (
         <p className="text-muted-foreground text-xs">
-          {[publication.outlet, publication.date].filter(Boolean).join(' · ')}
+          {[publication.outlet, publication.date?.slice(0, 4)].filter(Boolean).join(' · ')}
         </p>
       ) : null}
       {publication.excerpt ? (

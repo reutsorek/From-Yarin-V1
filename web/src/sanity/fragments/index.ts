@@ -104,6 +104,7 @@ export const RESEARCH_PROJECT_FRAGMENT = /* groq */ `
   status,
   excerpt,
   focusAreas,
+  links[] { label, url },
   "image": images[0] { ${IMAGE_FRAGMENT} }
 `
 

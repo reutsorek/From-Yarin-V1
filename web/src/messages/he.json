@@ -44,7 +44,8 @@
     "publishedOn": "פורסם ב{date}"
   },
   "localeSwitcher": {
-    "label": "שפה"
+    "label": "שפה",
+    "switchTo": "מעבר ל{language}"
   },
   "notFound": {
     "title": "הדף לא נמצא",
