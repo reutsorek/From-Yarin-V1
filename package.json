@@ -42,7 +42,7 @@
     "test:e2e": "npm run test:e2e -w web",
     "audit:dashes": "node scripts/audit-dashes.mjs",
     "studio:deploy": "npm run deploy -w studio",
-    "prepare": "husky"
+    "prepare": "husky || exit 0"
   },
   "devDependencies": {
     "concurrently": "^10.0.5",
