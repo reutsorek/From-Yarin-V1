@@ -21,7 +21,7 @@ export function FounderIntroBlock({ heading, intro, founder, locale }: FounderIn
             image={founder.portrait}
             width={800}
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="aspect-4/5 h-auto w-full rounded-lg object-cover"
+            className="aspect-4/5 h-auto w-full rounded-lg object-cover lg:sticky lg:top-24"
           />
         ) : null}
         <div className="flex flex-col gap-6 text-start">
