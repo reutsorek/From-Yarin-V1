@@ -65,6 +65,44 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
   return result?.success === true
 }
 
+/**
+ * Best-effort. A failed or unconfigured notification must never block saving the
+ * inquiry, since the Sanity document is the durable record.
+ */
+async function sendInquiryNotification(data: z.infer<typeof schema>): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY
+  const to = process.env.CONTACT_NOTIFICATION_EMAIL
+  if (!apiKey || !to) return
+
+  const from = process.env.CONTACT_FROM_EMAIL || 'Where Life Hides <onboarding@resend.dev>'
+  const lines = [
+    `Name: ${data.fullName}`,
+    data.organization && `Organization: ${data.organization}`,
+    data.roleTitle && `Role: ${data.roleTitle}`,
+    `Email: ${data.email}`,
+    data.phone && `Phone: ${data.phone}`,
+    data.countryRegion && `Country / region: ${data.countryRegion}`,
+    data.interestType && `Interested in: ${data.interestType}`,
+    data.preferredTiming && `Preferred timing: ${data.preferredTiming}`,
+    data.budgetRange && `Estimated scope / budget: ${data.budgetRange}`,
+    '',
+    'Message:',
+    data.message,
+  ].filter((line): line is string => Boolean(line))
+
+  await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      from,
+      to,
+      reply_to: data.email,
+      subject: `New inquiry: ${data.fullName}`,
+      text: lines.join('\n'),
+    }),
+  }).catch(() => null)
+}
+
 export async function POST(request: NextRequest) {
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
 
@@ -105,6 +143,8 @@ export async function POST(request: NextRequest) {
     createdAt: new Date().toISOString(),
     status: 'new',
   })
+
+  await sendInquiryNotification(parsed.data)
 
   return NextResponse.json({ ok: true })
 }
