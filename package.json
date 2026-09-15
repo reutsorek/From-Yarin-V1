@@ -11,7 +11,23 @@
     "node": ">=22.12"
   },
   "overrides": {
-    "react-dropzone": "^14.3.8"
+    "react-dropzone": "^14.3.8",
+    "sanity": "5.14.1",
+    "@sanity/document-internationalization": {
+      "sanity": "5.14.1"
+    },
+    "sanity-plugin-internationalized-array": {
+      "sanity": "5.14.1"
+    },
+    "@sanity/language-filter": {
+      "sanity": "5.14.1"
+    },
+    "sanity-plugin-utils": {
+      "sanity": "5.14.1"
+    },
+    "sanity-plugin-media": {
+      "sanity": "5.14.1"
+    }
   },
   "scripts": {
     "dev": "concurrently -n web,studio -c cyan,magenta \"npm run dev -w web\" \"npm run dev -w studio\"",
