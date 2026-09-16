@@ -18,7 +18,7 @@ export function LogoCloudBlock({ heading, logos }: LogoCloudBlockProps) {
         {logos.map((logo) => (
           <div
             key={logo._key}
-            className="bg-foreground flex h-24 items-center justify-center rounded-lg px-4 py-2"
+            className="bg-foreground flex h-24 items-center justify-center rounded-lg px-2 py-2"
           >
             <SanityImage
               image={logo}
