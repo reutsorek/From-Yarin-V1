@@ -58,7 +58,7 @@ export function HeroBlock({
       <section
         data-sanity-document-id={documentId}
         data-sanity-block-key={_key}
-        className="relative isolate flex min-h-[85svh] w-full items-end overflow-hidden sm:min-h-[90svh]"
+        className="relative isolate flex min-h-[60svh] w-full items-end overflow-hidden sm:min-h-[85svh] lg:min-h-[90svh]"
       >
         <SanityImage
           image={image}
