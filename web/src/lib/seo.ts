@@ -50,10 +50,17 @@ export function buildMetadata({
   )
 
   const image = ogImageUrl(seo?.image) ?? ogImageUrl(defaultOgImage)
+  const title = seo?.title || undefined
+  const description = seo?.description || undefined
 
+  /**
+   * `title`/`description` are omitted entirely rather than set to `undefined` when empty.
+   * Next.js treats an explicit `undefined` value as an override that erases the root
+   * layout's site-wide defaults; omitting the key lets those defaults show through.
+   */
   const metadata: Metadata = {
-    title: seo?.title || undefined,
-    description: seo?.description || undefined,
+    ...(title ? { title } : {}),
+    ...(description ? { description } : {}),
     keywords: seo?.keywords?.length ? seo.keywords : undefined,
     alternates: {
       canonical,
@@ -62,16 +69,16 @@ export function buildMetadata({
     openGraph: {
       type: 'website',
       url: canonical,
-      title: seo?.title || undefined,
-      description: seo?.description || undefined,
+      ...(title ? { title } : {}),
+      ...(description ? { description } : {}),
       siteName: siteName || undefined,
       locale: OG_LOCALES[locale],
       images: image ? [{ url: image, width: 1200, height: 630 }] : undefined,
     },
     twitter: {
       card: image ? 'summary_large_image' : 'summary',
-      title: seo?.title || undefined,
-      description: seo?.description || undefined,
+      ...(title ? { title } : {}),
+      ...(description ? { description } : {}),
       images: image ? [image] : undefined,
     },
   }
