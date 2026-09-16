@@ -20,6 +20,18 @@ export const researchGridBlock = defineType({
       rows: 2,
       description: 'Shown when there are no research projects or publications yet.',
     }),
+    defineField({
+      name: 'googleScholarUrl',
+      title: 'Google Scholar URL',
+      type: 'url',
+      description: 'Link to the full Google Scholar profile. Leave empty to hide.',
+    }),
+    defineField({
+      name: 'orcidUrl',
+      title: 'ORCID URL',
+      type: 'url',
+      description: 'Link to the full ORCID record. Leave empty to hide.',
+    }),
   ],
   preview: {
     select: { title: 'heading' },

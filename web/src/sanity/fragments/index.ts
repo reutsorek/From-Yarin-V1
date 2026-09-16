@@ -198,7 +198,7 @@ export const PAGE_BUILDER_FRAGMENT = /* groq */ `
       items[] { _key, title, description }
     },
     _type == "researchGridBlock" => {
-      heading, intro, emptyStateText,
+      heading, intro, emptyStateText, googleScholarUrl, orcidUrl,
       "projects": *[_type == "researchProject" && language == $locale] | order(_createdAt desc) {
         ${RESEARCH_PROJECT_FRAGMENT}
       },

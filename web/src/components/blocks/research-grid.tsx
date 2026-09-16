@@ -15,14 +15,41 @@ export function ResearchGridBlock({
   heading,
   intro,
   emptyStateText,
+  googleScholarUrl,
+  orcidUrl,
   projects,
   publications,
 }: ResearchGridBlockProps) {
   const hasContent = Boolean(projects?.length || publications?.length)
+  const hasProfileLinks = Boolean(googleScholarUrl || orcidUrl)
 
   return (
     <Section>
       <SectionHeader level={2} heading={heading} intro={intro} />
+      {hasProfileLinks ? (
+        <div className="mt-6 flex flex-wrap justify-center gap-4">
+          {googleScholarUrl ? (
+            <a
+              href={googleScholarUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-border text-foreground hover:bg-muted rounded-full border px-5 py-2 text-sm font-medium transition-colors"
+            >
+              Google Scholar
+            </a>
+          ) : null}
+          {orcidUrl ? (
+            <a
+              href={orcidUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-border text-foreground hover:bg-muted rounded-full border px-5 py-2 text-sm font-medium transition-colors"
+            >
+              ORCID
+            </a>
+          ) : null}
+        </div>
+      ) : null}
       {hasContent ? (
         <div className="mt-14 flex flex-col gap-16">
           {projects?.length ? (
