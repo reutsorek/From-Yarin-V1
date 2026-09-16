@@ -57,7 +57,10 @@ export const PAGE_BY_SLUG_QUERY = defineQuery(`
 `)
 
 export const PAGE_SLUGS_QUERY = defineQuery(`
-  *[_type == "page" && defined(slug.current) && slug.current != "home"]{
+  *[
+    defined(slug.current) &&
+    ((_type == "page" && slug.current != "home") || _type == "legalDocument")
+  ]{
     "slug": slug.current,
     language
   }
