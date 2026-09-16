@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import type { NavigationValue, SiteSettingsValue } from '@/components/blocks/types'
 import { NavLink } from './nav-link'
 import { MobileNav } from './mobile-nav'
-import { LocaleFlags } from './locale-flags'
+import { LocaleSwitcher } from './locale-switcher'
 
 export interface HeaderProps {
   navigation: NavigationValue | null | undefined
@@ -60,13 +60,13 @@ export async function Header({ navigation, siteSettings, locale }: HeaderProps) 
           <Button asChild size="sm" className="hidden sm:inline-flex">
             <Link href={ROUTES.page(locale, 'contact')}>{t('startConversation')}</Link>
           </Button>
-          <LocaleFlags locale={locale} className="hidden sm:flex" />
+          <LocaleSwitcher locale={locale} className="hidden sm:flex" />
           <MobileNav links={links} locale={locale}>
             <div className="flex flex-col gap-3">
               <Button asChild size="sm" className="w-full">
                 <Link href={ROUTES.page(locale, 'contact')}>{t('startConversation')}</Link>
               </Button>
-              <LocaleFlags locale={locale} className="flex sm:hidden" />
+              <LocaleSwitcher locale={locale} className="flex sm:hidden" />
             </div>
           </MobileNav>
         </div>
