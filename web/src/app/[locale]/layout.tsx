@@ -27,8 +27,14 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>
+}): Promise<Metadata> {
+  const { locale } = await params
   const { data: settings } = await sanityFetch({ query: SITE_SETTINGS_QUERY, stega: false })
+  const description = (locale === 'he' ? settings?.descriptionHe : null) || settings?.description
 
   return {
     metadataBase: new URL(siteUrl),
@@ -36,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
       default: settings?.title ?? '',
       template: settings?.title ? `%s | ${settings.title}` : '%s',
     },
-    description: settings?.description ?? undefined,
+    description: description ?? undefined,
   }
 }
 

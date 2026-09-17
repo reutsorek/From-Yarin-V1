@@ -15,6 +15,14 @@ export const siteSettings = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({ name: 'description', title: 'Site description', type: 'text', rows: 3 }),
+    defineField({
+      name: 'descriptionHe',
+      title: 'Site description (Hebrew)',
+      type: 'text',
+      rows: 3,
+      description:
+        'Only needed on this shared, non-localized document. Used as the meta description and social-share text instead of Site description when browsing in Hebrew.',
+    }),
     imageField('logo', 'Logo'),
     defineField({
       name: 'defaultOgImage',
