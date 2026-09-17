@@ -1,5 +1,6 @@
 import { GoogleAnalytics } from '@next/third-parties/google'
 import type { Metadata } from 'next'
+import { stegaClean } from 'next-sanity'
 import { Rubik } from 'next/font/google'
 import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
@@ -7,12 +8,15 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { VisualEditing } from 'next-sanity/visual-editing'
 import type { ReactNode } from 'react'
+import type { Organization, WithContext } from 'schema-dts'
 
 import { DisableDraftMode } from '@/components/disable-draft-mode'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
+import { JsonLd } from '@/components/json-ld'
 import { DIRECTIONS, locales, routing, type Locale } from '@/i18n/routing'
 import { siteUrl } from '@/lib/env'
+import { urlFor } from '@/sanity/lib/image'
 import { sanityFetch, SanityLive } from '@/sanity/lib/live'
 import { NAVIGATION_QUERY, SITE_SETTINGS_QUERY } from '@/sanity/queries'
 
@@ -69,9 +73,22 @@ export default async function LocaleLayout({
 
   const isDraft = (await draftMode()).isEnabled
 
+  const orgDescription = (locale === 'he' ? settings?.descriptionHe : null) || settings?.description
+  const organizationJsonLd: WithContext<Organization> = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: stegaClean(settings?.title) || undefined,
+    url: siteUrl,
+    logo: settings?.logo?.asset ? urlFor(settings.logo).width(512).url() : undefined,
+    description: stegaClean(orgDescription) || undefined,
+    sameAs: settings?.socials?.map((social) => social.url).filter((url) => Boolean(url)) as
+      string[] | undefined,
+  }
+
   return (
     <html lang={locale} dir={DIRECTIONS[locale as Locale]} className={rubik.variable}>
       <body className="flex min-h-screen flex-col">
+        <JsonLd data={organizationJsonLd} />
         <NextIntlClientProvider>
           <a
             href="#main"

@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
+import { stegaClean } from 'next-sanity'
 import { notFound } from 'next/navigation'
 import { setRequestLocale } from 'next-intl/server'
+import type { Person, WithContext } from 'schema-dts'
 
+import { JsonLd } from '@/components/json-ld'
 import { PageBuilder } from '@/components/page-builder'
 import { PortableTextRenderer } from '@/components/portable-text'
 import { Prose } from '@/components/primitives/prose'
@@ -10,6 +13,7 @@ import type { Locale } from '@/i18n/routing'
 import { siteUrl } from '@/lib/env'
 import { buildMetadata } from '@/lib/seo'
 import { safeFetch } from '@/sanity/lib/safe-fetch'
+import { urlFor } from '@/sanity/lib/image'
 import { sanityFetch } from '@/sanity/lib/live'
 import {
   LEGAL_DOCUMENT_QUERY,
@@ -93,7 +97,56 @@ export default async function CatchAllPage({ params }: Props) {
     )
   }
 
+  const founderBlock = result.page.pageBuilder?.find(
+    (block): block is Extract<typeof block, { _type: 'founderIntroBlock' }> =>
+      block._type === 'founderIntroBlock',
+  )
+  const founder = founderBlock?.founder
+
+  const personJsonLd: WithContext<Person> | null = founder?.name
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: stegaClean(founder.name),
+        jobTitle: stegaClean(founder.role) || undefined,
+        description: stegaClean(founder.shortBio) || undefined,
+        image: founder.portrait?.asset ? urlFor(founder.portrait).width(800).url() : undefined,
+        url: `${siteUrl}/${locale}/${slug.join('/')}`,
+        knowsAbout: founder.specialties?.length
+          ? founder.specialties.map((item) => stegaClean(item))
+          : undefined,
+        hasCredential: founder.credentials?.length
+          ? founder.credentials.map((item) => ({
+              '@type': 'EducationalOccupationalCredential',
+              name: stegaClean(item),
+            }))
+          : undefined,
+        affiliation: founder.affiliations?.length
+          ? founder.affiliations.map((item) => ({
+              '@type': 'Organization',
+              name: stegaClean(item),
+            }))
+          : undefined,
+      }
+    : null
+
+  const settings = personJsonLd
+    ? (await sanityFetch({ query: SITE_SETTINGS_QUERY, stega: false })).data
+    : null
+
+  if (personJsonLd && settings) {
+    personJsonLd.sameAs = settings.socials
+      ?.map((social) => social.url)
+      .filter((url): url is string => Boolean(url))
+    personJsonLd.worksFor = settings.title
+      ? { '@type': 'Organization', name: settings.title, url: siteUrl }
+      : undefined
+  }
+
   return (
-    <PageBuilder blocks={result.page.pageBuilder} locale={locale} documentId={result.page._id} />
+    <>
+      {personJsonLd ? <JsonLd data={personJsonLd} /> : null}
+      <PageBuilder blocks={result.page.pageBuilder} locale={locale} documentId={result.page._id} />
+    </>
   )
 }
