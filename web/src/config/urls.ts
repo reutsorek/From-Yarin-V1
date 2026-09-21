@@ -5,15 +5,11 @@
  */
 
 export interface RouteSegments {
-  blog: string
   legal: string
-  category: string
 }
 
 const DEFAULT_SEGMENTS: RouteSegments = {
-  blog: 'blog',
   legal: 'legal',
-  category: 'category',
 }
 
 const SEGMENTS_BY_LOCALE: Record<string, RouteSegments> = {}
@@ -36,14 +32,10 @@ export const ROUTES = {
     const value = clean(slug)
     return value === 'home' || value === '' ? '/' : `/${value}`
   },
-  blog: (locale: string): string => `/${segmentsFor(locale).blog}`,
-  post: (locale: string, slug: string): string => `/${segmentsFor(locale).blog}/${clean(slug)}`,
   legal: (locale: string, slug: string): string => {
     void segmentsFor(locale)
     return `/${clean(slug)}`
   },
-  category: (locale: string, slug: string): string =>
-    `/${segmentsFor(locale).blog}/${segmentsFor(locale).category}/${clean(slug)}`,
 } as const
 
 export interface InternalReference {
@@ -64,8 +56,6 @@ export function resolveInternalHref(
   switch (reference?._type) {
     case 'page':
       return ROUTES.page(locale, slug)
-    case 'post':
-      return ROUTES.post(locale, slug)
     case 'legalDocument':
       return ROUTES.legal(locale, slug)
     default:

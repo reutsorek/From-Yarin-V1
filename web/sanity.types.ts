@@ -74,6 +74,7 @@ export type SiteSettings = {
   _updatedAt: string
   _rev: string
   title?: string
+  titleHe?: string
   description?: string
   descriptionHe?: string
   logo?: ImageWithAlt
@@ -155,13 +156,6 @@ export type PageReference = {
   [internalGroqTypeReferenceTo]?: 'page'
 }
 
-export type PostReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'post'
-}
-
 export type LegalDocumentReference = {
   _ref: string
   _type: 'reference'
@@ -186,7 +180,7 @@ export type PortableText = Array<
             _key: string
           }
         | {
-            reference?: PageReference | PostReference | LegalDocumentReference
+            reference?: PageReference | LegalDocumentReference
             _type: 'internalLink'
             _key: string
           }
@@ -205,23 +199,6 @@ export type PortableText = Array<
       _key: string
     } & VideoEmbed)
 >
-
-export type Category = {
-  _id: string
-  _type: 'category'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  slug?: Slug
-  description?: string
-}
-
-export type Slug = {
-  _type: 'slug'
-  current?: string
-  source?: string
-}
 
 export type FounderProfileReference = {
   _ref: string
@@ -550,7 +527,7 @@ export type Link = {
   label?: string
   labelHe?: string
   kind?: 'internal' | 'external'
-  reference?: PageReference | PostReference | LegalDocumentReference
+  reference?: PageReference | LegalDocumentReference
   href?: string
 }
 
@@ -596,6 +573,12 @@ export type MediaTag = {
   name?: Slug
 }
 
+export type Slug = {
+  _type: 'slug'
+  current?: string
+  source?: string
+}
+
 export type TranslationMetadata = {
   _id: string
   _type: 'translation.metadata'
@@ -630,7 +613,6 @@ export type InternationalizedArrayReferenceValue = {
   _type: 'internationalizedArrayReferenceValue'
   value?:
     | PageReference
-    | PostReference
     | LegalDocumentReference
     | FounderProfileReference
     | ExpeditionProductReference
@@ -803,54 +785,6 @@ export type Page = {
   seo?: Seo
 }
 
-export type AuthorReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'author'
-}
-
-export type CategoryReference = {
-  _ref: string
-  _type: 'reference'
-  _weak?: boolean
-  [internalGroqTypeReferenceTo]?: 'category'
-}
-
-export type Post = {
-  _id: string
-  _type: 'post'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  title?: string
-  slug?: Slug
-  language?: string
-  excerpt?: string
-  coverImage?: ImageWithAlt
-  author?: AuthorReference
-  categories?: Array<
-    {
-      _key: string
-    } & CategoryReference
-  >
-  publishedAt?: string
-  body?: PortableText
-  seo?: Seo
-}
-
-export type Author = {
-  _id: string
-  _type: 'author'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-  slug?: Slug
-  photo?: ImageWithAlt
-  bio?: PortableText
-}
-
 export type LegalDocument = {
   _id: string
   _type: 'legalDocument'
@@ -975,11 +909,8 @@ export type AllSanitySchemaTypes =
   | Redirect
   | Faq
   | PageReference
-  | PostReference
   | LegalDocumentReference
   | PortableText
-  | Category
-  | Slug
   | FounderProfileReference
   | FounderIntroBlock
   | ResearchGridBlock
@@ -1011,6 +942,7 @@ export type AllSanitySchemaTypes =
   | MediaFolderReference
   | MediaFolder
   | MediaTag
+  | Slug
   | TranslationMetadata
   | InternationalizedArrayReference
   | ResearchProjectReference
@@ -1023,10 +955,6 @@ export type AllSanitySchemaTypes =
   | ExpeditionProduct
   | FounderProfile
   | Page
-  | AuthorReference
-  | CategoryReference
-  | Post
-  | Author
   | LegalDocument
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -1041,9 +969,10 @@ export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: SITE_SETTINGS_QUERY
-// Query: *[_type == "siteSettings"][0]{    title,    description,    descriptionHe,    contactEmail,    logo {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },    defaultOgImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },    socials[] { _key, platform, url },    analytics { gaMeasurementId, posthogKey }  }
+// Query: *[_type == "siteSettings"][0]{    title,    titleHe,    description,    descriptionHe,    contactEmail,    logo {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },    defaultOgImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },    socials[] { _key, platform, url },    analytics { gaMeasurementId, posthogKey }  }
 export type SITE_SETTINGS_QUERY_RESULT = {
   title: string | null
+  titleHe: string | null
   description: string | null
   descriptionHe: string | null
   contactEmail: string | null
@@ -1116,11 +1045,6 @@ export type NAVIGATION_QUERY_RESULT = {
           slug: string | null
           language: string | null
         }
-      | {
-          _type: 'post'
-          slug: string | null
-          language: string | null
-        }
       | null
   }> | null
   footerGroups: Array<{
@@ -1140,11 +1064,6 @@ export type NAVIGATION_QUERY_RESULT = {
           }
         | {
             _type: 'page'
-            slug: string | null
-            language: string | null
-          }
-        | {
-            _type: 'post'
             slug: string | null
             language: string | null
           }
@@ -1212,11 +1131,6 @@ export type HOME_PAGE_QUERY_RESULT = {
                     slug: string | null
                     language: string | null
                   }
-                | {
-                    _type: 'post'
-                    slug: string | null
-                    language: string | null
-                  }
                 | null
             } | null
           } | null
@@ -1254,11 +1168,6 @@ export type HOME_PAGE_QUERY_RESULT = {
                 }
               | {
                   _type: 'page'
-                  slug: string | null
-                  language: string | null
-                }
-              | {
-                  _type: 'post'
                   slug: string | null
                   language: string | null
                 }
@@ -1303,11 +1212,6 @@ export type HOME_PAGE_QUERY_RESULT = {
                           }
                         | {
                             _type: 'page'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | {
-                            _type: 'post'
                             slug: string | null
                             language: string | null
                           }
@@ -1442,11 +1346,6 @@ export type HOME_PAGE_QUERY_RESULT = {
                             slug: string | null
                             language: string | null
                           }
-                        | {
-                            _type: 'post'
-                            slug: string | null
-                            language: string | null
-                          }
                         | null
                       _type: 'internalLink'
                       _key: string
@@ -1539,11 +1438,6 @@ export type HOME_PAGE_QUERY_RESULT = {
                           }
                         | {
                             _type: 'page'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | {
-                            _type: 'post'
                             slug: string | null
                             language: string | null
                           }
@@ -1672,11 +1566,6 @@ export type HOME_PAGE_QUERY_RESULT = {
                             slug: string | null
                             language: string | null
                           }
-                        | {
-                            _type: 'post'
-                            slug: string | null
-                            language: string | null
-                          }
                         | null
                       _type: 'internalLink'
                       _key: string
@@ -1790,11 +1679,6 @@ export type HOME_PAGE_QUERY_RESULT = {
                             slug: string | null
                             language: string | null
                           }
-                        | {
-                            _type: 'post'
-                            slug: string | null
-                            language: string | null
-                          }
                         | null
                       _type: 'internalLink'
                       _key: string
@@ -1904,11 +1788,6 @@ export type HOME_PAGE_QUERY_RESULT = {
                   slug: string | null
                   language: string | null
                 }
-              | {
-                  _type: 'post'
-                  slug: string | null
-                  language: string | null
-                }
               | null
           } | null
         }> | null
@@ -1974,11 +1853,6 @@ export type HOME_PAGE_QUERY_RESULT = {
                   }
                 | {
                     _type: 'page'
-                    slug: string | null
-                    language: string | null
-                  }
-                | {
-                    _type: 'post'
                     slug: string | null
                     language: string | null
                   }
@@ -2097,11 +1971,6 @@ export type HOME_PAGE_QUERY_RESULT = {
                           slug: string | null
                           language: string | null
                         }
-                      | {
-                          _type: 'post'
-                          slug: string | null
-                          language: string | null
-                        }
                       | null
                     _type: 'internalLink'
                     _key: string
@@ -2202,11 +2071,6 @@ export type HOME_PAGE_QUERY_RESULT = {
                           }
                         | {
                             _type: 'page'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | {
-                            _type: 'post'
                             slug: string | null
                             language: string | null
                           }
@@ -2422,11 +2286,6 @@ export type PAGE_BY_SLUG_QUERY_RESULT = {
                     slug: string | null
                     language: string | null
                   }
-                | {
-                    _type: 'post'
-                    slug: string | null
-                    language: string | null
-                  }
                 | null
             } | null
           } | null
@@ -2464,11 +2323,6 @@ export type PAGE_BY_SLUG_QUERY_RESULT = {
                 }
               | {
                   _type: 'page'
-                  slug: string | null
-                  language: string | null
-                }
-              | {
-                  _type: 'post'
                   slug: string | null
                   language: string | null
                 }
@@ -2513,11 +2367,6 @@ export type PAGE_BY_SLUG_QUERY_RESULT = {
                           }
                         | {
                             _type: 'page'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | {
-                            _type: 'post'
                             slug: string | null
                             language: string | null
                           }
@@ -2652,11 +2501,6 @@ export type PAGE_BY_SLUG_QUERY_RESULT = {
                             slug: string | null
                             language: string | null
                           }
-                        | {
-                            _type: 'post'
-                            slug: string | null
-                            language: string | null
-                          }
                         | null
                       _type: 'internalLink'
                       _key: string
@@ -2749,11 +2593,6 @@ export type PAGE_BY_SLUG_QUERY_RESULT = {
                           }
                         | {
                             _type: 'page'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | {
-                            _type: 'post'
                             slug: string | null
                             language: string | null
                           }
@@ -2882,11 +2721,6 @@ export type PAGE_BY_SLUG_QUERY_RESULT = {
                             slug: string | null
                             language: string | null
                           }
-                        | {
-                            _type: 'post'
-                            slug: string | null
-                            language: string | null
-                          }
                         | null
                       _type: 'internalLink'
                       _key: string
@@ -3000,11 +2834,6 @@ export type PAGE_BY_SLUG_QUERY_RESULT = {
                             slug: string | null
                             language: string | null
                           }
-                        | {
-                            _type: 'post'
-                            slug: string | null
-                            language: string | null
-                          }
                         | null
                       _type: 'internalLink'
                       _key: string
@@ -3114,11 +2943,6 @@ export type PAGE_BY_SLUG_QUERY_RESULT = {
                   slug: string | null
                   language: string | null
                 }
-              | {
-                  _type: 'post'
-                  slug: string | null
-                  language: string | null
-                }
               | null
           } | null
         }> | null
@@ -3184,11 +3008,6 @@ export type PAGE_BY_SLUG_QUERY_RESULT = {
                   }
                 | {
                     _type: 'page'
-                    slug: string | null
-                    language: string | null
-                  }
-                | {
-                    _type: 'post'
                     slug: string | null
                     language: string | null
                   }
@@ -3307,11 +3126,6 @@ export type PAGE_BY_SLUG_QUERY_RESULT = {
                           slug: string | null
                           language: string | null
                         }
-                      | {
-                          _type: 'post'
-                          slug: string | null
-                          language: string | null
-                        }
                       | null
                     _type: 'internalLink'
                     _key: string
@@ -3412,11 +3226,6 @@ export type PAGE_BY_SLUG_QUERY_RESULT = {
                           }
                         | {
                             _type: 'page'
-                            slug: string | null
-                            language: string | null
-                          }
-                        | {
-                            _type: 'post'
                             slug: string | null
                             language: string | null
                           }
@@ -3583,232 +3392,6 @@ export type PAGE_SLUGS_QUERY_RESULT = Array<{
 }>
 
 // Source: ../web/src/sanity/queries/index.ts
-// Variable: POSTS_QUERY
-// Query: *[_type == "post" && language == $locale && defined(slug.current)]    | order(publishedAt desc)[$start...$end]{      _id,      title,      "slug": slug.current,      excerpt,      publishedAt,      coverImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },      author->{ name, "slug": slug.current },      categories[]->{ _id, title, "slug": slug.current }    }
-export type POSTS_QUERY_RESULT = Array<{
-  _id: string
-  title: string | null
-  slug: string | null
-  excerpt: string | null
-  publishedAt: string | null
-  coverImage: {
-    _type: 'imageWithAlt'
-    alt: string | null
-    caption: string | null
-    hotspot: SanityImageHotspot | null
-    crop: SanityImageCrop | null
-    asset: {
-      _id: string
-      url: string | null
-      metadata: {
-        lqip: string | null
-        dimensions: {
-          width: number | null
-          height: number | null
-        } | null
-      } | null
-    } | null
-  } | null
-  author: {
-    name: string | null
-    slug: string | null
-  } | null
-  categories: Array<{
-    _id: string
-    title: string | null
-    slug: string | null
-  }> | null
-}>
-
-// Source: ../web/src/sanity/queries/index.ts
-// Variable: POST_BY_SLUG_QUERY
-// Query: *[_type == "post" && slug.current == $slug && language == $locale][0]{    _id,    _type,    title,    "slug": slug.current,    language,    excerpt,    publishedAt,    coverImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },    author->{ name, "slug": slug.current, photo {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } },    categories[]->{ _id, title, "slug": slug.current },    body[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } },    "plainBody": pt::text(body),    "seo": {   "title": coalesce(seo.metaTitle, title, ""),  "description": coalesce(seo.metaDescription, ""),  "keywords": coalesce(seo.keywords, []),  "image": seo.ogImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  "canonicalUrl": seo.canonicalUrl,  "noIndex": seo.noIndex == true }  }
-export type POST_BY_SLUG_QUERY_RESULT = {
-  _id: string
-  _type: 'post'
-  title: string | null
-  slug: string | null
-  language: string | null
-  excerpt: string | null
-  publishedAt: string | null
-  coverImage: {
-    _type: 'imageWithAlt'
-    alt: string | null
-    caption: string | null
-    hotspot: SanityImageHotspot | null
-    crop: SanityImageCrop | null
-    asset: {
-      _id: string
-      url: string | null
-      metadata: {
-        lqip: string | null
-        dimensions: {
-          width: number | null
-          height: number | null
-        } | null
-      } | null
-    } | null
-  } | null
-  author: {
-    name: string | null
-    slug: string | null
-    photo: {
-      _type: 'imageWithAlt'
-      alt: string | null
-      caption: string | null
-      hotspot: SanityImageHotspot | null
-      crop: SanityImageCrop | null
-      asset: {
-        _id: string
-        url: string | null
-        metadata: {
-          lqip: string | null
-          dimensions: {
-            width: number | null
-            height: number | null
-          } | null
-        } | null
-      } | null
-    } | null
-  } | null
-  categories: Array<{
-    _id: string
-    title: string | null
-    slug: string | null
-  }> | null
-  body: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: 'span'
-          _key: string
-        }>
-        style?: 'blockquote' | 'h2' | 'h3' | 'h4' | 'normal'
-        listItem?: 'bullet' | 'number'
-        markDefs: Array<
-          | {
-              href?: string
-              _type: 'externalLink'
-              _key: string
-            }
-          | {
-              reference:
-                | {
-                    _type: 'legalDocument'
-                    slug: string | null
-                    language: string | null
-                  }
-                | {
-                    _type: 'page'
-                    slug: string | null
-                    language: string | null
-                  }
-                | {
-                    _type: 'post'
-                    slug: string | null
-                    language: string | null
-                  }
-                | null
-              _type: 'internalLink'
-              _key: string
-            }
-        > | null
-        level?: number
-        _type: 'block'
-        _key: string
-      }
-    | {
-        _key: string
-        _type: 'callout'
-        tone?: 'important' | 'info' | 'tip' | 'warning'
-        title?: string
-        body?: Array<{
-          children?: Array<{
-            marks?: Array<string>
-            text?: string
-            _type: 'span'
-            _key: string
-          }>
-          style?: 'normal'
-          listItem?: 'bullet' | 'number'
-          markDefs?: Array<{
-            href?: string
-            _type: 'link'
-            _key: string
-          }>
-          level?: number
-          _type: 'block'
-          _key: string
-        }>
-        markDefs: null
-      }
-    | {
-        _key: string
-        _type: 'imageWithAlt'
-        asset: {
-          _id: string
-          url: string | null
-          metadata: {
-            lqip: string | null
-            dimensions: {
-              width: number | null
-              height: number | null
-            } | null
-          } | null
-        } | null
-        media?: unknown
-        hotspot: SanityImageHotspot | null
-        crop: SanityImageCrop | null
-        alt: string | null
-        caption: string | null
-        markDefs: null
-      }
-    | {
-        _key: string
-        _type: 'videoEmbed'
-        url?: string
-        title?: string
-        markDefs: null
-      }
-  > | null
-  plainBody: string
-  seo: {
-    title: string | ''
-    description: string | ''
-    keywords: Array<string> | Array<never>
-    image: {
-      _type: 'image'
-      alt: null
-      caption: null
-      hotspot: SanityImageHotspot | null
-      crop: SanityImageCrop | null
-      asset: {
-        _id: string
-        url: string | null
-        metadata: {
-          lqip: string | null
-          dimensions: {
-            width: number | null
-            height: number | null
-          } | null
-        } | null
-      } | null
-    } | null
-    canonicalUrl: string | null
-    noIndex: boolean | false
-  }
-} | null
-
-// Source: ../web/src/sanity/queries/index.ts
-// Variable: POST_SLUGS_QUERY
-// Query: *[_type == "post" && defined(slug.current)]{    "slug": slug.current,    language  }
-export type POST_SLUGS_QUERY_RESULT = Array<{
-  slug: string | null
-  language: string | null
-}>
-
-// Source: ../web/src/sanity/queries/index.ts
 // Variable: LEGAL_DOCUMENT_QUERY
 // Query: *[_type == "legalDocument" && slug.current == $slug && language == $locale][0]{    _id,    title,    "slug": slug.current,    documentType,    version,    effectiveDate,    body[] {   ...,  markDefs[]{    ...,    _type == "internalLink" => {      reference->{ _type, "slug": slug.current, language }    }  },  _type == "imageWithAlt" => {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } } },    "seo": {   "title": coalesce(seo.metaTitle, title, ""),  "description": coalesce(seo.metaDescription, ""),  "keywords": coalesce(seo.keywords, []),  "image": seo.ogImage {   _type,  alt,  caption,  hotspot,  crop,  asset->{    _id,    url,    metadata { lqip, dimensions { width, height } }  } },  "canonicalUrl": seo.canonicalUrl,  "noIndex": seo.noIndex == true }  }
 export type LEGAL_DOCUMENT_QUERY_RESULT = {
@@ -3843,11 +3426,6 @@ export type LEGAL_DOCUMENT_QUERY_RESULT = {
                   }
                 | {
                     _type: 'page'
-                    slug: string | null
-                    language: string | null
-                  }
-                | {
-                    _type: 'post'
                     slug: string | null
                     language: string | null
                   }
@@ -3974,11 +3552,6 @@ export type TRANSLATIONS_QUERY_RESULT = {
           language: string | null
         }
       | {
-          _type: 'post'
-          slug: string | null
-          language: string | null
-        }
-      | {
           _type: 'publicationOrMedia'
           slug: null
           language: string | null
@@ -4008,14 +3581,9 @@ export type REDIRECTS_QUERY_RESULT = Array<{
 
 // Source: ../web/src/sanity/queries/index.ts
 // Variable: SITEMAP_QUERY
-// Query: {    "pages": *[_type == "page" && defined(slug.current) && seo.noIndex != true]{      "slug": slug.current,      language,      _updatedAt    },    "posts": *[_type == "post" && defined(slug.current) && seo.noIndex != true]{      "slug": slug.current,      language,      _updatedAt    },    "legal": *[_type == "legalDocument" && defined(slug.current) && seo.noIndex != true]{      "slug": slug.current,      language,      _updatedAt    },    "categories": *[      _type == "category" &&      defined(slug.current) &&      count(*[_type == "post" && references(^._id) && seo.noIndex != true]) > 0    ]{      "slug": slug.current,      _updatedAt    }  }
+// Query: {    "pages": *[_type == "page" && defined(slug.current) && seo.noIndex != true]{      "slug": slug.current,      language,      _updatedAt    },    "legal": *[_type == "legalDocument" && defined(slug.current) && seo.noIndex != true]{      "slug": slug.current,      language,      _updatedAt    }  }
 export type SITEMAP_QUERY_RESULT = {
   pages: Array<{
-    slug: string | null
-    language: string | null
-    _updatedAt: string
-  }>
-  posts: Array<{
     slug: string | null
     language: string | null
     _updatedAt: string
@@ -4023,10 +3591,6 @@ export type SITEMAP_QUERY_RESULT = {
   legal: Array<{
     slug: string | null
     language: string | null
-    _updatedAt: string
-  }>
-  categories: Array<{
-    slug: string | null
     _updatedAt: string
   }>
 }
@@ -4054,18 +3618,15 @@ export type HERO_PRESENTATION_QUERY_RESULT =
 import '@sanity/client'
 declare module '@sanity/client' {
   interface SanityQueries {
-    '\n  *[_type == "siteSettings"][0]{\n    title,\n    description,\n    descriptionHe,\n    contactEmail,\n    logo { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n    defaultOgImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n    socials[] { _key, platform, url },\n    analytics { gaMeasurementId, posthogKey }\n  }\n': SITE_SETTINGS_QUERY_RESULT
+    '\n  *[_type == "siteSettings"][0]{\n    title,\n    titleHe,\n    description,\n    descriptionHe,\n    contactEmail,\n    logo { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n    defaultOgImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n    socials[] { _key, platform, url },\n    analytics { gaMeasurementId, posthogKey }\n  }\n': SITE_SETTINGS_QUERY_RESULT
     '\n  *[_type == "navigation"][0]{\n    headerLinks[] { _key, \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n },\n    footerGroups[] { _key, title, links[] { _key, \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n } },\n    footerNote\n  }\n': NAVIGATION_QUERY_RESULT
     '\n  *[_type == "page" && slug.current == "home" && language == $locale][0]{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n    language,\n    \n  pageBuilder[]{\n    _key,\n    _type,\n    _type == "heroBlock" => {\n      eyebrow, heading, subheading, layout,\n      image { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n      ctas[] { _key, \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n }\n }\n    },\n    _type == "richTextBlock" => {\n      heading, width,\n      body[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n }\n    },\n    _type == "featureGridBlock" => {\n      heading, intro, columns,\n      features[] { _key, icon, title, description }\n    },\n    _type == "logoCloudBlock" => {\n      heading,\n      logos[] { _key, \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n    },\n    _type == "testimonialsBlock" => {\n      heading,\n      items[] { _key, quote, authorName, authorRole, avatar { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n } }\n    },\n    _type == "statsBlock" => {\n      heading,\n      items[] { _key, value, label }\n    },\n    _type == "faqsBlock" => {\n      heading, source,\n      items[]->{ _id, question, answer[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n } },\n      inlineItems[] { _key, question, answer[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n } }\n    },\n    _type == "pricingBlock" => {\n      heading, intro,\n      plans[] { _key, name, price, period, description, features, highlighted, cta { \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n }\n } }\n    },\n    _type == "ctaBlock" => {\n      heading, body, background,\n      ctas[] { _key, \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n }\n }\n    },\n    _type == "contactFormBlock" => {\n      heading, body, successMessage, submitLabel, interestTypeOptions, privacyNote\n    },\n    _type == "positioningBlock" => {\n      heading, intro, notThisItems, butThisHeading, butThisText\n    },\n    _type == "audiencePathsBlock" => {\n      heading, intro,\n      paths[]-> { \n  _id,\n  audienceName,\n  headline,\n  motivation,\n  valueProposition,\n  desiredOutcomes,\n  image { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  cta { \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n }\n }\n }\n    },\n    _type == "expeditionProductsBlock" => {\n      heading, intro, displayMode,\n      products[]-> { \n  _id,\n  title,\n  "slug": slug.current,\n  order,\n  shortDescription,\n  fullDescription[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n  idealFor,\n  duration,\n  recommendedGroupSize,\n  includedItems,\n  potentialOutcomes,\n  deliverables,\n  strategicOutcome,\n  engagementModel,\n  useCases,\n  images[] { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  ctaLabel,\n  ctaInquiryType\n }\n    },\n    _type == "speakingTopicsBlock" => {\n      heading, intro, displayMode,\n      topics[]-> { \n  _id,\n  title,\n  "slug": slug.current,\n  shortDescription,\n  fullDescription[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n  idealAudience,\n  keyTakeaways,\n  availableFormats,\n  heroImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  ctaLabel\n }\n    },\n    _type == "researchHighlightsBlock" => {\n      heading, intro,\n      items[] { _key, title, description }\n    },\n    _type == "researchGridBlock" => {\n      heading, intro, emptyStateText, googleScholarUrl, orcidUrl,\n      "projects": *[_type == "researchProject" && language == $locale] | order(_createdAt desc) {\n        \n  _id,\n  title,\n  "slug": slug.current,\n  status,\n  excerpt,\n  focusAreas,\n  links[] { label, url },\n  "image": images[0] { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n\n      },\n      "publications": *[_type == "publicationOrMedia" && language == $locale] | order(date desc) {\n        \n  _id,\n  type,\n  title,\n  outlet,\n  date,\n  url,\n  excerpt,\n  image { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n\n      }\n    },\n    _type == "founderIntroBlock" => {\n      heading, intro,\n      founder-> { \n  _id,\n  name,\n  role,\n  shortBio,\n  fullBio[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n  portrait { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  edgeNarrative,\n  credentials,\n  affiliations,\n  specialties,\n  speakingAndAdvisoryCopy[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n }\n }\n    }\n  }\n,\n    "seo": { \n  "title": coalesce(seo.metaTitle, title, ""),\n  "description": coalesce(seo.metaDescription, ""),\n  "keywords": coalesce(seo.keywords, []),\n  "image": seo.ogImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  "canonicalUrl": seo.canonicalUrl,\n  "noIndex": seo.noIndex == true\n }\n  }\n': HOME_PAGE_QUERY_RESULT
     '\n  *[_type == "page" && slug.current == $slug && language == $locale][0]{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n    language,\n    \n  pageBuilder[]{\n    _key,\n    _type,\n    _type == "heroBlock" => {\n      eyebrow, heading, subheading, layout,\n      image { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n      ctas[] { _key, \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n }\n }\n    },\n    _type == "richTextBlock" => {\n      heading, width,\n      body[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n }\n    },\n    _type == "featureGridBlock" => {\n      heading, intro, columns,\n      features[] { _key, icon, title, description }\n    },\n    _type == "logoCloudBlock" => {\n      heading,\n      logos[] { _key, \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n    },\n    _type == "testimonialsBlock" => {\n      heading,\n      items[] { _key, quote, authorName, authorRole, avatar { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n } }\n    },\n    _type == "statsBlock" => {\n      heading,\n      items[] { _key, value, label }\n    },\n    _type == "faqsBlock" => {\n      heading, source,\n      items[]->{ _id, question, answer[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n } },\n      inlineItems[] { _key, question, answer[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n } }\n    },\n    _type == "pricingBlock" => {\n      heading, intro,\n      plans[] { _key, name, price, period, description, features, highlighted, cta { \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n }\n } }\n    },\n    _type == "ctaBlock" => {\n      heading, body, background,\n      ctas[] { _key, \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n }\n }\n    },\n    _type == "contactFormBlock" => {\n      heading, body, successMessage, submitLabel, interestTypeOptions, privacyNote\n    },\n    _type == "positioningBlock" => {\n      heading, intro, notThisItems, butThisHeading, butThisText\n    },\n    _type == "audiencePathsBlock" => {\n      heading, intro,\n      paths[]-> { \n  _id,\n  audienceName,\n  headline,\n  motivation,\n  valueProposition,\n  desiredOutcomes,\n  image { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  cta { \n  variant,\n  link { \n  label,\n  labelHe,\n  kind,\n  href,\n  reference->{ _type, "slug": slug.current, language }\n }\n }\n }\n    },\n    _type == "expeditionProductsBlock" => {\n      heading, intro, displayMode,\n      products[]-> { \n  _id,\n  title,\n  "slug": slug.current,\n  order,\n  shortDescription,\n  fullDescription[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n  idealFor,\n  duration,\n  recommendedGroupSize,\n  includedItems,\n  potentialOutcomes,\n  deliverables,\n  strategicOutcome,\n  engagementModel,\n  useCases,\n  images[] { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  ctaLabel,\n  ctaInquiryType\n }\n    },\n    _type == "speakingTopicsBlock" => {\n      heading, intro, displayMode,\n      topics[]-> { \n  _id,\n  title,\n  "slug": slug.current,\n  shortDescription,\n  fullDescription[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n  idealAudience,\n  keyTakeaways,\n  availableFormats,\n  heroImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  ctaLabel\n }\n    },\n    _type == "researchHighlightsBlock" => {\n      heading, intro,\n      items[] { _key, title, description }\n    },\n    _type == "researchGridBlock" => {\n      heading, intro, emptyStateText, googleScholarUrl, orcidUrl,\n      "projects": *[_type == "researchProject" && language == $locale] | order(_createdAt desc) {\n        \n  _id,\n  title,\n  "slug": slug.current,\n  status,\n  excerpt,\n  focusAreas,\n  links[] { label, url },\n  "image": images[0] { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n\n      },\n      "publications": *[_type == "publicationOrMedia" && language == $locale] | order(date desc) {\n        \n  _id,\n  type,\n  title,\n  outlet,\n  date,\n  url,\n  excerpt,\n  image { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n\n      }\n    },\n    _type == "founderIntroBlock" => {\n      heading, intro,\n      founder-> { \n  _id,\n  name,\n  role,\n  shortBio,\n  fullBio[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n  portrait { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  edgeNarrative,\n  credentials,\n  affiliations,\n  specialties,\n  speakingAndAdvisoryCopy[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n }\n }\n    }\n  }\n,\n    "seo": { \n  "title": coalesce(seo.metaTitle, title, ""),\n  "description": coalesce(seo.metaDescription, ""),\n  "keywords": coalesce(seo.keywords, []),\n  "image": seo.ogImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  "canonicalUrl": seo.canonicalUrl,\n  "noIndex": seo.noIndex == true\n }\n  }\n': PAGE_BY_SLUG_QUERY_RESULT
     '\n  *[\n    defined(slug.current) &&\n    ((_type == "page" && slug.current != "home") || _type == "legalDocument")\n  ]{\n    "slug": slug.current,\n    language\n  }\n': PAGE_SLUGS_QUERY_RESULT
-    '\n  *[_type == "post" && language == $locale && defined(slug.current)]\n    | order(publishedAt desc)[$start...$end]{\n      _id,\n      title,\n      "slug": slug.current,\n      excerpt,\n      publishedAt,\n      coverImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n      author->{ name, "slug": slug.current },\n      categories[]->{ _id, title, "slug": slug.current }\n    }\n': POSTS_QUERY_RESULT
-    '\n  *[_type == "post" && slug.current == $slug && language == $locale][0]{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n    language,\n    excerpt,\n    publishedAt,\n    coverImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n    author->{ name, "slug": slug.current, photo { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n } },\n    categories[]->{ _id, title, "slug": slug.current },\n    body[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n    "plainBody": pt::text(body),\n    "seo": { \n  "title": coalesce(seo.metaTitle, title, ""),\n  "description": coalesce(seo.metaDescription, ""),\n  "keywords": coalesce(seo.keywords, []),\n  "image": seo.ogImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  "canonicalUrl": seo.canonicalUrl,\n  "noIndex": seo.noIndex == true\n }\n  }\n': POST_BY_SLUG_QUERY_RESULT
-    '\n  *[_type == "post" && defined(slug.current)]{\n    "slug": slug.current,\n    language\n  }\n': POST_SLUGS_QUERY_RESULT
     '\n  *[_type == "legalDocument" && slug.current == $slug && language == $locale][0]{\n    _id,\n    title,\n    "slug": slug.current,\n    documentType,\n    version,\n    effectiveDate,\n    body[] { \n  ...,\n  markDefs[]{\n    ...,\n    _type == "internalLink" => {\n      reference->{ _type, "slug": slug.current, language }\n    }\n  },\n  _type == "imageWithAlt" => { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n }\n },\n    "seo": { \n  "title": coalesce(seo.metaTitle, title, ""),\n  "description": coalesce(seo.metaDescription, ""),\n  "keywords": coalesce(seo.keywords, []),\n  "image": seo.ogImage { \n  _type,\n  alt,\n  caption,\n  hotspot,\n  crop,\n  asset->{\n    _id,\n    url,\n    metadata { lqip, dimensions { width, height } }\n  }\n },\n  "canonicalUrl": seo.canonicalUrl,\n  "noIndex": seo.noIndex == true\n }\n  }\n': LEGAL_DOCUMENT_QUERY_RESULT
     '\n  *[_type == "translation.metadata" && references($documentId)][0]{\n    translations[] {\n      _key,\n      "value": value->{ _type, "slug": slug.current, language }\n    }\n  }\n': TRANSLATIONS_QUERY_RESULT
     '\n  *[_type == "redirect" && isEnabled == true]{\n    source,\n    destination,\n    permanent\n  }\n': REDIRECTS_QUERY_RESULT
-    '\n  {\n    "pages": *[_type == "page" && defined(slug.current) && seo.noIndex != true]{\n      "slug": slug.current,\n      language,\n      _updatedAt\n    },\n    "posts": *[_type == "post" && defined(slug.current) && seo.noIndex != true]{\n      "slug": slug.current,\n      language,\n      _updatedAt\n    },\n    "legal": *[_type == "legalDocument" && defined(slug.current) && seo.noIndex != true]{\n      "slug": slug.current,\n      language,\n      _updatedAt\n    },\n    "categories": *[\n      _type == "category" &&\n      defined(slug.current) &&\n      count(*[_type == "post" && references(^._id) && seo.noIndex != true]) > 0\n    ]{\n      "slug": slug.current,\n      _updatedAt\n    }\n  }\n': SITEMAP_QUERY_RESULT
+    '\n  {\n    "pages": *[_type == "page" && defined(slug.current) && seo.noIndex != true]{\n      "slug": slug.current,\n      language,\n      _updatedAt\n    },\n    "legal": *[_type == "legalDocument" && defined(slug.current) && seo.noIndex != true]{\n      "slug": slug.current,\n      language,\n      _updatedAt\n    }\n  }\n': SITEMAP_QUERY_RESULT
     '\n  *[_id == $documentId][0]{\n    _id,\n    "block": pageBuilder[_key == $blockKey && _type == "heroBlock"][0]{\n      eyebrow, heading, subheading, layout\n    }\n  }\n': HERO_PRESENTATION_QUERY_RESULT
   }
 }

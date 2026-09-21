@@ -25,6 +25,14 @@ function absolute(siteUrl: string, path: string): string {
   return `${siteUrl.replace(/\/$/, '')}${path}`
 }
 
+/** Site-wide title, Hebrew when browsing in `he` and a Hebrew title is set, English otherwise. */
+export function siteTitle(
+  settings: { title?: string | null; titleHe?: string | null } | null | undefined,
+  locale: Locale,
+): string | undefined {
+  return (locale === 'he' ? settings?.titleHe : null) || settings?.title || undefined
+}
+
 function ogImageUrl(image: ProjectedImage | null | undefined): string | null {
   if (!image?.asset) return null
   return urlFor(image).width(1200).height(630).fit('crop').url()
@@ -88,11 +96,4 @@ export function buildMetadata({
   }
 
   return metadata
-}
-
-/** Rough reading time from plain text. Hebrew and English both land close enough. */
-export function readingMinutes(text: string | null | undefined): number {
-  if (!text) return 1
-  const words = text.trim().split(/\s+/).filter(Boolean).length
-  return Math.max(1, Math.round(words / 200))
 }

@@ -12,7 +12,6 @@
 import type {
   HOME_PAGE_QUERY_RESULT,
   NAVIGATION_QUERY_RESULT,
-  POST_BY_SLUG_QUERY_RESULT,
   SITE_SETTINGS_QUERY_RESULT,
 } from '@/sanity.types'
 
@@ -68,8 +67,6 @@ export type FooterGroup = NonNullable<NonNullable<NavigationValue>['footerGroups
 
 export type SiteSettingsValue = SITE_SETTINGS_QUERY_RESULT
 export type SocialLink = NonNullable<NonNullable<SiteSettingsValue>['socials']>[number]
-
-export type PostValue = NonNullable<POST_BY_SLUG_QUERY_RESULT>
 
 export interface BlockProps {
   locale: string

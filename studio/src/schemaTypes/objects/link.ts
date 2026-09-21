@@ -1,7 +1,7 @@
 import { LinkIcon } from '@sanity/icons/Link'
 import { defineField, defineType } from 'sanity'
 
-export const LINKABLE_TYPES = ['page', 'post', 'legalDocument'] as const
+export const LINKABLE_TYPES = ['page', 'legalDocument'] as const
 
 export const link = defineType({
   name: 'link',

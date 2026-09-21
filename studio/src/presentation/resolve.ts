@@ -18,15 +18,6 @@ export const resolve: PresentationPluginOptions['resolve'] = {
         ],
       }),
     }),
-    post: defineLocations({
-      select: { title: 'title', slug: 'slug.current', language: 'language' },
-      resolve: (doc) => ({
-        locations: [
-          { title: doc?.title || 'Untitled', href: localized(`/blog/${doc?.slug}`, doc?.language) },
-          { title: 'Blog index', href: localized('/blog', doc?.language) },
-        ],
-      }),
-    }),
     legalDocument: defineLocations({
       select: { title: 'title', slug: 'slug.current', language: 'language' },
       resolve: (doc) => ({

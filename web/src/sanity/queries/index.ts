@@ -15,6 +15,7 @@ import {
 export const SITE_SETTINGS_QUERY = defineQuery(`
   *[_type == "siteSettings"][0]{
     title,
+    titleHe,
     description,
     descriptionHe,
     contactEmail,
@@ -67,45 +68,6 @@ export const PAGE_SLUGS_QUERY = defineQuery(`
   }
 `)
 
-export const POSTS_QUERY = defineQuery(`
-  *[_type == "post" && language == $locale && defined(slug.current)]
-    | order(publishedAt desc)[$start...$end]{
-      _id,
-      title,
-      "slug": slug.current,
-      excerpt,
-      publishedAt,
-      coverImage { ${IMAGE_FRAGMENT} },
-      author->{ name, "slug": slug.current },
-      categories[]->{ _id, title, "slug": slug.current }
-    }
-`)
-
-export const POST_BY_SLUG_QUERY = defineQuery(`
-  *[_type == "post" && slug.current == $slug && language == $locale][0]{
-    _id,
-    _type,
-    title,
-    "slug": slug.current,
-    language,
-    excerpt,
-    publishedAt,
-    coverImage { ${IMAGE_FRAGMENT} },
-    author->{ name, "slug": slug.current, photo { ${IMAGE_FRAGMENT} } },
-    categories[]->{ _id, title, "slug": slug.current },
-    body[] { ${PORTABLE_TEXT_FRAGMENT} },
-    "plainBody": pt::text(body),
-    "seo": { ${SEO_FRAGMENT} }
-  }
-`)
-
-export const POST_SLUGS_QUERY = defineQuery(`
-  *[_type == "post" && defined(slug.current)]{
-    "slug": slug.current,
-    language
-  }
-`)
-
 export const LEGAL_DOCUMENT_QUERY = defineQuery(`
   *[_type == "legalDocument" && slug.current == $slug && language == $locale][0]{
     _id,
@@ -136,10 +98,7 @@ export const REDIRECTS_QUERY = defineQuery(`
   }
 `)
 
-/**
- * Sitemap hygiene lives in the query, not the caller: noIndex documents are never
- * emitted, and a category is only listed when it actually has indexable posts.
- */
+/** Sitemap hygiene lives in the query, not the caller: noIndex documents are never emitted. */
 export const SITEMAP_QUERY = defineQuery(`
   {
     "pages": *[_type == "page" && defined(slug.current) && seo.noIndex != true]{
@@ -147,22 +106,9 @@ export const SITEMAP_QUERY = defineQuery(`
       language,
       _updatedAt
     },
-    "posts": *[_type == "post" && defined(slug.current) && seo.noIndex != true]{
-      "slug": slug.current,
-      language,
-      _updatedAt
-    },
     "legal": *[_type == "legalDocument" && defined(slug.current) && seo.noIndex != true]{
       "slug": slug.current,
       language,
-      _updatedAt
-    },
-    "categories": *[
-      _type == "category" &&
-      defined(slug.current) &&
-      count(*[_type == "post" && references(^._id) && seo.noIndex != true]) > 0
-    ]{
-      "slug": slug.current,
       _updatedAt
     }
   }

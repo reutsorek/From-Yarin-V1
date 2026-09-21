@@ -27,9 +27,6 @@ import { founderIntroBlock } from './blocks/founderIntro'
 import { pageBuilder } from './blocks/pageBuilder'
 
 import { page } from './documents/page'
-import { post } from './documents/post'
-import { author } from './documents/author'
-import { category } from './documents/category'
 import { faq } from './documents/faq'
 import { legalDocument } from './documents/legalDocument'
 import { redirect } from './documents/redirect'
@@ -91,9 +88,6 @@ const definitions: SchemaTypeDefinition[] = [
   founderIntroBlock,
   // documents
   page,
-  post,
-  author,
-  category,
   faq,
   legalDocument,
   redirect,
@@ -113,7 +107,6 @@ export const schemaTypes = definitions.map(withDocumentGuards)
 export const SINGLETON_TYPES = ['siteSettings', 'navigation'] as const
 export const LOCALIZED_TYPES = [
   'page',
-  'post',
   'legalDocument',
   'founderProfile',
   'expeditionProduct',

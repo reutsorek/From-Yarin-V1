@@ -5,7 +5,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { PageBuilder } from '@/components/page-builder'
 import type { Locale } from '@/i18n/routing'
 import { siteUrl } from '@/lib/env'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, siteTitle } from '@/lib/seo'
 import { sanityFetch } from '@/sanity/lib/live'
 import { HOME_PAGE_QUERY, SITE_SETTINGS_QUERY } from '@/sanity/queries'
 
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: '',
     locale,
     siteUrl,
-    siteName: settings?.title,
+    siteName: siteTitle(settings, locale),
     defaultOgImage: settings?.defaultOgImage,
   })
 }

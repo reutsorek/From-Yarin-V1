@@ -38,11 +38,6 @@
     "success": "תודה. הפנייה התקבלה. נחזור אליכם באופן אישי.",
     "error": "לא הצלחנו לשלוח את ההודעה. נסו שוב."
   },
-  "blog": {
-    "title": "בלוג",
-    "readingTime": "{minutes} דקות קריאה",
-    "publishedOn": "פורסם ב{date}"
-  },
   "localeSwitcher": {
     "label": "שפה",
     "switchTo": "מעבר ל{language}"

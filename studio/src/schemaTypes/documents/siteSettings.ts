@@ -14,6 +14,13 @@ export const siteSettings = defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: 'titleHe',
+      title: 'Site title (Hebrew)',
+      type: 'string',
+      description:
+        'Only needed on this shared, non-localized document. Used as the page title suffix and social-share site name instead of Site title when browsing in Hebrew.',
+    }),
     defineField({ name: 'description', title: 'Site description', type: 'text', rows: 3 }),
     defineField({
       name: 'descriptionHe',

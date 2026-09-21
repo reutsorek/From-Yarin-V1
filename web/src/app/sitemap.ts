@@ -31,17 +31,12 @@ function entry(path: string, locale: string, lastModified: string): MetadataRout
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const data = await safeFetch('sitemap', (client) => client.fetch(SITEMAP_QUERY), {
     pages: [],
-    posts: [],
     legal: [],
-    categories: [],
   })
 
   const now = new Date().toISOString()
 
-  const staticEntries = locales.flatMap((locale) => [
-    entry('', locale, now),
-    entry('/blog', locale, now),
-  ])
+  const staticEntries = locales.map((locale) => entry('', locale, now))
 
   const fromDocuments = (rows: Entry[], toPath: (slug: string) => string) =>
     rows
@@ -55,7 +50,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticEntries,
     ...fromDocuments(data.pages as Entry[], (slug) => `/${slug}`),
-    ...fromDocuments(data.posts as Entry[], (slug) => `/blog/${slug}`),
     ...fromDocuments(data.legal as Entry[], (slug) => `/${slug}`),
   ]
 }

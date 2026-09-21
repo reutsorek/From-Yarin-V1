@@ -11,7 +11,7 @@ import { Prose } from '@/components/primitives/prose'
 import { Section } from '@/components/primitives/section'
 import type { Locale } from '@/i18n/routing'
 import { siteUrl } from '@/lib/env'
-import { buildMetadata } from '@/lib/seo'
+import { buildMetadata, siteTitle } from '@/lib/seo'
 import { safeFetch } from '@/sanity/lib/safe-fetch'
 import { urlFor } from '@/sanity/lib/image'
 import { sanityFetch } from '@/sanity/lib/live'
@@ -73,7 +73,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path,
     locale,
     siteUrl,
-    siteName: settings?.title,
+    siteName: siteTitle(settings, locale),
     defaultOgImage: settings?.defaultOgImage,
   })
 }

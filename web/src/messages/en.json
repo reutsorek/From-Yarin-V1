@@ -38,11 +38,6 @@
     "success": "Thank you. Your message has been received. We will respond personally.",
     "error": "We could not send your message. Please try again."
   },
-  "blog": {
-    "title": "Blog",
-    "readingTime": "{minutes} min read",
-    "publishedOn": "Published on {date}"
-  },
   "localeSwitcher": {
     "label": "Language",
     "switchTo": "Switch to {language}"

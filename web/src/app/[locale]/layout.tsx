@@ -16,6 +16,7 @@ import { Header } from '@/components/layout/header'
 import { JsonLd } from '@/components/json-ld'
 import { DIRECTIONS, locales, routing, type Locale } from '@/i18n/routing'
 import { siteUrl } from '@/lib/env'
+import { siteTitle } from '@/lib/seo'
 import { urlFor } from '@/sanity/lib/image'
 import { sanityFetch, SanityLive } from '@/sanity/lib/live'
 import { NAVIGATION_QUERY, SITE_SETTINGS_QUERY } from '@/sanity/queries'
@@ -39,12 +40,13 @@ export async function generateMetadata({
   const { locale } = await params
   const { data: settings } = await sanityFetch({ query: SITE_SETTINGS_QUERY, stega: false })
   const description = (locale === 'he' ? settings?.descriptionHe : null) || settings?.description
+  const title = siteTitle(settings, locale)
 
   return {
     metadataBase: new URL(siteUrl),
     title: {
-      default: settings?.title ?? '',
-      template: settings?.title ? `%s | ${settings.title}` : '%s',
+      default: title ?? '',
+      template: title ? `%s | ${title}` : '%s',
     },
     description: description ?? undefined,
   }
@@ -77,7 +79,7 @@ export default async function LocaleLayout({
   const organizationJsonLd: WithContext<Organization> = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: stegaClean(settings?.title) || undefined,
+    name: stegaClean(siteTitle(settings, locale as Locale)) || undefined,
     url: siteUrl,
     logo: settings?.logo?.asset ? urlFor(settings.logo).width(512).url() : undefined,
     description: stegaClean(orgDescription) || undefined,
