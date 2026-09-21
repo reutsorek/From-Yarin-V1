@@ -3,7 +3,10 @@
 import * as React from 'react'
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
-import { CheckCircle2, Loader2 } from 'lucide-react'
+import Image from 'next/image'
+import { Loader2 } from 'lucide-react'
+import frozenHeartIcon from '@/assets/frozen-heart.png'
+import snowflakeIcon from '@/assets/snowflake.png'
 import { Section, SectionHeader } from '@/components/primitives/section'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -114,7 +117,7 @@ function ContactFormInner({
     return (
       <Section container="narrow">
         <div className="border-border bg-card flex flex-col items-center gap-4 rounded-lg border p-12 text-center">
-          <CheckCircle2 className="text-primary size-10" />
+          <Image src={frozenHeartIcon} alt="" className="h-auto w-48" />
           <p className="text-card-foreground text-lg font-medium">
             {successMessage ?? t('success')}
           </p>
@@ -226,7 +229,11 @@ function ContactFormInner({
         ) : null}
 
         <Button type="submit" size="lg" disabled={status === 'pending'} className="mt-2">
-          {status === 'pending' ? <Loader2 className="animate-spin" /> : null}
+          {status === 'pending' ? (
+            <Loader2 className="animate-spin" />
+          ) : (
+            <Image src={snowflakeIcon} alt="" className="size-4 shrink-0" />
+          )}
           {submitLabel ?? t('submit')}
         </Button>
 
