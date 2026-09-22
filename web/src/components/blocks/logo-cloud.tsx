@@ -1,8 +1,13 @@
+import { stegaClean } from 'next-sanity'
 import { Section } from '@/components/primitives/section'
 import { SanityImage } from '@/components/sanity-image'
+import { cn } from '@/lib/cn'
 import type { LogoCloudBlockValue } from './types'
 
 export type LogoCloudBlockProps = LogoCloudBlockValue & { locale: string }
+
+const TILE_CLASS =
+  'bg-foreground flex h-24 items-center justify-center rounded-lg px-2 py-2 transition-opacity'
 
 export function LogoCloudBlock({ heading, logos }: LogoCloudBlockProps) {
   if (!logos?.length) return null
@@ -15,11 +20,8 @@ export function LogoCloudBlock({ heading, logos }: LogoCloudBlockProps) {
         </p>
       ) : null}
       <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
-        {logos.map((logo) => (
-          <div
-            key={logo._key}
-            className="bg-foreground flex h-24 items-center justify-center rounded-lg px-2 py-2"
-          >
+        {logos.map((logo) => {
+          const image = (
             <SanityImage
               image={logo}
               width={240}
@@ -27,8 +29,25 @@ export function LogoCloudBlock({ heading, logos }: LogoCloudBlockProps) {
               objectPosition="center"
               className="max-h-full w-auto max-w-full object-contain"
             />
-          </div>
-        ))}
+          )
+          const url = stegaClean(logo.url)
+
+          return url ? (
+            <a
+              key={logo._key}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(TILE_CLASS, 'hover:opacity-80')}
+            >
+              {image}
+            </a>
+          ) : (
+            <div key={logo._key} className={TILE_CLASS}>
+              {image}
+            </div>
+          )
+        })}
       </div>
     </Section>
   )

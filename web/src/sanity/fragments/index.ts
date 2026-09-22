@@ -152,7 +152,7 @@ export const PAGE_BUILDER_FRAGMENT = /* groq */ `
     },
     _type == "logoCloudBlock" => {
       heading,
-      logos[] { _key, ${IMAGE_FRAGMENT} }
+      logos[] { _key, ${IMAGE_FRAGMENT}, url }
     },
     _type == "testimonialsBlock" => {
       heading,

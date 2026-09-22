@@ -12,7 +12,7 @@ export const logoCloudBlock = defineType({
       name: 'logos',
       title: 'Logos',
       type: 'array',
-      of: [defineArrayMember({ type: 'imageWithAlt' })],
+      of: [defineArrayMember({ type: 'logoCloudLogo' })],
       validation: (rule) => rule.required().min(1),
     }),
   ],

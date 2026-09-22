@@ -5,6 +5,7 @@ import { seo } from './objects/seo'
 import { link } from './objects/link'
 import { cta } from './objects/cta'
 import { imageWithAlt } from './objects/imageWithAlt'
+import { logoCloudLogo } from './objects/logoCloudLogo'
 import { callout, portableText, videoEmbed } from './objects/portableText'
 
 import { heroBlock } from './blocks/hero'
@@ -64,6 +65,7 @@ const definitions: SchemaTypeDefinition[] = [
   link,
   cta,
   imageWithAlt,
+  logoCloudLogo,
   portableText,
   callout,
   videoEmbed,
