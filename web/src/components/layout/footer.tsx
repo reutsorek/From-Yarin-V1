@@ -8,6 +8,7 @@ import {
   Youtube,
   type LucideIcon,
 } from 'lucide-react'
+import googleScholarIcon from '@/assets/google-scholar.png'
 import { Link } from '@/i18n/navigation'
 import { ROUTES } from '@/config/urls'
 import { SanityImage } from '@/components/sanity-image'
@@ -101,7 +102,8 @@ export function Footer({ navigation, siteSettings, locale }: FooterProps) {
             <ul className="flex items-center gap-2">
               {socials.map((social) => {
                 if (!social.url) return null
-                const Icon = socialIcons[(social.platform ?? '').toLowerCase()] ?? LinkIcon
+                const platform = (social.platform ?? '').toLowerCase()
+                const Icon = socialIcons[platform] ?? LinkIcon
 
                 return (
                   <li key={social._key}>
@@ -112,7 +114,24 @@ export function Footer({ navigation, siteSettings, locale }: FooterProps) {
                       aria-label={social.platform ?? social.url}
                       className="text-muted-foreground hover:bg-background hover:text-foreground flex size-9 items-center justify-center rounded-lg transition-colors"
                     >
-                      <Icon className="size-5" />
+                      {platform === 'googlescholar' ? (
+                        <span
+                          aria-hidden
+                          className="size-5 bg-current"
+                          style={{
+                            maskImage: `url(${googleScholarIcon.src})`,
+                            maskSize: 'contain',
+                            maskRepeat: 'no-repeat',
+                            maskPosition: 'center',
+                            WebkitMaskImage: `url(${googleScholarIcon.src})`,
+                            WebkitMaskSize: 'contain',
+                            WebkitMaskRepeat: 'no-repeat',
+                            WebkitMaskPosition: 'center',
+                          }}
+                        />
+                      ) : (
+                        <Icon className="size-5" />
+                      )}
                     </a>
                   </li>
                 )
