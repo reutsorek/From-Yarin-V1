@@ -10,14 +10,13 @@ jobs:
     if: vars.SANITY_CONFIGURED == 'true'
     runs-on: ubuntu-latest
     env:
-      SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
+      SANITY_AUTH_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
     steps:
       - name: Export dataset
         run: |
           npx --yes sanity@latest datasets export "${{ vars.NEXT_PUBLIC_SANITY_DATASET }}" \
             "sanity-backup-$(date -u +%Y-%m-%d).tar.gz" \
-            --project-id "${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}" \
-            --token "$SANITY_API_READ_TOKEN"
+            --project-id "${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}"
       - name: Upload backup artifact
         uses: actions/upload-artifact@v4
         with:
