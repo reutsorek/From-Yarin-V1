@@ -4,7 +4,7 @@ import * as React from 'react'
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
-import { Loader2 } from 'lucide-react'
+import { Loader2, MessageCircle } from 'lucide-react'
 import frozenHeartIcon from '@/assets/frozen-heart.png'
 import snowflakeIcon from '@/assets/snowflake.png'
 import { Section, SectionHeader } from '@/components/primitives/section'
@@ -53,6 +53,7 @@ function ContactFormInner({
   submitLabel,
   interestTypeOptions,
   privacyNote,
+  whatsappNumber,
 }: ContactFormBlockProps) {
   const t = useTranslations('contact')
   const searchParams = useSearchParams()
@@ -60,6 +61,7 @@ function ContactFormInner({
 
   const [status, setStatus] = React.useState<Status>('idle')
   const [turnstileToken, setTurnstileToken] = React.useState<string | null>(null)
+  const [whatsappToken, setWhatsappToken] = React.useState<string | null>(null)
 
   const configuredValues = (interestTypeOptions ?? []).filter(isInterestValue)
   const interestValues = configuredValues.length > 0 ? configuredValues : ALL_INTEREST_VALUES
@@ -243,6 +245,31 @@ function ContactFormInner({
           </p>
         ) : null}
       </form>
+
+      {whatsappNumber ? (
+        <div className="border-border bg-card mx-auto mt-8 flex max-w-xl flex-col items-center gap-4 rounded-lg border p-6 text-center">
+          {whatsappToken ? (
+            <Button asChild variant="outline" size="lg">
+              <a
+                href={`https://wa.me/${whatsappNumber.replace(/\D/g, '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MessageCircle className="size-4" />
+                {t('whatsappCta')}
+              </a>
+            </Button>
+          ) : (
+            <>
+              <p className="text-muted-foreground text-sm">{t('whatsappPrompt')}</p>
+              <TurnstileWidget
+                siteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                onToken={setWhatsappToken}
+              />
+            </>
+          )}
+        </div>
+      ) : null}
     </Section>
   )
 }

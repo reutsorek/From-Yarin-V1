@@ -32,6 +32,13 @@ export const contactFormBlock = defineType({
       rows: 3,
       description: 'Shown beneath the form, explaining how submissions are handled.',
     }),
+    defineField({
+      name: 'whatsappNumber',
+      title: 'WhatsApp number',
+      type: 'string',
+      description:
+        'Full international number, e.g. +972544313011. Leave empty to hide the WhatsApp option. The link only reveals itself once a visitor passes a bot check, so it never appears in the raw page source.',
+    }),
   ],
   preview: {
     select: { title: 'heading' },

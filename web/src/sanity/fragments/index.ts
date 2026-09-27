@@ -176,7 +176,7 @@ export const PAGE_BUILDER_FRAGMENT = /* groq */ `
       ctas[] { _key, ${CTA_FRAGMENT} }
     },
     _type == "contactFormBlock" => {
-      heading, body, successMessage, submitLabel, interestTypeOptions, privacyNote
+      heading, body, successMessage, submitLabel, interestTypeOptions, privacyNote, whatsappNumber
     },
     _type == "positioningBlock" => {
       heading, intro, notThisItems, butThisHeading, butThisText

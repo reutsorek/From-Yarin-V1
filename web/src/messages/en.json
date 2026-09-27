@@ -36,7 +36,9 @@
     "captchaRequired": "Please complete the verification challenge before sending.",
     "submit": "Send",
     "success": "Thank you. Your message has been received. We will respond personally.",
-    "error": "We could not send your message. Please try again."
+    "error": "We could not send your message. Please try again.",
+    "whatsappPrompt": "Prefer WhatsApp? Complete the quick check below to reveal the link.",
+    "whatsappCta": "Message on WhatsApp"
   },
   "localeSwitcher": {
     "label": "Language",
