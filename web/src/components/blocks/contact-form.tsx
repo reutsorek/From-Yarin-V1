@@ -15,6 +15,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Select } from '@/components/ui/select'
 import { Checkbox } from '@/components/ui/checkbox'
 import { TurnstileWidget } from '@/components/turnstile-widget'
+import { cn } from '@/lib/cn'
 import { env } from '@/lib/env'
 import type { ContactFormBlockValue } from './types'
 
@@ -128,11 +129,16 @@ function ContactFormInner({
     )
   }
 
+  const hasHeader = Boolean(heading || body)
+
   return (
     <Section container="narrow">
       <SectionHeader level={2} heading={heading} intro={body} />
 
-      <form onSubmit={onSubmit} className="mx-auto mt-12 flex max-w-xl flex-col gap-5">
+      <form
+        onSubmit={onSubmit}
+        className={cn('mx-auto flex max-w-xl flex-col gap-5', hasHeader ? 'mt-12' : 'mt-2')}
+      >
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
             <Label htmlFor="contact-fullName">{t('fullName')}</Label>
@@ -249,7 +255,7 @@ function ContactFormInner({
       {whatsappNumber ? (
         <div className="border-border bg-card mx-auto mt-8 flex max-w-xl flex-col items-center gap-4 rounded-lg border p-6 text-center">
           {whatsappToken ? (
-            <Button asChild variant="outline" size="lg">
+            <Button asChild size="lg">
               <a
                 href={`https://wa.me/${whatsappNumber.replace(/\D/g, '')}`}
                 target="_blank"
